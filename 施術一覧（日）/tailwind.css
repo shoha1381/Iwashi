@@ -172,4 +172,45 @@
     .tracking-wide {
         letter-spacing: 0.04em;
     }
+
+    /* Touch-friendly tap targets */
+    @media (hover: none) and (pointer: coarse) {
+        .icon-button,
+        .nav-arrow,
+        .toggle-button,
+        .dropdown {
+            min-height: 44px;
+            min-width: 44px;
+        }
+    }
+}
+
+/* Bottom Navigation for Mobile/Tablet */
+.bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around py-2 px-4;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.04);
+    padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+.bottom-nav-item {
+    @apply flex flex-col items-center gap-0.5 text-neutral-400 transition-all duration-200 cursor-pointer py-1 px-3 rounded-lg;
+}
+
+.bottom-nav-item:active {
+    @apply bg-neutral-100;
+}
+
+.bottom-nav-item.active {
+    @apply text-primary-500;
+}
+
+.bottom-nav-icon {
+    @apply w-5 h-5;
+}
+
+.bottom-nav-label {
+    @apply text-[10px] font-normal;
 }

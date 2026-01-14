@@ -50,20 +50,43 @@ export const ScheduleGridSection = () => {
     { id: "treatment", icon: <CalendarIcon />, label: "施術" },
   ];
 
+  // Mobile/Tablet: show fewer items
+  const mobileItems = navigationItems.filter(item => 
+    ["treatment", "customers", "sales", "settings"].includes(item.id)
+  );
+
   return (
-    <nav className="side-nav hidden lg:flex" role="navigation" aria-label="メインナビゲーション">
-      {navigationItems.map((item) => (
-        <button
-          key={item.id}
-          className={`side-nav-item ${activeItem === item.id ? "active" : ""}`}
-          onClick={() => setActiveItem(item.id)}
-          aria-label={item.label}
-          aria-current={activeItem === item.id ? "page" : undefined}
-        >
-          {item.icon}
-          <span className="side-nav-label">{item.label}</span>
-        </button>
-      ))}
-    </nav>
+    <>
+      {/* Desktop Side Navigation */}
+      <nav className="side-nav hidden lg:flex" role="navigation" aria-label="メインナビゲーション">
+        {navigationItems.map((item) => (
+          <button
+            key={item.id}
+            className={`side-nav-item ${activeItem === item.id ? "active" : ""}`}
+            onClick={() => setActiveItem(item.id)}
+            aria-label={item.label}
+            aria-current={activeItem === item.id ? "page" : undefined}
+          >
+            {item.icon}
+            <span className="side-nav-label">{item.label}</span>
+          </button>
+        ))}
+      </nav>
+
+      {/* Mobile/Tablet Bottom Navigation */}
+      <nav className="bottom-nav lg:hidden" role="navigation" aria-label="メインナビゲーション">
+        {mobileItems.map((item) => (
+          <button
+            key={item.id}
+            className={`bottom-nav-item ${activeItem === item.id ? "active" : ""}`}
+            onClick={() => setActiveItem(item.id)}
+            aria-label={item.label}
+          >
+            <span className="bottom-nav-icon">{item.icon}</span>
+            <span className="bottom-nav-label">{item.label}</span>
+          </button>
+        ))}
+      </nav>
+    </>
   );
 };

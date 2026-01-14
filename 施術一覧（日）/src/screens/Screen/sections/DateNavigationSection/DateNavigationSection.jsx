@@ -53,17 +53,17 @@ export const DateNavigationSection = ({
 
     return (
         <header className="header-nav">
-            <div className="px-6 py-4">
-                <div className="flex items-center justify-between gap-4">
+            <div className="px-4 md:px-6 py-3 md:py-4">
+                <div className="flex items-center justify-between gap-2 md:gap-4 flex-wrap">
                     {/* Left: Date Navigation */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 md:gap-4">
                         <button onClick={() => navigateDate(-1)} className="nav-arrow" aria-label="前の日">
                             <ChevronLeftIcon />
                         </button>
 
-                        <div className="flex items-baseline gap-2">
-                            <span className="text-lg font-normal text-neutral-700 tracking-wide">{dateInfo.full}</span>
-                            <span className="text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
+                        <div className="flex items-baseline gap-1 md:gap-2">
+                            <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo.full}</span>
+                            <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
                         </div>
 
                         <button onClick={() => navigateDate(1)} className="nav-arrow" aria-label="次の日">
@@ -72,10 +72,10 @@ export const DateNavigationSection = ({
                     </div>
 
                     {/* Right: Controls grouped together */}
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 md:gap-2">
                         {/* Store Selector */}
                         <button className="dropdown">
-                            <span className="text-sm font-normal text-neutral-600">{selectedStore}</span>
+                            <span className="text-xs md:text-sm font-normal text-neutral-600">{selectedStore}</span>
                             <ChevronDownIcon />
                         </button>
 
@@ -92,8 +92,8 @@ export const DateNavigationSection = ({
                             ))}
                         </div>
 
-                        {/* Action Buttons */}
-                        <button className="icon-button" aria-label="検索"><SearchIcon /></button>
+                        {/* Action Buttons - hide some on mobile */}
+                        <button className="icon-button hidden sm:flex" aria-label="検索"><SearchIcon /></button>
                         <button className="icon-button" aria-label="今日に戻る"><CalendarIcon /></button>
                         <button className="icon-button" aria-label="メニュー"><MoreIcon /></button>
                     </div>

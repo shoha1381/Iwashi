@@ -30,7 +30,7 @@ export const Screen = () => {
             <ScheduleGridSection />
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col lg:mr-16">
+            <div className="flex-1 flex flex-col lg:mr-16 pb-16 lg:pb-0">
                 {/* Header */}
                 <DateNavigationSection
                     selectedDate={selectedDate}
