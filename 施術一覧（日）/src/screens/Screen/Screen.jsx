@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { DateNavigationSection } from "./sections/DateNavigationSection";
 import { BottomNavigationSection } from "./sections/BottomNavigationSection";
 import { ScheduleMainSection } from "./sections/ScheduleMainSection";
@@ -39,6 +39,29 @@ export const Screen = () => {
         const step = selectedView === "week" ? 7 : 1;
         newDate.setDate(newDate.getDate() + (direction * step));
         setSelectedDate(newDate);
+    };
+
+    // Infinite Scroll Logic
+    const [dateList, setDateList] = useState([selectedDate]);
+    const isLoadingRef = useRef(false);
+
+    useEffect(() => {
+        setDateList([selectedDate]);
+    }, [selectedDate, selectedView]);
+
+    const onScroll = (e) => {
+        const { scrollTop, clientHeight, scrollHeight } = e.target;
+        if (scrollHeight - scrollTop - clientHeight < 100 && !isLoadingRef.current) {
+            isLoadingRef.current = true;
+            setDateList(prev => {
+                const last = new Date(prev[prev.length - 1]);
+                const next = new Date(last);
+                const step = selectedView === 'week' ? 7 : 1;
+                next.setDate(next.getDate() + step);
+                return [...prev, next];
+            });
+            setTimeout(() => { isLoadingRef.current = false; }, 500);
+        }
     };
 
     // Swipe Navigation Logic
@@ -125,15 +148,32 @@ export const Screen = () => {
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
                     onWheel={onWheel}
+                    onScroll={onScroll}
                 >
                     {/* Staff Row - Sticky at top of scroll area */}
-                    <div className="sticky top-0 z-30 bg-white">
+                    <div className="sticky top-0 z-30 bg-white shadow-sm">
                         <BottomNavigationSection selectedDate={selectedDate} formatDate={formatDate} />
                     </div>
 
-                    {/* Schedule Grid */}
-                    <div className="w-full bg-white">
-                        <ScheduleMainSection />
+                    {/* Schedule Grid - Infinite List */}
+                    <div className="w-full bg-white pb-20">
+                        {dateList.map((date, index) => (
+                            <div key={index}>
+                                {index > 0 && (
+                                    <div className="bg-neutral-100 py-3 px-4 flex items-center gap-2 border-b border-t border-neutral-200">
+                                        <span className="text-sm font-bold text-neutral-600">
+                                            {formatDate(date).full} ({formatDate(date).dayOfWeek})
+                                        </span>
+                                        {selectedView === 'week' && (
+                                            <span className="text-xs text-neutral-400">
+                                                〜 {formatDate(date).weekEnd}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
+                                <ScheduleMainSection date={date} />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

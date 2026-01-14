@@ -62,7 +62,7 @@ const TimeRow = ({ row, isEven }) => (
     </div>
 );
 
-export const ScheduleMainSection = () => {
+export const ScheduleMainSection = ({ date }) => {
     const scheduleData = [
         {
             time: "10", slots: [
