@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { DateNavigationSection } from "./sections/DateNavigationSection";
 import { BottomNavigationSection } from "./sections/BottomNavigationSection";
 import { ScheduleMainSection } from "./sections/ScheduleMainSection";
@@ -41,6 +41,31 @@ export const Screen = () => {
         setSelectedDate(newDate);
     };
 
+    // Swipe Navigation Logic
+    const touchStart = useRef(null);
+    const touchEnd = useRef(null);
+
+    const onTouchStart = (e) => {
+        touchEnd.current = null;
+        touchStart.current = { x: e.targetTouches[0].clientX, y: e.targetTouches[0].clientY };
+    };
+
+    const onTouchMove = (e) => {
+        touchEnd.current = { x: e.targetTouches[0].clientX, y: e.targetTouches[0].clientY };
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart.current || !touchEnd.current) return;
+        const distanceX = touchStart.current.x - touchEnd.current.x;
+        const distanceY = touchStart.current.y - touchEnd.current.y;
+        const isHorizontalSwipe = Math.abs(distanceX) > Math.abs(distanceY);
+
+        if (isHorizontalSwipe && Math.abs(distanceX) > 50) {
+            if (distanceX > 0) navigateDate(1); // Swipe Left -> Next
+            else navigateDate(-1); // Swipe Right -> Prev
+        }
+    };
+
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
@@ -60,7 +85,12 @@ export const Screen = () => {
                 />
 
                 {/* Schedule Area - Scrollable with sticky staff row */}
-                <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 w-full">
+                <div
+                    className="flex-1 overflow-y-auto overflow-x-hidden pt-16 w-full"
+                    onTouchStart={onTouchStart}
+                    onTouchMove={onTouchMove}
+                    onTouchEnd={onTouchEnd}
+                >
                     {/* Staff Row - Sticky at top of scroll area */}
                     <div className="sticky top-0 z-30 bg-white">
                         <BottomNavigationSection selectedDate={selectedDate} formatDate={formatDate} />
