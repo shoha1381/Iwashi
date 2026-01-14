@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    button,
+    input,
+    select,
+    textarea {
+        @apply appearance-none bg-transparent border-0 outline-none;
+    }
+
+    html {
+        font-family: 'Noto Sans JP', sans-serif;
+        letter-spacing: 0.02em;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        @apply text-neutral-700 bg-neutral-50;
+    }
+}
+
+@layer components {
+
+    /* Soft Shadow */
+    .shadow-soft {
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Header Navigation */
+    .header-nav {
+        @apply bg-white sticky top-0 z-50 shadow-soft;
+    }
+
+    /* Appointment Card - No border, bolder text */
+    .appointment-card {
+        @apply rounded-xl p-2 transition-all duration-200 cursor-pointer overflow-hidden;
+    }
+
+    .appointment-card:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        transform: translateY(-1px);
+    }
+
+    .appointment-card-pink {
+        @apply bg-pink-100;
+    }
+
+    .appointment-card-purple {
+        @apply bg-purple-100;
+    }
+
+    .appointment-card-green {
+        @apply bg-emerald-100;
+    }
+
+    .appointment-card-orange {
+        @apply bg-amber-100;
+    }
+
+    .appointment-card-gray {
+        @apply bg-neutral-100;
+    }
+
+    .appointment-name {
+        @apply font-medium text-neutral-800 leading-snug;
+    }
+
+    .appointment-service {
+        @apply text-[10px] font-medium text-neutral-600 bg-white/80 rounded px-1.5 py-0.5 inline-block truncate max-w-full;
+    }
+
+    /* Badge - Flat design */
+    .badge {
+        @apply inline-flex items-center justify-center w-5 h-5 text-[10px] font-medium rounded;
+    }
+
+    .badge-alert {
+        @apply bg-red-500 text-white;
+    }
+
+    .badge-work {
+        @apply bg-neutral-400 text-white;
+    }
+
+    /* Side Navigation */
+    .side-nav {
+        @apply fixed right-0 top-0 h-full w-16 z-30 flex flex-col items-center py-6 gap-5;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-left: 1px solid rgba(0, 0, 0, 0.04);
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .side-nav-item {
+        @apply flex flex-col items-center gap-1.5 text-neutral-400 transition-all duration-200 cursor-pointer p-2.5 rounded-xl;
+    }
+
+    .side-nav-item:hover {
+        @apply text-neutral-600 bg-neutral-100/60;
+    }
+
+    .side-nav-item.active {
+        @apply text-neutral-700 bg-neutral-100;
+    }
+
+    .side-nav-icon {
+        @apply w-5 h-5;
+    }
+
+    .side-nav-label {
+        @apply text-[10px] font-normal;
+    }
+
+    /* Toggle Switch - Glassmorphism style matching dropdown */
+    .toggle-container {
+        @apply inline-flex p-[2px] rounded-full overflow-hidden;
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .toggle-button {
+        @apply px-3 py-1.5 flex items-center justify-center text-sm font-normal rounded-full transition-all duration-200;
+    }
+
+    .toggle-button.active {
+        @apply text-white;
+        background: rgba(0, 136, 255, 0.7);
+        backdrop-filter: blur(2px);
+        box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.4),
+            inset 1px 0 0 rgba(255, 255, 255, 0.32),
+            inset 0 -1px 1px rgba(0, 0, 0, 0.14),
+            inset -1px 0 1px rgba(0, 0, 0, 0.11);
+    }
+
+    .toggle-button:not(.active) {
+        @apply text-neutral-400 hover:text-neutral-500;
+    }
+
+    /* Dropdown - Matching glassmorphism tone */
+    .dropdown {
+        @apply rounded-full px-3 py-1.5 flex items-center gap-2 cursor-pointer transition-all duration-200;
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .dropdown:hover {
+        background: rgba(0, 0, 0, 0.08);
+    }
+
+    /* Icon Button */
+    .icon-button {
+        @apply w-9 h-9 flex items-center justify-center rounded-xl transition-all duration-200 text-neutral-400;
+    }
+
+    .icon-button:hover {
+        @apply text-neutral-600 bg-neutral-100;
+    }
+
+    /* Navigation Arrow - Circle */
+    .nav-arrow {
+        @apply w-7 h-7 flex items-center justify-center rounded-full border border-neutral-300 text-neutral-500 transition-all duration-200;
+    }
+
+    .nav-arrow:hover {
+        @apply border-neutral-400 text-neutral-600 bg-neutral-50;
+    }
+}
+
+@layer utilities {
+    .tracking-wide {
+        letter-spacing: 0.04em;
+    }
+}
