@@ -41,16 +41,21 @@ export const Screen = () => {
         setSelectedDate(newDate);
     };
 
-    // Infinite Scroll Logic
+    // Infinite Scroll & Sync Logic
     const [dateList, setDateList] = useState([selectedDate]);
+    const [viewingDate, setViewingDate] = useState(selectedDate);
     const isLoadingRef = useRef(false);
+    const dateRefs = useRef([]);
 
     useEffect(() => {
         setDateList([selectedDate]);
+        setViewingDate(selectedDate);
     }, [selectedDate, selectedView]);
 
     const onScroll = (e) => {
         const { scrollTop, clientHeight, scrollHeight } = e.target;
+
+        // Infinite Scroll
         if (scrollHeight - scrollTop - clientHeight < 100 && !isLoadingRef.current) {
             isLoadingRef.current = true;
             setDateList(prev => {
@@ -61,6 +66,23 @@ export const Screen = () => {
                 return [...prev, next];
             });
             setTimeout(() => { isLoadingRef.current = false; }, 500);
+        }
+
+        // Active Date Sync
+        const stickyOffset = 80; // Approximate height of sticky header
+        // Find the section that is currently at the top
+        for (let i = dateRefs.current.length - 1; i >= 0; i--) {
+            const el = dateRefs.current[i];
+            if (el && el.offsetTop <= scrollTop + stickyOffset) {
+                // This is the active section
+                const targetDate = dateList[i];
+                // Only update if day changed (to avoid excessive renders)
+                // Use formatting to compare to ignore time differences if any
+                if (targetDate && formatDate(targetDate).full !== formatDate(viewingDate).full) {
+                    setViewingDate(targetDate);
+                }
+                break;
+            }
         }
     };
 
@@ -132,7 +154,7 @@ export const Screen = () => {
             <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
                 {/* Header - Fixed at top */}
                 <DateNavigationSection
-                    selectedDate={selectedDate}
+                    selectedDate={viewingDate}
                     formatDate={formatDate}
                     navigateDate={navigateDate}
                     selectedView={selectedView}
@@ -152,23 +174,18 @@ export const Screen = () => {
                 >
                     {/* Staff Row - Sticky at top of scroll area */}
                     <div className="sticky top-0 z-30 bg-white shadow-sm">
-                        <BottomNavigationSection selectedDate={selectedDate} formatDate={formatDate} />
+                        <BottomNavigationSection selectedDate={viewingDate} formatDate={formatDate} />
                     </div>
 
                     {/* Schedule Grid - Infinite List */}
                     <div className="w-full bg-white pb-20">
                         {dateList.map((date, index) => (
-                            <div key={index}>
+                            <div key={index} ref={el => dateRefs.current[index] = el}>
                                 {index > 0 && (
                                     <div className="bg-neutral-100 py-3 px-4 flex items-center gap-2 border-b border-t border-neutral-200">
                                         <span className="text-sm font-bold text-neutral-600">
                                             {formatDate(date).full} ({formatDate(date).dayOfWeek})
                                         </span>
-                                        {selectedView === 'week' && (
-                                            <span className="text-xs text-neutral-400">
-                                                〜 {formatDate(date).weekEnd}
-                                            </span>
-                                        )}
                                     </div>
                                 )}
                                 <ScheduleMainSection date={date} />
