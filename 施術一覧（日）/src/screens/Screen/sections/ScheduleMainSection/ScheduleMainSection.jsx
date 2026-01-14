@@ -42,20 +42,23 @@ const AppointmentCard = ({ slot }) => {
 
 // Time Row - with absent columns
 const TimeRow = ({ row, isEven }) => (
-    <div className={`flex ${isEven ? "bg-white" : "bg-neutral-50/30"}`}>
-        <div className="w-16 min-w-[64px] flex-shrink-0 h-28 flex items-center justify-center border-r border-b border-neutral-100">
+    <div
+        className={`grid ${isEven ? "bg-white" : "bg-neutral-50/30"}`}
+        style={{ gridTemplateColumns: "56px repeat(7, 1fr) repeat(2, 0.5fr)" }}
+    >
+        <div className="flex-shrink-0 h-28 flex items-center justify-center border-r border-b border-neutral-100">
             <span className="text-[13px] font-medium text-neutral-500">{row.time}:00</span>
         </div>
 
         {row.slots.map((slot, i) => (
-            <div key={i} className="w-24 min-w-[96px] flex-shrink-0 h-28 p-1 border-r border-b border-neutral-100">
+            <div key={i} className="min-w-0 h-28 p-1 border-r border-b border-neutral-100">
                 <AppointmentCard slot={slot} />
             </div>
         ))}
 
-        {/* Absent staff columns - narrower (56px to match header) */}
-        <div className="w-14 min-w-[56px] flex-shrink-0 h-28 border-r border-b border-neutral-100 bg-neutral-50/50" />
-        <div className="w-14 min-w-[56px] flex-shrink-0 h-28 border-b border-neutral-100 bg-neutral-50/50" />
+        {/* Absent staff columns - half width (0.5fr) to match header */}
+        <div className="min-w-0 h-28 border-r border-b border-neutral-100 bg-neutral-50/50" />
+        <div className="min-w-0 h-28 border-b border-neutral-100 bg-neutral-50/50" />
     </div>
 );
 
@@ -135,6 +138,9 @@ export const ScheduleMainSection = () => {
         { time: "17", slots: [{}, {}, {}, {}, {}, {}, {}] },
         { time: "18", slots: [{}, {}, {}, {}, {}, {}, {}] },
         { time: "19", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "20", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "21", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "22", slots: [{}, {}, {}, {}, {}, {}, {}] },
     ];
 
     return (

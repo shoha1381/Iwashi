@@ -15,23 +15,40 @@ export const Screen = () => {
         const month = String(date.getMonth() + 1).padStart(2, "0");
         const day = String(date.getDate()).padStart(2, "0");
         const dayOfWeek = days[date.getDay()];
-        return { full: `${year}/${month}/${day}`, dayOfWeek, day };
+
+        // Calculate week end date (6 days later)
+        const weekEndDate = new Date(date);
+        weekEndDate.setDate(weekEndDate.getDate() + 6);
+        const weekEndYear = weekEndDate.getFullYear();
+        const weekEndMonth = String(weekEndDate.getMonth() + 1).padStart(2, "0");
+        const weekEndDay = String(weekEndDate.getDate()).padStart(2, "0");
+        const weekEndDayOfWeek = days[weekEndDate.getDay()];
+
+        return {
+            full: `${year}/${month}/${day}`,
+            dayOfWeek,
+            day,
+            weekEnd: `${weekEndYear}/${weekEndMonth}/${weekEndDay}`,
+            weekEndDay: weekEndDayOfWeek
+        };
     };
 
     const navigateDate = (direction) => {
         const newDate = new Date(selectedDate);
-        newDate.setDate(newDate.getDate() + direction);
+        // In week view, navigate by 7 days; in day view, navigate by 1 day
+        const step = selectedView === "week" ? 7 : 1;
+        newDate.setDate(newDate.getDate() + (direction * step));
         setSelectedDate(newDate);
     };
 
     return (
-        <div className="min-h-screen bg-neutral-50 flex font-sans">
+        <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
             <ScheduleGridSection />
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col lg:mr-16 pb-16 lg:pb-0">
-                {/* Header */}
+            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
+                {/* Header - Fixed at top */}
                 <DateNavigationSection
                     selectedDate={selectedDate}
                     formatDate={formatDate}
@@ -42,10 +59,15 @@ export const Screen = () => {
                     setSelectedStore={setSelectedStore}
                 />
 
-                {/* Schedule Grid */}
-                <div className="flex-1 overflow-auto">
-                    <div className="min-w-max bg-white">
+                {/* Schedule Area - Scrollable with sticky staff row */}
+                <div className="flex-1 overflow-y-auto overflow-x-hidden pt-16 w-full">
+                    {/* Staff Row - Sticky at top of scroll area */}
+                    <div className="sticky top-0 z-30 bg-white">
                         <BottomNavigationSection selectedDate={selectedDate} formatDate={formatDate} />
+                    </div>
+
+                    {/* Schedule Grid */}
+                    <div className="w-full bg-white">
                         <ScheduleMainSection />
                     </div>
                 </div>

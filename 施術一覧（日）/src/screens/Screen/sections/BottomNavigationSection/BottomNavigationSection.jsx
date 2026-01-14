@@ -15,9 +15,9 @@ export const BottomNavigationSection = ({ selectedDate, formatDate }) => {
 
     return (
         <div className="bg-white border-b border-neutral-100 sticky top-0 z-40">
-            <div className="flex">
+            <div className="grid" style={{ gridTemplateColumns: "56px repeat(7, 1fr) repeat(2, 0.5fr)" }}>
                 {/* Date Column */}
-                <div className="w-16 min-w-[64px] flex-shrink-0 flex flex-col items-center justify-center pt-6 pb-4 border-r border-neutral-100 bg-neutral-50/50">
+                <div className="flex-shrink-0 flex flex-col items-center justify-center pt-6 pb-4 border-r border-neutral-100 bg-neutral-50/50">
                     <span className="text-xs font-normal text-neutral-500 tracking-wide">{dateInfo.dayOfWeek}</span>
                     <span className="text-xl font-light text-neutral-600">{dateInfo.day}</span>
                 </div>
@@ -26,9 +26,9 @@ export const BottomNavigationSection = ({ selectedDate, formatDate }) => {
                 {staffMembers.map((staff, index) => (
                     <div
                         key={index}
-                        className={`flex-shrink-0 pt-5 pb-3 px-1 border-r border-neutral-100 transition-colors cursor-pointer ${staff.absent
-                                ? "w-14 min-w-[56px] bg-neutral-50/50 hover:bg-neutral-100/50"
-                                : "w-24 min-w-[96px] hover:bg-neutral-50"
+                        className={`min-w-0 pt-5 pb-3 px-1 border-r border-neutral-100 transition-colors cursor-pointer ${staff.absent
+                            ? "bg-neutral-50/50 hover:bg-neutral-100/50"
+                            : "hover:bg-neutral-50"
                             }`}
                     >
                         <div className="text-center">

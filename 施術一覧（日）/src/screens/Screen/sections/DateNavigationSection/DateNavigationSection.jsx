@@ -62,8 +62,24 @@ export const DateNavigationSection = ({
                         </button>
 
                         <div className="flex items-baseline gap-1 md:gap-2">
-                            <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo.full}</span>
-                            <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
+                            {selectedView === "week" ? (
+                                <>
+                                    <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
+                                        {dateInfo.full}
+                                    </span>
+                                    <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
+                                    <span className="text-xs md:text-sm font-normal text-neutral-400 mx-1">〜</span>
+                                    <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
+                                        {dateInfo.weekEnd}
+                                    </span>
+                                    <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.weekEndDay}</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo.full}</span>
+                                    <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
+                                </>
+                            )}
                         </div>
 
                         <button onClick={() => navigateDate(1)} className="nav-arrow" aria-label="次の日">
