@@ -1,0 +1,147 @@
+.screen-24 {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  min-height: 1194px;
+  min-width: 834px;
+  position: relative;
+  width: 100%;
+}
+
+.screen-24 .hinoto-5 {
+  aspect-ratio: 1.41;
+  height: 896px;
+  object-fit: cover;
+  width: 633.59px;
+  z-index: 1;
+}
+
+.screen-24 .view-56 {
+  height: 42px;
+  left: 765px;
+  position: fixed;
+  top: calc(50.00% + 523px);
+  transform: rotate(90.00deg);
+  width: 42px;
+  z-index: 2;
+}
+
+.screen-24 .liquid-glass-regular-22 {
+  box-shadow: 0px 6.12px 17.5px #0000000d;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-24 .blur-19 {
+  height: calc(100% + 46px);
+  left: -23px;
+  object-fit: cover;
+  position: absolute;
+  top: -23px;
+  transform: rotate(-90.00deg);
+  width: calc(100% + 46px);
+}
+
+.screen-24 .fill-19 {
+  background: linear-gradient(
+      0deg,
+      rgba(247, 247, 247, 1) 0%,
+      rgba(247, 247, 247, 1) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    ), linear-gradient(0deg, rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 1) 100%);
+  background-blend-mode: color-dodge;
+  border-radius: 259px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-24 .glass-effect-20 {
+  -webkit-backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  background-color: #00000001;
+  border-radius: 259px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.17), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-24 .icon-park-outline-19 {
+  aspect-ratio: 1;
+  height: 19px;
+  left: calc(50.00% - 9px);
+  position: absolute;
+  top: calc(50.00% - 9px);
+  width: 19px;
+}
+
+.screen-24 .vector-169 {
+  height: 73.51%;
+  left: 13.24%;
+  position: absolute;
+  top: 13.24%;
+  transform: rotate(-90.00deg);
+  width: 73.51%;
+}
+
+.screen-24 .view-57 {
+  display: block;
+  height: 42px;
+  left: 765px;
+  position: fixed;
+  top: calc(50.00% + 452px);
+  transform: rotate(-90.00deg);
+  width: 42px;
+  z-index: 3;
+}
+
+.screen-24 .blur-20 {
+  height: calc(100% + 46px);
+  left: -23px;
+  object-fit: cover;
+  position: absolute;
+  top: -23px;
+  transform: rotate(90.00deg);
+  width: calc(100% + 46px);
+}
+
+.screen-24 .chevron-left-8 {
+  height: 26px;
+  left: calc(50.00% - 13px);
+  position: absolute;
+  top: calc(50.00% - 13px);
+  width: 26px;
+}
+
+.screen-24 .icon-13 {
+  height: 30.00%;
+  left: 22.50%;
+  position: absolute;
+  top: 35.00%;
+  transform: rotate(90.00deg);
+  width: 55.00%;
+}

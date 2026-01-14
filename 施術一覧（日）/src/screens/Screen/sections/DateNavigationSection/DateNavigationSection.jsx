@@ -44,6 +44,8 @@ export const DateNavigationSection = ({
     selectedView,
     setSelectedView,
     selectedStore,
+    onSearchClick,
+    onTodayClick,
 }) => {
     const dateInfo = formatDate(selectedDate);
     const viewOptions = [
@@ -126,8 +128,8 @@ export const DateNavigationSection = ({
                         </div>
 
                         {/* Action Buttons - hide some on mobile */}
-                        <button className="icon-button hidden sm:flex" aria-label="検索"><SearchIcon /></button>
-                        <button className="icon-button" aria-label="今日に戻る"><CalendarIcon /></button>
+                        <button className="icon-button hidden sm:flex" aria-label="検索" onClick={onSearchClick}><SearchIcon /></button>
+                        <button className="icon-button" aria-label="今日に戻る" onClick={onTodayClick}><CalendarIcon /></button>
                         <button className="icon-button" aria-label="メニュー"><MoreIcon /></button>
                     </div>
                 </div>

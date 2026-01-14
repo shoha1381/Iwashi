@@ -1,0 +1,519 @@
+.screen-12 {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 1194px;
+  min-width: 834px;
+  position: relative;
+  width: 100%;
+}
+
+.screen-12 .frame-127 {
+  -webkit-backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  background-color: #ffffff;
+  box-shadow:
+    0px 4px 20px #0000000d, inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.13), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.11
+    );
+  height: 834px;
+  left: 366px;
+  overflow: hidden;
+  position: fixed;
+  top: -369px;
+  transform: rotate(90.00deg);
+  width: 101px;
+  z-index: 4;
+}
+
+.screen-12 .view-25 {
+  height: 42px;
+  left: 34px;
+  position: absolute;
+  top: calc(50.00% - 374px);
+  transform: rotate(-90.00deg);
+  width: 42px;
+}
+
+.screen-12 .liquid-glass-regular-11 {
+  box-shadow: 0px 6.12px 17.5px #0000000d;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-12 .blur-9 {
+  height: calc(100% + 46px);
+  left: -23px;
+  object-fit: cover;
+  position: absolute;
+  top: -23px;
+  width: calc(100% + 46px);
+}
+
+.screen-12 .fill-9 {
+  background: linear-gradient(
+      0deg,
+      rgba(247, 247, 247, 1) 0%,
+      rgba(247, 247, 247, 1) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    ), linear-gradient(0deg, rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 1) 100%);
+  background-blend-mode: color-dodge;
+  border-radius: 259px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-12 .glass-effect-10 {
+  -webkit-backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  background-color: #00000001;
+  border-radius: 259px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.17), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-12 .icon-park-outline-7 {
+  aspect-ratio: 1;
+  height: 19px;
+  left: calc(50.00% - 9px);
+  position: absolute;
+  top: calc(50.00% - 9px);
+  width: 19px;
+}
+
+.screen-12 .vector-55 {
+  height: 73.51%;
+  left: 13.24%;
+  position: absolute;
+  top: 13.24%;
+  width: 73.51%;
+}
+
+.screen-12 .text-wrapper-93 {
+  color: #000000;
+  font-family: "Noto Sans Lao ExtraCondensed-Light", Helvetica;
+  font-size: 26.2px;
+  font-weight: 300;
+  left: 1px;
+  letter-spacing: 1.84px;
+  line-height: normal;
+  position: absolute;
+  top: 694px;
+  transform: rotate(-90.00deg);
+}
+
+.screen-12 .view-26 {
+  -webkit-backdrop-filter: blur(15.05px) brightness(100%);
+  backdrop-filter: blur(15.05px) brightness(100%);
+  background-color: #ffffff47;
+  border: 0.68px solid;
+  border-color: #ffffff1a;
+  border-radius: 8.48px;
+  box-shadow: 0px 0px 5px #00000026;
+  height: 363px;
+  left: 90px;
+  overflow: hidden;
+  position: fixed;
+  top: 197px;
+  width: 652px;
+  z-index: 1;
+}
+
+.screen-12 .text-wrapper-94 {
+  align-items: center;
+  color: #000000;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 16.5px;
+  font-weight: 400;
+  height: 32px;
+  justify-content: center;
+  left: calc(50.00% - 189px);
+  letter-spacing: 0.82px;
+  line-height: 31.8px;
+  position: absolute;
+  top: 13px;
+  white-space: nowrap;
+}
+
+.screen-12 .vector-56 {
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 55px;
+  width: 652px;
+}
+
+.screen-12 .vector-57 {
+  height: 308px;
+  left: 50.00%;
+  position: absolute;
+  top: 55px;
+  width: 1px;
+}
+
+.screen-12 .vector-58 {
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 75px;
+  width: 652px;
+}
+
+.screen-12 .frame-128 {
+  height: 307px;
+  left: 1px;
+  position: absolute;
+  top: 57px;
+  width: 326px;
+}
+
+.screen-12 .text-wrapper-95 {
+  color: #999999;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 9.3px;
+  font-weight: 500;
+  left: calc(50.00% - 20px);
+  letter-spacing: 0.65px;
+  line-height: normal;
+  position: absolute;
+  text-align: center;
+  top: 2px;
+}
+
+.screen-12 .rectangle-14 {
+  border: 1.16px solid;
+  border-color: #0000004c;
+  border-radius: 11.58px;
+  height: 211px;
+  left: 57px;
+  position: absolute;
+  top: 58px;
+  width: 211px;
+}
+
+.screen-12 .union-5 {
+  height: 64px;
+  left: 130px;
+  position: absolute;
+  top: 132px;
+  width: 64px;
+}
+
+.screen-12 .frame-129 {
+  height: 308px;
+  left: 327px;
+  position: absolute;
+  top: 56px;
+  width: 326px;
+}
+
+.screen-12 .rectangle-15 {
+  border: 1.16px solid;
+  border-color: #0000004c;
+  border-radius: 11.58px;
+  height: 211px;
+  left: 57px;
+  position: absolute;
+  top: 59px;
+  width: 211px;
+}
+
+.screen-12 .union-6 {
+  height: 64px;
+  left: 130px;
+  position: absolute;
+  top: 133px;
+  width: 64px;
+}
+
+.screen-12 .view-27 {
+  -webkit-backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  background-color: #ffffff1a;
+  border-radius: 36.71px;
+  box-shadow:
+    0px 0px 9.4px #00000012, inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.18), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  display: flex;
+  height: 72px;
+  left: calc(50.00% - 176px);
+  overflow: hidden;
+  position: fixed;
+  top: 592px;
+  width: 351px;
+  z-index: 3;
+}
+
+.screen-12 .frame-130 {
+  -webkit-backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  background-color: #0088ffb2;
+  border-radius: 36.71px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.18), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 64.24px;
+  margin-left: 5.2px;
+  margin-top: 3.9px;
+  overflow: hidden;
+  position: relative;
+  width: 342.19px;
+}
+
+.screen-12 .text-wrapper-96 {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 17px;
+  font-weight: 700;
+  height: 100%;
+  justify-content: center;
+  left: calc(50.00% - 109px);
+  letter-spacing: 1.19px;
+  line-height: 46.5px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 220px;
+}
+
+.screen-12 .view-28 {
+  -webkit-backdrop-filter: blur(15.05px) brightness(100%);
+  backdrop-filter: blur(15.05px) brightness(100%);
+  background-color: #ffffff47;
+  border: 0.68px solid;
+  border-color: #ffffff1a;
+  border-radius: 8.48px;
+  box-shadow: 0px 0px 5px #00000026;
+  height: 293px;
+  left: 90px;
+  overflow: hidden;
+  position: fixed;
+  top: 716px;
+  width: 653px;
+  z-index: 2;
+}
+
+.screen-12 .SP {
+  align-items: center;
+  color: transparent;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 16.5px;
+  font-weight: 400;
+  height: 32px;
+  justify-content: center;
+  left: 39px;
+  letter-spacing: 0.82px;
+  line-height: 31.8px;
+  position: absolute;
+  top: 13px;
+  white-space: nowrap;
+}
+
+.screen-12 .text-wrapper-97 {
+  color: #000000;
+  letter-spacing: 0.14px;
+}
+
+.screen-12 .text-wrapper-98 {
+  color: #999999;
+  font-size: 12.3px;
+  letter-spacing: 0.08px;
+}
+
+.screen-12 .vector-59 {
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 55px;
+  width: 653px;
+}
+
+.screen-12 .chevron-left-wrapper {
+  background-color: #46a7fd;
+  border-radius: 14.39px;
+  box-shadow: 0px 0px 3.29px #0000001a;
+  display: flex;
+  height: 29px;
+  left: 586px;
+  position: absolute;
+  top: 13px;
+  transform: rotate(-90.00deg);
+  width: 29px;
+}
+
+.screen-12 .chevron-left-10 {
+  height: 17.27px !important;
+  margin-left: 4.9px !important;
+  margin-top: 5.8px !important;
+  transform: rotate(90.00deg) !important;
+  width: 17.27px !important;
+}
+
+.screen-12 .text-wrapper-99 {
+  color: #999999;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.9px;
+  font-weight: 500;
+  left: 52px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 151px;
+}
+
+.screen-12 .text-wrapper-100 {
+  color: #000000;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 26.5px;
+  font-weight: 400;
+  left: 33px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 141px;
+}
+
+.screen-12 .element-19 {
+  color: transparent;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 11.4px;
+  font-weight: 400;
+  left: 14px;
+  letter-spacing: 0.80px;
+  line-height: 20.6px;
+  position: absolute;
+  text-align: center;
+  top: 184px;
+  white-space: nowrap;
+}
+
+.screen-12 .text-wrapper-101 {
+  color: #000000;
+  letter-spacing: 0.09px;
+}
+
+.screen-12 .text-wrapper-102 {
+  color: #999999;
+  letter-spacing: 0.09px;
+}
+
+.screen-12 .vector-60 {
+  height: 238px;
+  left: 114px;
+  position: absolute;
+  top: 55px;
+  width: 1px;
+}
+
+.screen-12 .vector-61 {
+  height: 238px;
+  left: 383px;
+  position: absolute;
+  top: 55px;
+  width: 1px;
+}
+
+.screen-12 .vector-62 {
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 75px;
+  width: 653px;
+}
+
+.screen-12 .frame-131 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 21.4px;
+  height: 236px;
+  left: 114px;
+  position: absolute;
+  top: 57px;
+  width: 269px;
+}
+
+.screen-12 .text-wrapper-103 {
+  color: #999999;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 9.3px;
+  font-weight: 500;
+  height: 14px;
+  letter-spacing: 0.65px;
+  line-height: normal;
+  margin-left: 1.3px;
+  margin-top: 1.6px;
+  text-align: center;
+  width: 40px;
+}
+
+.screen-12 .gemini-generated-4 {
+  height: 180.11px;
+  margin-left: 0;
+  width: 160.37px;
+}
+
+.screen-12 .frame-132 {
+  display: flex;
+  height: 236px;
+  justify-content: center;
+  left: 384px;
+  position: absolute;
+  top: 57px;
+  width: 269px;
+}

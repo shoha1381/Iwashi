@@ -1,0 +1,491 @@
+.screen-screen {
+  background-color: #ffffff;
+  min-height: 1194px;
+  min-width: 834px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.screen-screen .vector-72 {
+  height: 850px;
+  left: 93px;
+  position: absolute;
+  top: 93px;
+  width: 13px;
+}
+
+.screen-screen .vector-73 {
+  height: 13px;
+  left: 98px;
+  position: absolute;
+  top: 86px;
+  width: 602px;
+}
+
+.screen-screen .vector-74 {
+  height: 21px;
+  left: 93px;
+  position: absolute;
+  top: 125px;
+  width: 155px;
+}
+
+.screen-screen .vector-75 {
+  height: 239px;
+  left: 105px;
+  position: absolute;
+  top: 133px;
+  width: 143px;
+}
+
+.screen-screen .vector-76 {
+  height: 170px;
+  left: 139px;
+  position: absolute;
+  top: 368px;
+  width: 121px;
+}
+
+.screen-screen .vector-77 {
+  height: 21px;
+  left: 139px;
+  position: absolute;
+  top: 525px;
+  width: 155px;
+}
+
+.screen-screen .vector-78 {
+  height: 170px;
+  left: 173px;
+  position: absolute;
+  top: 533px;
+  width: 121px;
+}
+
+.screen-screen .vector-79 {
+  height: 21px;
+  left: 173px;
+  position: absolute;
+  top: 691px;
+  width: 155px;
+}
+
+.screen-screen .vector-80 {
+  height: 21px;
+  left: 207px;
+  position: absolute;
+  top: 856px;
+  width: 155px;
+}
+
+.screen-screen .vector-81 {
+  height: 170px;
+  left: 207px;
+  position: absolute;
+  top: 699px;
+  width: 121px;
+}
+
+.screen-screen .vector-82 {
+  height: 161px;
+  left: 241px;
+  position: absolute;
+  top: 277px;
+  width: 70px;
+}
+
+.screen-screen .vector-83 {
+  height: 21px;
+  left: 241px;
+  position: absolute;
+  top: 426px;
+  width: 155px;
+}
+
+.screen-screen .vector-84 {
+  height: 157px;
+  left: 299px;
+  position: absolute;
+  top: 434px;
+  width: 96px;
+}
+
+.screen-screen .vector-85 {
+  height: 21px;
+  left: 300px;
+  position: absolute;
+  top: 579px;
+  width: 155px;
+}
+
+.screen-screen .vector-86 {
+  height: 24px;
+  left: 358px;
+  position: absolute;
+  top: 732px;
+  width: 153px;
+}
+
+.screen-screen .vector-87 {
+  height: 157px;
+  left: 358px;
+  position: absolute;
+  top: 587px;
+  width: 96px;
+}
+
+.screen-screen .vector-88 {
+  height: 146px;
+  left: 306px;
+  position: absolute;
+  top: 195px;
+  width: 55px;
+}
+
+.screen-screen .vector-89 {
+  height: 21px;
+  left: 306px;
+  position: absolute;
+  top: 329px;
+  width: 155px;
+}
+
+.screen-screen .vector-90 {
+  height: 146px;
+  left: 406px;
+  position: absolute;
+  top: 337px;
+  width: 55px;
+}
+
+.screen-screen .vector-91 {
+  height: 21px;
+  left: 406px;
+  position: absolute;
+  top: 470px;
+  width: 155px;
+}
+
+.screen-screen .vector-92 {
+  height: 21px;
+  left: 506px;
+  position: absolute;
+  top: 612px;
+  width: 155px;
+}
+
+.screen-screen .vector-93 {
+  height: 146px;
+  left: 505px;
+  position: absolute;
+  top: 479px;
+  width: 55px;
+}
+
+.screen-screen .vector-94 {
+  height: 21px;
+  left: 206px;
+  position: absolute;
+  top: 187px;
+  width: 155px;
+}
+
+.screen-screen .vector-95 {
+  height: 21px;
+  left: 157px;
+  position: absolute;
+  top: 269px;
+  width: 155px;
+}
+
+.screen-screen .vector-96 {
+  height: 21px;
+  left: 106px;
+  position: absolute;
+  top: 360px;
+  width: 155px;
+}
+
+.screen-screen .text-wrapper-131 {
+  color: #5e6367;
+  font-family: "Hiragino Maru Gothic Pro-W4", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 74px;
+  letter-spacing: 1.75px;
+  line-height: 85.0px;
+  position: absolute;
+  top: 956px;
+  transform: rotate(90.00deg);
+  white-space: nowrap;
+}
+
+.screen-screen .div-6 {
+  color: transparent;
+  font-family: "Hiragino Maru Gothic Pro-Regular", Helvetica;
+  font-size: 17px;
+  font-weight: 400;
+  left: 520px;
+  letter-spacing: 1.19px;
+  line-height: 47.6px;
+  position: absolute;
+  top: 261px;
+  transform: rotate(90.00deg);
+}
+
+.screen-screen .text-wrapper-132 {
+  color: #00a63e;
+  letter-spacing: 0.20px;
+}
+
+.screen-screen .text-wrapper-133 {
+  color: #ff7700;
+  letter-spacing: 0.20px;
+}
+
+.screen-screen .text-wrapper-134 {
+  color: #ff0000;
+  letter-spacing: 0.20px;
+}
+
+.screen-screen .text-wrapper-135 {
+  color: #5e6367;
+  font-family: "Hiragino Maru Gothic Pro-W4", Helvetica;
+  font-size: 25px;
+  font-weight: 400;
+  left: 709px;
+  letter-spacing: 1.75px;
+  line-height: 85.0px;
+  position: absolute;
+  top: 50px;
+  transform: rotate(90.00deg);
+  white-space: nowrap;
+}
+
+.screen-screen .vector-97 {
+  height: 286px;
+  left: 654px;
+  object-fit: cover;
+  position: absolute;
+  top: 628px;
+  width: 1px;
+}
+
+.screen-screen .vector-98 {
+  height: 1px;
+  left: 98px;
+  object-fit: cover;
+  position: absolute;
+  top: 627px;
+  width: 556px;
+}
+
+.screen-screen .vector-99 {
+  height: 160px;
+  left: 504px;
+  object-fit: cover;
+  position: absolute;
+  top: 754px;
+  width: 1px;
+}
+
+.screen-screen .vector-100 {
+  height: 1px;
+  left: 100px;
+  object-fit: cover;
+  position: absolute;
+  top: 749px;
+  width: 405px;
+}
+
+.screen-screen .vector-101 {
+  height: 42px;
+  left: 355px;
+  object-fit: cover;
+  position: absolute;
+  top: 872px;
+  width: 1px;
+}
+
+.screen-screen .vector-102 {
+  height: 1px;
+  left: 100px;
+  object-fit: cover;
+  position: absolute;
+  top: 871px;
+  width: 256px;
+}
+
+.screen-screen .ellipse-7 {
+  background-color: #00a63e;
+  border-radius: 9.79px;
+  height: 20px;
+  left: 666px;
+  position: absolute;
+  top: 186px;
+  transform: rotate(90.00deg);
+  width: 20px;
+}
+
+.screen-screen .ellipse-8 {
+  background-color: #ff7700;
+  border-radius: 9.79px;
+  height: 20px;
+  left: 619px;
+  position: absolute;
+  top: 186px;
+  transform: rotate(90.00deg);
+  width: 20px;
+}
+
+.screen-screen .ellipse-9 {
+  background-color: #ff0000;
+  border-radius: 9.79px;
+  height: 20px;
+  left: 572px;
+  position: absolute;
+  top: 186px;
+  transform: rotate(90.00deg);
+  width: 20px;
+}
+
+.screen-screen .hinoto {
+  aspect-ratio: 0.79;
+  height: 119px;
+  left: calc(50.00% - 142px);
+  position: absolute;
+  top: 926px;
+  width: 152px;
+}
+
+.screen-screen .hinoto-2 {
+  aspect-ratio: 0.79;
+  height: 114px;
+  left: 588px;
+  object-fit: cover;
+  position: absolute;
+  top: 926px;
+  width: 144px;
+}
+
+.screen-screen .hinoto-3 {
+  aspect-ratio: 0.75;
+  height: 112px;
+  left: 430px;
+  object-fit: cover;
+  position: absolute;
+  top: 928px;
+  width: 150px;
+}
+
+.screen-screen .text-wrapper-136 {
+  color: #5e6367;
+  font-family: "AppleGothic-Regular", Helvetica;
+  font-size: 18.9px;
+  font-weight: 400;
+  left: 643px;
+  letter-spacing: 1.32px;
+  line-height: 32.4px;
+  position: absolute;
+  top: 750px;
+  transform: rotate(90.00deg);
+}
+
+.screen-screen .union-7 {
+  height: 265px;
+  left: 686px;
+  position: absolute;
+  top: 644px;
+  width: 121px;
+}
+
+.screen-screen .view-45 {
+  height: 42px;
+  left: 765px;
+  position: fixed;
+  top: calc(50.00% + 532px);
+  transform: rotate(90.00deg);
+  width: 42px;
+}
+
+.screen-screen .liquid-glass-regular-18 {
+  box-shadow: 0px 6.12px 17.5px #0000000d;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-screen .blur-16 {
+  height: calc(100% + 46px);
+  left: -23px;
+  object-fit: cover;
+  position: absolute;
+  top: -23px;
+  transform: rotate(-90.00deg);
+  width: calc(100% + 46px);
+}
+
+.screen-screen .fill-16 {
+  background: linear-gradient(
+      0deg,
+      rgba(247, 247, 247, 1) 0%,
+      rgba(247, 247, 247, 1) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    ), linear-gradient(0deg, rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 1) 100%);
+  background-blend-mode: color-dodge;
+  border-radius: 259px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-screen .glass-effect-17 {
+  -webkit-backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  background-color: #00000001;
+  border-radius: 259px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.17), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-screen .icon-park-outline-14 {
+  aspect-ratio: 1;
+  height: 19px;
+  left: calc(50.00% - 9px);
+  position: absolute;
+  top: calc(50.00% - 9px);
+  width: 19px;
+}
+
+.screen-screen .vector-103 {
+  height: 73.51%;
+  left: 13.24%;
+  position: absolute;
+  top: 13.24%;
+  transform: rotate(-90.00deg);
+  width: 73.51%;
+}

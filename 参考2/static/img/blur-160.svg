@@ -1,0 +1,21 @@
+<svg width="88" height="79" viewBox="0 0 88 79" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.67">
+<mask id="mask0_65_961" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-44" y="-53" width="176" height="176">
+<rect width="175.5" height="175.5" transform="translate(-43.75 -52.5)" fill="white"/>
+<rect x="22.75" y="14" width="43" height="43" rx="21.5" fill="black"/>
+</mask>
+<g mask="url(#mask0_65_961)">
+<foreignObject x="-12.25" y="-19.25" width="112.5" height="112.5"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(17.5px);clip-path:url(#bgblur_0_65_961_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_f_65_961)" data-figma-bg-blur-radius="35">
+<path d="M22.75 37C22.75 25.264 32.2639 15.75 44 15.75C55.7361 15.75 65.25 25.264 65.25 37C65.25 48.7361 55.7361 58.25 44 58.25C32.2639 58.25 22.75 48.7361 22.75 37Z" fill="black" fill-opacity="0.04" style="mix-blend-mode:hard-light"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_65_961" x="-12.25" y="-19.25" width="112.5" height="112.5" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="8.75" result="effect1_foregroundBlur_65_961"/>
+</filter>
+<clipPath id="bgblur_0_65_961_clip_path" transform="translate(12.25 19.25)"><path d="M22.75 37C22.75 25.264 32.2639 15.75 44 15.75C55.7361 15.75 65.25 25.264 65.25 37C65.25 48.7361 55.7361 58.25 44 58.25C32.2639 58.25 22.75 48.7361 22.75 37Z"/>
+</clipPath></defs>
+</svg>

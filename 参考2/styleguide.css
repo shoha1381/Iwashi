@@ -1,0 +1,75 @@
+:root {
+  --www-diabrowser-com-helvetica-regular-font-family: "Helvetica", Helvetica;
+  --www-diabrowser-com-helvetica-regular-font-size: 21.799999237060547px;
+  --www-diabrowser-com-helvetica-regular-font-style: normal;
+  --www-diabrowser-com-helvetica-regular-font-weight: 400;
+  --www-diabrowser-com-helvetica-regular-letter-spacing: -0.4399999976158142px;
+  --www-diabrowser-com-helvetica-regular-line-height: 26px;
+  --www-diabrowser-com-noto-sans-JP-regular-font-family: "Noto Sans JP",
+    Helvetica;
+  --www-diabrowser-com-noto-sans-JP-regular-font-size: 14px;
+  --www-diabrowser-com-noto-sans-JP-regular-font-style: normal;
+  --www-diabrowser-com-noto-sans-JP-regular-font-weight: 400;
+  --www-diabrowser-com-noto-sans-JP-regular-letter-spacing: 0px;
+  --www-diabrowser-com-noto-sans-JP-regular-line-height: 17px;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-font-family: "Noto Sans JP",
+    Helvetica;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-font-size: 21.5px;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-font-style: normal;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-font-weight: 400;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-letter-spacing: -0.4399999976158142px;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-line-height: 26px;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-upper-font-family: "Noto Sans JP",
+    Helvetica;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-upper-font-size: 13px;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-upper-font-style: normal;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-upper-font-weight: 400;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-upper-letter-spacing: 1.2999999523162842px;
+  --www-diabrowser-com-noto-sans-JP-regular-underline-upper-line-height: 16px;
+  --www-diabrowser-com-noto-sans-JP-regular-upper-font-family: "Noto Sans JP",
+    Helvetica;
+  --www-diabrowser-com-noto-sans-JP-regular-upper-font-size: 13px;
+  --www-diabrowser-com-noto-sans-JP-regular-upper-font-style: normal;
+  --www-diabrowser-com-noto-sans-JP-regular-upper-font-weight: 400;
+  --www-diabrowser-com-noto-sans-JP-regular-upper-letter-spacing: 1.2999999523162842px;
+  --www-diabrowser-com-noto-sans-JP-regular-upper-line-height: 16px;
+  --www-diabrowser-com-semantic-blockquote-font-family: "Noto Sans JP",
+    Helvetica;
+  --www-diabrowser-com-semantic-blockquote-font-size: 18px;
+  --www-diabrowser-com-semantic-blockquote-font-style: normal;
+  --www-diabrowser-com-semantic-blockquote-font-weight: 400;
+  --www-diabrowser-com-semantic-blockquote-letter-spacing: -0.36000001430511475px;
+  --www-diabrowser-com-semantic-blockquote-line-height: 24px;
+  --www-diabrowser-com-semantic-button-font-family: "Noto Sans JP", Helvetica;
+  --www-diabrowser-com-semantic-button-font-size: 15.800000190734863px;
+  --www-diabrowser-com-semantic-button-font-style: normal;
+  --www-diabrowser-com-semantic-button-font-weight: 400;
+  --www-diabrowser-com-semantic-button-letter-spacing: 0px;
+  --www-diabrowser-com-semantic-button-line-height: 20px;
+  --www-diabrowser-com-semantic-heading-1-font-family: "Noto Sans JP", Helvetica;
+  --www-diabrowser-com-semantic-heading-1-font-size: 72px;
+  --www-diabrowser-com-semantic-heading-1-font-style: normal;
+  --www-diabrowser-com-semantic-heading-1-font-weight: 300;
+  --www-diabrowser-com-semantic-heading-1-letter-spacing: -2.880000114440918px;
+  --www-diabrowser-com-semantic-heading-1-line-height: 84px;
+  --www-diabrowser-com-semantic-heading-2-font-family: "Noto Sans JP", Helvetica;
+  --www-diabrowser-com-semantic-heading-2-font-size: 54px;
+  --www-diabrowser-com-semantic-heading-2-font-style: normal;
+  --www-diabrowser-com-semantic-heading-2-font-weight: 300;
+  --www-diabrowser-com-semantic-heading-2-letter-spacing: -2.1600000858306885px;
+  --www-diabrowser-com-semantic-heading-2-line-height: 60px;
+  --www-diabrowser-com-semantic-heading-3-upper-font-family: "Noto Sans JP",
+    Helvetica;
+  --www-diabrowser-com-semantic-heading-3-upper-font-size: 12.399999618530273px;
+  --www-diabrowser-com-semantic-heading-3-upper-font-style: normal;
+  --www-diabrowser-com-semantic-heading-3-upper-font-weight: 400;
+  --www-diabrowser-com-semantic-heading-3-upper-letter-spacing: 1.2999999523162842px;
+  --www-diabrowser-com-semantic-heading-3-upper-line-height: 17px;
+  --www-diabrowser-com-semantic-link-font-family: "Noto Sans JP", Helvetica;
+  --www-diabrowser-com-semantic-link-font-size: 15.800000190734863px;
+  --www-diabrowser-com-semantic-link-font-style: normal;
+  --www-diabrowser-com-semantic-link-font-weight: 400;
+  --www-diabrowser-com-semantic-link-letter-spacing: 0px;
+  --www-diabrowser-com-semantic-link-line-height: 20px;
+  --wwwdiabrowsercomblack-60: rgba(0, 0, 0, 0.6);
+}

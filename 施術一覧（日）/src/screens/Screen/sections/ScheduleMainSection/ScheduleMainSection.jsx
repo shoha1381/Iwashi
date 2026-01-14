@@ -1,5 +1,5 @@
 // Appointment Card
-const AppointmentCard = ({ slot }) => {
+const AppointmentCard = ({ slot, view }) => {
     if (!slot.name && !slot.service) return null;
     if (slot.nameColor === "text-transparent") return null;
 
@@ -30,40 +30,44 @@ const AppointmentCard = ({ slot }) => {
                 <div className="appointment-name text-[11px]">{slot.name}</div>
             )}
 
-            {/* Service - contained in single line - HIDDEN per user request */}
-            {/* {slot.service && (
+            {/* Service - visible only in Day view */}
+            {view === 'day' && slot.service && (
                 <div className="mt-auto pt-1">
                     <span className="appointment-service">{slot.service}</span>
                 </div>
-            )} */}
+            )}
         </div>
     );
 };
 
 // Time Row - with absent columns
 // Time Row - with absent columns
-const TimeRow = ({ row, isEven }) => (
-    <div
-        className={`grid ${isEven ? "bg-white" : "bg-neutral-50/30"}`}
-        style={{ gridTemplateColumns: "56px repeat(7, 1fr) repeat(2, 0.5fr)" }}
-    >
-        <div className="flex-shrink-0 h-20 flex items-center justify-center border-r border-b border-neutral-100">
-            <span className="text-[13px] font-medium text-neutral-500">{row.time}:00</span>
-        </div>
-
-        {row.slots.map((slot, i) => (
-            <div key={i} className="min-w-0 h-20 p-1 border-r border-b border-neutral-100">
-                <AppointmentCard slot={slot} />
+// Time Row - with absent columns
+const TimeRow = ({ row, isEven, view }) => {
+    const heightClass = view === 'day' ? 'h-28' : 'h-20';
+    return (
+        <div
+            className={`grid ${isEven ? "bg-white" : "bg-neutral-50/30"}`}
+            style={{ gridTemplateColumns: "56px repeat(7, 1fr) repeat(2, 0.5fr)" }}
+        >
+            <div className={`flex-shrink-0 ${heightClass} flex items-center justify-center border-r border-b border-neutral-100`}>
+                <span className="text-[13px] font-medium text-neutral-500">{row.time}:00</span>
             </div>
-        ))}
 
-        {/* Absent staff columns - half width (0.5fr) to match header */}
-        <div className="min-w-0 h-20 border-r border-b border-neutral-100 bg-neutral-50/50" />
-        <div className="min-w-0 h-20 border-b border-neutral-100 bg-neutral-50/50" />
-    </div>
-);
+            {row.slots.map((slot, i) => (
+                <div key={i} className={`min-w-0 ${heightClass} p-1 border-r border-b border-neutral-100`}>
+                    <AppointmentCard slot={slot} view={view} />
+                </div>
+            ))}
 
-export const ScheduleMainSection = ({ date }) => {
+            {/* Absent staff columns - half width (0.5fr) to match header */}
+            <div className={`min-w-0 ${heightClass} border-r border-b border-neutral-100 bg-neutral-50/50`} />
+            <div className={`min-w-0 ${heightClass} border-b border-neutral-100 bg-neutral-50/50`} />
+        </div>
+    );
+};
+
+export const ScheduleMainSection = ({ date, view }) => {
     const scheduleData = [
         {
             time: "10", slots: [
@@ -146,7 +150,7 @@ export const ScheduleMainSection = ({ date }) => {
 
     return (
         <section>
-            {scheduleData.map((row, i) => <TimeRow key={i} row={row} isEven={i % 2 === 0} />)}
+            {scheduleData.map((row, i) => <TimeRow key={i} row={row} isEven={i % 2 === 0} view={view} />)}
         </section>
     );
 };

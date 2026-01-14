@@ -1,0 +1,15 @@
+.screen-19 {
+  background-color: #000000;
+  display: block;
+  min-height: 1194px;
+  min-width: 834px;
+  width: 100%;
+}
+
+.screen-19 .gemini-generated-6 {
+  height: 1194px;
+  left: calc(50.00% - 417px);
+  position: fixed;
+  top: 0;
+  width: 834px;
+}

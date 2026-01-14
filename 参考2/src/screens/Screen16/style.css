@@ -1,0 +1,253 @@
+.screen-16 {
+  background-color: #ffffff;
+  min-height: 1194px;
+  min-width: 834px;
+  position: relative;
+  width: 100%;
+}
+
+.screen-16 .view-37 {
+  -webkit-backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  background-color: #ffffff1a;
+  border-radius: 36.71px;
+  box-shadow:
+    0px 0px 9.4px #00000012, inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.18), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  display: flex;
+  height: 72px;
+  left: calc(50.00% - 176px);
+  overflow: hidden;
+  position: absolute;
+  top: 982px;
+  width: 351px;
+}
+
+.screen-16 .frame-162 {
+  -webkit-backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.7px) brightness(100.0%) saturate(100.0%);
+  background-color: #999999;
+  border-radius: 36.71px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.18), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 64.24px;
+  margin-left: 5.2px;
+  margin-top: 3.9px;
+  overflow: hidden;
+  position: relative;
+  width: 342.19px;
+}
+
+.screen-16 .text-wrapper-124 {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 17px;
+  font-weight: 700;
+  height: 100%;
+  justify-content: center;
+  left: calc(50.00% - 109px);
+  letter-spacing: 1.19px;
+  line-height: 46.5px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 220px;
+}
+
+.screen-16 .element-20 {
+  aspect-ratio: 1;
+  height: 627px;
+  left: calc(50.00% - 311px);
+  object-fit: cover;
+  position: absolute;
+  top: 281px;
+  width: 627px;
+}
+
+.screen-16 .text-wrapper-125 {
+  align-items: center;
+  color: #000000;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 38px;
+  font-weight: 500;
+  height: 132px;
+  justify-content: center;
+  left: calc(50.00% - 100px);
+  letter-spacing: 2.66px;
+  line-height: 131.4px;
+  position: absolute;
+  top: 181px;
+  white-space: nowrap;
+}
+
+.screen-16 .frame-163 {
+  -webkit-backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  background-color: #ffffff;
+  box-shadow:
+    0px 4px 20px #0000000d, inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.13), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.11
+    );
+  height: 834px;
+  left: 366px;
+  position: fixed;
+  top: -369px;
+  transform: rotate(90.00deg);
+  width: 101px;
+}
+
+.screen-16 .view-38 {
+  height: 42px;
+  left: 34px;
+  position: absolute;
+  top: calc(50.00% - 374px);
+  transform: rotate(-90.00deg);
+  width: 42px;
+}
+
+.screen-16 .liquid-glass-regular-15 {
+  box-shadow: 0px 6.12px 17.5px #0000000d;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-16 .blur-13 {
+  height: calc(100% + 46px);
+  left: -23px;
+  object-fit: cover;
+  position: absolute;
+  top: -23px;
+  width: calc(100% + 46px);
+}
+
+.screen-16 .fill-13 {
+  background: linear-gradient(
+      0deg,
+      rgba(247, 247, 247, 1) 0%,
+      rgba(247, 247, 247, 1) 100%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    ), linear-gradient(0deg, rgba(51, 51, 51, 1) 0%, rgba(51, 51, 51, 1) 100%);
+  background-blend-mode: color-dodge;
+  border-radius: 259px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-16 .glass-effect-14 {
+  -webkit-backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  backdrop-filter: blur(2.6px) brightness(100.0%) saturate(95.0%);
+  background-color: #00000001;
+  border-radius: 259px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.17), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-16 .icon-park-outline-11 {
+  aspect-ratio: 1;
+  height: 19px;
+  left: calc(50.00% - 9px);
+  position: absolute;
+  top: calc(50.00% - 9px);
+  width: 19px;
+}
+
+.screen-16 .vector-69 {
+  height: 73.51%;
+  left: 13.24%;
+  position: absolute;
+  top: 13.24%;
+  width: 73.51%;
+}
+
+.screen-16 .text-wrapper-126 {
+  color: #000000;
+  font-family: "Noto Sans Lao ExtraCondensed-Light", Helvetica;
+  font-size: 26.2px;
+  font-weight: 300;
+  left: 15px;
+  letter-spacing: 1.84px;
+  line-height: normal;
+  position: absolute;
+  top: 708px;
+  transform: rotate(-90.00deg);
+}
+
+.screen-16 .view-39 {
+  height: 42px;
+  left: 34px;
+  position: absolute;
+  top: calc(50.00% - 303px);
+  transform: rotate(-90.00deg);
+  width: 42px;
+}
+
+.screen-16 .chevron-left-6 {
+  height: 26px;
+  left: calc(50.00% - 13px);
+  position: absolute;
+  top: calc(50.00% - 13px);
+  width: 26px;
+}
+
+.screen-16 .icon-10 {
+  height: 55.00%;
+  left: 35.00%;
+  position: absolute;
+  top: 22.50%;
+  width: 30.00%;
+}

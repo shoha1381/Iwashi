@@ -1,0 +1,16 @@
+.screen-4 {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  min-height: 1194px;
+  min-width: 834px;
+  width: 100%;
+}
+
+.screen-4 .image-2 {
+  aspect-ratio: 1.78;
+  height: 1053px;
+  margin-top: -1px;
+  width: 592px;
+}

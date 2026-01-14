@@ -161,6 +161,8 @@ export const Screen = () => {
                     setSelectedView={setSelectedView}
                     selectedStore={selectedStore}
                     setSelectedStore={setSelectedStore}
+                    onTodayClick={() => setSelectedDate(new Date())}
+                    onSearchClick={() => alert("検索機能は開発中です")}
                 />
 
                 {/* Schedule Area - Scrollable with sticky staff row */}
@@ -188,7 +190,7 @@ export const Screen = () => {
                                         </span>
                                     </div>
                                 )}
-                                <ScheduleMainSection date={date} />
+                                <ScheduleMainSection date={date} view={selectedView} />
                             </div>
                         ))}
                     </div>

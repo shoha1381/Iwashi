@@ -1,0 +1,402 @@
+.ipad-pro {
+  background-color: #ffffff;
+  min-height: 1194px;
+  min-width: 834px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.ipad-pro .cleanshot {
+  aspect-ratio: 8.77;
+  height: 27px;
+  left: 42px;
+  object-fit: cover;
+  position: absolute;
+  top: 162px;
+  width: 239px;
+}
+
+.ipad-pro .img {
+  aspect-ratio: 9.62;
+  height: 25px;
+  left: 314px;
+  object-fit: cover;
+  position: absolute;
+  top: 163px;
+  width: 241px;
+}
+
+.ipad-pro .cleanshot-2 {
+  aspect-ratio: 2.92;
+  height: 25px;
+  left: 717px;
+  object-fit: cover;
+  position: absolute;
+  top: 163px;
+  width: 72px;
+}
+
+.ipad-pro .cleanshot-3 {
+  aspect-ratio: 2.37;
+  height: 316px;
+  left: 42px;
+  object-fit: cover;
+  position: absolute;
+  top: 210px;
+  width: 750px;
+}
+
+.ipad-pro .frame {
+  -webkit-backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  background-color: #ffffff;
+  box-shadow:
+    0px 4px 20px #0000000d, inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.13), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.11
+    );
+  display: flex;
+  height: 834px;
+  left: 366px;
+  position: fixed;
+  top: -369px;
+  transform: rotate(90.00deg);
+  width: 101px;
+}
+
+.ipad-pro .text-wrapper {
+  color: #000000;
+  font-family: "Noto Sans Lao ExtraCondensed-Light", Helvetica;
+  font-size: 26.2px;
+  font-weight: 300;
+  height: 43px;
+  letter-spacing: 1.84px;
+  line-height: normal;
+  margin-left: 29.0px;
+  margin-top: 722.0px;
+  transform: rotate(-90.00deg);
+  width: 55px;
+}
+
+.ipad-pro .div {
+  -webkit-backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  backdrop-filter: blur(2.0px) brightness(100.0%) saturate(100.0%);
+  background-color: #ffffff;
+  box-shadow:
+    0px 4px 30px #00000012, inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.32
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.13), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.11
+    );
+  display: flex;
+  flex-direction: column;
+  height: 834px;
+  left: calc(50.00% - 66px);
+  position: fixed;
+  top: 728px;
+  transform: rotate(90.00deg);
+  width: 131px;
+}
+
+.ipad-pro .frame-2 {
+  display: flex;
+  gap: 0.4px;
+  margin-left: 23.0px;
+  margin-top: 84.0px;
+  width: 59px;
+}
+
+.ipad-pro .div-2 {
+  aspect-ratio: 1;
+  height: 35.11px;
+  margin-left: 0;
+  margin-top: 0;
+  position: relative;
+  transform: rotate(-90.00deg);
+  width: 35.11px;
+}
+
+.ipad-pro .ellipse {
+  background-color: #999999;
+  border-radius: 8.05px;
+  height: 45.83%;
+  left: 29.16%;
+  position: absolute;
+  top: 25.00%;
+  width: 45.83%;
+}
+
+.ipad-pro .vector {
+  height: 83.33%;
+  left: 8.33%;
+  position: absolute;
+  top: 8.33%;
+  width: 83.33%;
+}
+
+.ipad-pro .text-wrapper-2 {
+  align-items: center;
+  color: #999999;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.1px;
+  font-weight: 500;
+  height: 19px;
+  justify-content: center;
+  letter-spacing: 0.91px;
+  line-height: 18.8px;
+  margin-top: 8.5px;
+  text-align: center;
+  transform: rotate(-90.00deg);
+  white-space: nowrap;
+  width: 28px;
+}
+
+.ipad-pro .frame-3 {
+  display: flex;
+  gap: 0.4px;
+  margin-left: 23.0px;
+  margin-top: 92.2px;
+  width: 59px;
+}
+
+.ipad-pro .frame-4 {
+  height: 35.11px;
+  margin-left: 0;
+  margin-top: 0;
+  position: relative;
+  transform: rotate(-90.00deg);
+  width: 35.11px;
+}
+
+.ipad-pro .ion-people {
+  aspect-ratio: 1;
+  height: 35px;
+  left: 1px;
+  position: absolute;
+  top: 0;
+  width: 35px;
+}
+
+.ipad-pro .vector-2 {
+  height: 68.75%;
+  left: 3.12%;
+  position: absolute;
+  top: 15.62%;
+  width: 93.75%;
+}
+
+.ipad-pro .vector-3 {
+  height: 68.75%;
+  left: 34.38%;
+  position: absolute;
+  top: 15.62%;
+  width: 62.50%;
+}
+
+.ipad-pro .text-wrapper-3 {
+  align-items: center;
+  color: #0088ff;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.1px;
+  font-weight: 500;
+  height: 19px;
+  justify-content: center;
+  letter-spacing: 0.91px;
+  line-height: 18.8px;
+  margin-top: 8.2px;
+  text-align: center;
+  transform: rotate(-90.00deg);
+  white-space: nowrap;
+  width: 28px;
+}
+
+.ipad-pro .tabler-table-filled {
+  aspect-ratio: 1;
+  height: 35px;
+  left: 0;
+  position: absolute;
+  top: 1px;
+  width: 35px;
+}
+
+.ipad-pro .vector-4 {
+  height: 75.00%;
+  left: 12.50%;
+  position: absolute;
+  top: 12.50%;
+  width: 75.00%;
+}
+
+.ipad-pro .vector-wrapper {
+  aspect-ratio: 1;
+  height: 35px;
+  left: 0;
+  position: absolute;
+  top: 1px;
+  width: 100%;
+}
+
+.ipad-pro .vector-5 {
+  height: 25.00%;
+  left: 12.50%;
+  position: absolute;
+  top: 12.50%;
+  width: 75.00%;
+}
+
+.ipad-pro .text-wrapper-4 {
+  align-items: center;
+  color: #999999;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.1px;
+  font-weight: 500;
+  height: 19px;
+  justify-content: center;
+  letter-spacing: 0.91px;
+  line-height: 18.8px;
+  margin-top: 7.9px;
+  text-align: center;
+  transform: rotate(-90.00deg);
+  white-space: nowrap;
+  width: 28px;
+}
+
+.ipad-pro .frame-5 {
+  display: flex;
+  gap: 2.8px;
+  height: 30.72px;
+  margin-left: 25.0px;
+  margin-top: 92.0px;
+  width: 57px;
+}
+
+.ipad-pro .streamline-bag-yen {
+  aspect-ratio: 1;
+  height: 30.72px;
+  margin-left: 0;
+  margin-top: 0;
+  position: relative;
+  transform: rotate(-90.00deg);
+  width: 30.72px;
+}
+
+.ipad-pro .ellipse-2 {
+  background-color: #999999;
+  border-radius: 10.51px / 9.7px;
+  height: 63.16%;
+  left: 15.79%;
+  position: absolute;
+  top: 31.58%;
+  width: 68.42%;
+}
+
+.ipad-pro .vector-6 {
+  height: 100%;
+  left: 3.83%;
+  position: absolute;
+  top: 0;
+  width: 92.33%;
+}
+
+.ipad-pro .text-wrapper-5 {
+  align-items: center;
+  color: #999999;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.1px;
+  font-weight: 500;
+  height: 19px;
+  justify-content: center;
+  letter-spacing: 0.91px;
+  line-height: 18.8px;
+  margin-top: 5.8px;
+  text-align: center;
+  transform: rotate(-90.00deg);
+  white-space: nowrap;
+  width: 28px;
+}
+
+.ipad-pro .frame-6 {
+  display: flex;
+  gap: 1.4px;
+  margin-left: 22.0px;
+  margin-top: 92.2px;
+  width: 60px;
+}
+
+.ipad-pro .frame-7 {
+  height: 35.11px;
+  margin-left: 0;
+  margin-top: 0;
+  transform: rotate(-90.00deg);
+  width: 35.11px;
+}
+
+.ipad-pro .text-wrapper-6 {
+  align-items: center;
+  color: #999999;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.1px;
+  font-weight: 500;
+  height: 19px;
+  justify-content: center;
+  letter-spacing: 0.91px;
+  line-height: 18.8px;
+  margin-top: 8.9px;
+  text-align: center;
+  transform: rotate(-90.00deg);
+  white-space: nowrap;
+  width: 28px;
+}
+
+.ipad-pro .vector-7 {
+  height: 83.33%;
+  left: 8.34%;
+  position: absolute;
+  top: 8.33%;
+  width: 83.33%;
+}
+
+.ipad-pro .vector-8 {
+  height: 25.00%;
+  left: 8.34%;
+  position: absolute;
+  top: 16.66%;
+  width: 83.33%;
+}
+
+.ipad-pro .text-wrapper-7 {
+  align-items: center;
+  color: #999999;
+  display: flex;
+  font-family: "Noto Sans JP", Helvetica;
+  font-size: 13.1px;
+  font-weight: 500;
+  height: 19px;
+  justify-content: center;
+  letter-spacing: 0.91px;
+  line-height: 18.8px;
+  margin-top: 7.6px;
+  text-align: center;
+  transform: rotate(-90.00deg);
+  white-space: nowrap;
+  width: 28px;
+}

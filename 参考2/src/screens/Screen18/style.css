@@ -1,0 +1,109 @@
+.screen-18 {
+  align-items: center;
+  background-color: #000000;
+  display: flex;
+  min-height: 1194px;
+  min-width: 834px;
+  position: relative;
+  width: 100%;
+}
+
+.screen-18 .element-21 {
+  aspect-ratio: 0.85;
+  height: 971px;
+  left: 0;
+  position: fixed;
+  top: calc(50.00% - 485px);
+  width: 823px;
+  z-index: 1;
+}
+
+.screen-18 .view-44 {
+  height: 42px;
+  left: 749px;
+  position: fixed;
+  top: calc(50.00% - 516px);
+  width: 42px;
+  z-index: 2;
+}
+
+.screen-18 .liquid-glass-regular-17 {
+  box-shadow: 0px 6.12px 17.5px #0000000d;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-18 .blur-15 {
+  height: calc(100% + 46px);
+  left: -23px;
+  object-fit: cover;
+  position: absolute;
+  top: -23px;
+  width: calc(100% + 46px);
+}
+
+.screen-18 .fill-15 {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.06) 100%
+    ), linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%),
+    linear-gradient(
+      0deg,
+      rgba(204, 204, 204, 0.5) 0%,
+      rgba(204, 204, 204, 0.5) 100%
+    );
+  background-blend-mode: color-burn;
+  border-radius: 875px;
+  height: 100%;
+  left: 0;
+  opacity: 0.67;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-18 .glass-effect-16 {
+  -webkit-backdrop-filter: blur(2.6px) brightness(94.8%) saturate(95.0%);
+  backdrop-filter: blur(2.6px) brightness(94.8%) saturate(95.0%);
+  background-blend-mode: screen;
+  background-color: #00000033;
+  border-radius: 259px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34), inset 1px 0 0 rgba(
+      255,
+      255,
+      255,
+      0.27
+    ), inset 0 -1px 1px rgba(0, 0, 0, 0.17), inset -1px 0 1px rgba(
+      0,
+      0,
+      0,
+      0.14
+    );
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.screen-18 .icon-park-outline-13 {
+  aspect-ratio: 1;
+  height: 19px;
+  left: calc(50.00% - 9px);
+  position: absolute;
+  top: calc(50.00% - 9px);
+  width: 19px;
+}
+
+.screen-18 .vector-71 {
+  height: 73.51%;
+  left: 13.24%;
+  position: absolute;
+  top: 13.24%;
+  width: 73.51%;
+}

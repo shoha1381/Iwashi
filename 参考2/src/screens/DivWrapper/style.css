@@ -1,0 +1,15 @@
+.div-wrapper {
+  background-color: #ffffff;
+  display: flex;
+  min-height: 1194px;
+  min-width: 834px;
+  width: 100%;
+}
+
+.div-wrapper .image {
+  aspect-ratio: 1.79;
+  height: 1063px;
+  margin-left: 121px;
+  margin-top: 65px;
+  width: 592px;
+}

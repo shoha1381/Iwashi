@@ -1,0 +1,16 @@
+.screen-5 {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  min-height: 1194px;
+  min-width: 834px;
+  width: 100%;
+}
+
+.screen-5 .cleanshot-4 {
+  aspect-ratio: 1.29;
+  height: 900px;
+  margin-top: 147px;
+  object-fit: cover;
+  width: 698px;
+}
