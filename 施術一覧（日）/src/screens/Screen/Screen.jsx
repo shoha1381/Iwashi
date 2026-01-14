@@ -66,6 +66,40 @@ export const Screen = () => {
         }
     };
 
+    // Wheel (Trackpad) Navigation Logic
+    const wheelAccumulator = useRef(0);
+    const lastWheelTime = useRef(0);
+    const isWheelNavigating = useRef(false);
+
+    const onWheel = (e) => {
+        // Only navigate if horizontal scroll is dominant
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) return;
+
+        const now = Date.now();
+        // Reset if too much time passed (new gesture)
+        if (now - lastWheelTime.current > 200) {
+            wheelAccumulator.current = 0;
+        }
+        lastWheelTime.current = now;
+
+        if (isWheelNavigating.current) return;
+
+        wheelAccumulator.current += e.deltaX;
+
+        // Threshold for navigation to prevent rapid firing
+        if (Math.abs(wheelAccumulator.current) > 100) {
+            if (wheelAccumulator.current > 0) navigateDate(1);
+            else navigateDate(-1);
+
+            // Cooldown
+            isWheelNavigating.current = true;
+            wheelAccumulator.current = 0;
+            setTimeout(() => {
+                isWheelNavigating.current = false;
+            }, 500);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
@@ -90,6 +124,7 @@ export const Screen = () => {
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
+                    onWheel={onWheel}
                 >
                     {/* Staff Row - Sticky at top of scroll area */}
                     <div className="sticky top-0 z-30 bg-white">
