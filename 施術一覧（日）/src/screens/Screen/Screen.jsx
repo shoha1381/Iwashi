@@ -61,7 +61,7 @@ export const Screen = () => {
             setDateList(prev => {
                 const last = new Date(prev[prev.length - 1]);
                 const next = new Date(last);
-                const step = selectedView === 'week' ? 7 : 1;
+                const step = 1;
                 next.setDate(next.getDate() + step);
                 return [...prev, next];
             });

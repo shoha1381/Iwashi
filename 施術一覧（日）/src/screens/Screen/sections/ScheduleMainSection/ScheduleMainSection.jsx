@@ -30,35 +30,36 @@ const AppointmentCard = ({ slot }) => {
                 <div className="appointment-name text-[11px]">{slot.name}</div>
             )}
 
-            {/* Service - contained in single line */}
-            {slot.service && (
+            {/* Service - contained in single line - HIDDEN per user request */}
+            {/* {slot.service && (
                 <div className="mt-auto pt-1">
                     <span className="appointment-service">{slot.service}</span>
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
 
+// Time Row - with absent columns
 // Time Row - with absent columns
 const TimeRow = ({ row, isEven }) => (
     <div
         className={`grid ${isEven ? "bg-white" : "bg-neutral-50/30"}`}
         style={{ gridTemplateColumns: "56px repeat(7, 1fr) repeat(2, 0.5fr)" }}
     >
-        <div className="flex-shrink-0 h-28 flex items-center justify-center border-r border-b border-neutral-100">
+        <div className="flex-shrink-0 h-20 flex items-center justify-center border-r border-b border-neutral-100">
             <span className="text-[13px] font-medium text-neutral-500">{row.time}:00</span>
         </div>
 
         {row.slots.map((slot, i) => (
-            <div key={i} className="min-w-0 h-28 p-1 border-r border-b border-neutral-100">
+            <div key={i} className="min-w-0 h-20 p-1 border-r border-b border-neutral-100">
                 <AppointmentCard slot={slot} />
             </div>
         ))}
 
         {/* Absent staff columns - half width (0.5fr) to match header */}
-        <div className="min-w-0 h-28 border-r border-b border-neutral-100 bg-neutral-50/50" />
-        <div className="min-w-0 h-28 border-b border-neutral-100 bg-neutral-50/50" />
+        <div className="min-w-0 h-20 border-r border-b border-neutral-100 bg-neutral-50/50" />
+        <div className="min-w-0 h-20 border-b border-neutral-100 bg-neutral-50/50" />
     </div>
 );
 
