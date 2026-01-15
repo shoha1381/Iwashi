@@ -85,8 +85,8 @@ export const HeaderSection = ({
 
     return (
         <header className="header-nav">
-            <div className="px-4 md:px-6 py-3 md:py-4">
-                <div className={`flex items-center ${config.hideControls ? 'justify-start w-full' : 'justify-between gap-2 md:gap-4 flex-wrap'}`}>
+            <div className="px-4 md:px-6 h-14 md:h-16 flex items-center">
+                <div className={`flex items-center w-full ${config.hideControls ? 'justify-start' : 'justify-between gap-2 md:gap-4 flex-wrap'}`}>
                     {/* Left: Title or Date Navigation - Only show for schedule or non-hideControls pages */}
                     {!config.hideControls && (
                         <div className="flex items-center gap-2 md:gap-4">
