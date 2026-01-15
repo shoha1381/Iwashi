@@ -99,29 +99,29 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                     </div>
 
                     {/* Profile Section */}
-                    <div className="flex gap-4 mb-2 px-1">
+                    <div className="flex gap-4 mb-4 px-1">
                         {/* Photo - Enlarged to match Caution height */}
                         <div className="flex-shrink-0">
                             <img src={patientInfo.photo} alt={patientInfo.name} className="w-28 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
                         </div>
 
-                        {/* Name & Basic Info - Narrower table */}
+                        {/* Name & Basic Info - Reverted sizing */}
                         <div className="flex flex-col justify-center gap-3 flex-1 min-w-0">
                             <div className="flex flex-col gap-0.5">
                                 <h2 className="text-xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
                                 <span className="text-[10px] text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
                             </div>
 
-                            <div className="min-w-0 w-full max-w-[200px]">
-                                {/* Compact Table - Narrower width */}
+                            <div className="min-w-0 w-full max-w-[240px]">
+                                {/* Compact Table - Slightly narrower to accommodate larger photo */}
                                 <div className="border border-neutral-200/60 rounded overflow-hidden">
                                     <div className="flex border-b border-neutral-200/60">
-                                        <div className="w-[70px] flex-shrink-0 px-2 py-1 bg-neutral-50 text-[10px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">コース内容</div>
-                                        <div className="px-2 py-1 text-[10px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
+                                        <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">コース内容</div>
+                                        <div className="px-2 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
                                     </div>
                                     <div className="flex">
-                                        <div className="w-[70px] flex-shrink-0 px-2 py-1 bg-neutral-50 text-[10px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">媒体</div>
-                                        <div className="px-2 py-1 text-[10px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
+                                        <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">媒体</div>
+                                        <div className="px-2 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
                                     </div>
                                 </div>
                             </div>
@@ -162,10 +162,10 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    <div className="border-t border-neutral-100 my-2 mx-1"></div>
+                    <div className="border-t border-neutral-100 my-4 mx-1"></div>
 
-                    {/* Middle Section: ToDo & Advice - Equal Height */}
-                    <div className="grid grid-cols-[1fr_2fr] gap-4 mb-2 px-1 items-stretch">
+                    {/* Middle Section: ToDo & Advice - Restored spacing */}
+                    <div className="grid grid-cols-[1fr_2fr] gap-4 mb-4 px-1 items-stretch">
                         {/* ToDo */}
                         <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-full ${softShadow}`}>
                             <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
