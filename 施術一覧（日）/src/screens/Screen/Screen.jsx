@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { DateNavigationSection } from "./sections/DateNavigationSection";
 import { BottomNavigationSection } from "./sections/BottomNavigationSection";
 import { ScheduleMainSection } from "./sections/ScheduleMainSection";
-import { ScheduleGridSection } from "./sections/ScheduleGridSection";
+import { NavigationSection } from "../../components/NavigationSection";
 
 export const Screen = () => {
     const [selectedDate, setSelectedDate] = useState(new Date(2025, 9, 6));
@@ -148,7 +148,7 @@ export const Screen = () => {
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
-            <ScheduleGridSection />
+            <NavigationSection />
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
