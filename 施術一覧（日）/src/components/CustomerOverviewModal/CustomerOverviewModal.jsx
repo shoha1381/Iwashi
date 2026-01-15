@@ -7,7 +7,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
     const patientInfo = {
         name: "三浦 梨花",
         reading: "ミウラリカ・女・25歳",
-        courseInfo: "SP初 ネSP",
+        courseInfo: "SP・初回",
+        media: "ネSP", // Changed from Previous Visit
         goal: "1月の結婚式に向けて、右のエラはりを改善する",
         cautions: [
             { label: "注意事項", text: "顎・フェイスライン整形あり" },
@@ -34,15 +35,16 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
         { label: "項目", width: "w-12" },
         ...Array.from({ length: 14 }, (_, i) => ({ label: `${i + 2}`, width: "w-7" })),
         // Fixed: Removed duplicate 15
-        { label: "①\n頻度", width: "w-8" },
-        { label: "①\n効果", width: "w-8" },
-        { label: "③\n継続", width: "w-8" },
-        { label: "④\n代金", width: "w-8" },
-        { label: "⑤\n予約", width: "w-8" },
-        { label: "⑤\n支払い", width: "w-8" },
-        { label: "⑤\n5回分", width: "w-8" },
-        { label: "⑤\nメニュー", width: "w-10" },
-        { label: "⑧\n写真", width: "w-8" },
+        // Expanded widths and removed newlines as requested
+        { label: "①頻度", width: "w-11" },
+        { label: "①効果", width: "w-11" },
+        { label: "③継続", width: "w-11" },
+        { label: "④代金", width: "w-11" },
+        { label: "⑤予約", width: "w-11" },
+        { label: "⑤支払い", width: "w-11" },
+        { label: "⑤5回分", width: "w-12" },
+        { label: "⑤メニュー", width: "w-14" },
+        { label: "⑧写真", width: "w-11" },
     ];
 
     // Standardized Shadow to match ReservationBookingModal 'Super Good' style
@@ -65,7 +67,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
             <div className="relative w-full max-w-[900px] h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
 
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-5 pb-24 no-scrollbar">
+                <div className="flex-1 overflow-y-auto p-5 pb-28 no-scrollbar">
 
                     {/* Header Action Icons */}
                     <div className="flex justify-end gap-3 mb-4">
@@ -77,11 +79,11 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Edit - Deep Blue (Moved before Trash) */}
+                        {/* Edit - Deep Blue (Correct Order) */}
                         <button className={iconButtonClass}>
                             <img src="/img/vector-11.svg" className="w-5 h-5" alt="Edit" style={{ filter: blueFilter }} />
                         </button>
-                        {/* Trash - Deep Red */}
+                        {/* Trash - Deep Red (Correct Order) */}
                         <button className={iconButtonClass}>
                             <img src="/img/vector-13.svg" className="w-5 h-5" alt="Delete" style={{ filter: redFilter }} />
                         </button>
@@ -118,8 +120,9 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                                         <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
                                     </div>
                                     <div className="flex">
-                                        <div className="w-[70px] px-2 py-1.5 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">前回来店</div>
-                                        <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 min-h-[28px]"></div>
+                                        {/* Changed Label to '媒体' and Value to 'ネSP' */}
+                                        <div className="w-[70px] px-2 py-1.5 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">媒体</div>
+                                        <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
                                     </div>
                                 </div>
                             </div>
@@ -215,15 +218,15 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* History Table - Reduced margin bottom */}
-                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-4 mx-1 ${softShadow}`}>
+                    {/* History Table - Reduced bottom margin to 2 for tighter gap */}
+                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-2 mx-1 ${softShadow}`}>
                         <div className="overflow-x-auto">
                             <table className="w-full text-center border-collapse">
                                 <thead>
                                     <tr className="bg-neutral-50 border-b border-neutral-200 text-[10px] font-medium text-neutral-500">
                                         <th className="p-1.5 border-r border-neutral-200 w-12 font-medium bg-neutral-100">項目</th>
                                         {historyColumns.slice(1).map((col, i) => (
-                                            <th key={i} className={`p-1 border-r border-neutral-200 whitespace-pre-line font-medium ${col.width}`}>
+                                            <th key={i} className={`p-1 border-r border-neutral-200 whitespace-nowrap font-medium ${col.width}`}>
                                                 {col.label}
                                             </th>
                                         ))}
@@ -247,8 +250,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
                 </div>
 
-                {/* Footer Actions (Sticky Bottom) - Right Aligned - Increased Padding */}
-                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 p-6 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-8">
+                {/* Footer Actions (Sticky Bottom) - Increased vertical padding (p-8) */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 p-8 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-8">
                     <button className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
                         問診票入力
                     </button>
