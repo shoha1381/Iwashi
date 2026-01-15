@@ -7,7 +7,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
     const patientInfo = {
         name: "三浦 梨花",
         reading: "ミウラリカ・女・25歳",
-        courseInfo: "SP初 ネSP", // Updated to shorthand
+        courseInfo: "SP初 ネSP",
         goal: "1月の結婚式に向けて、右のエラはりを改善する",
         cautions: [
             { label: "注意事項", text: "顎・フェイスライン整形あり" },
@@ -30,11 +30,10 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
         "短い間隔で通っていただくと、定着が良くなることを伝えましょう。",
     ];
 
-    // Table Logic: Removed duplicate '15'
     const historyColumns = [
         { label: "項目", width: "w-12" },
         ...Array.from({ length: 14 }, (_, i) => ({ label: `${i + 2}`, width: "w-7" })),
-        // Removed duplicate 15
+        // Fixed: Removed duplicate 15
         { label: "①\n頻度", width: "w-8" },
         { label: "①\n効果", width: "w-8" },
         { label: "③\n継続", width: "w-8" },
@@ -46,12 +45,13 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
         { label: "⑧\n写真", width: "w-8" },
     ];
 
+    // Standardized Shadow to match ReservationBookingModal 'Super Good' style
+    const iconButtonClass = "w-11 h-11 rounded-full bg-white flex items-center justify-center text-neutral-400 hover:text-neutral-600 shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] transition-all";
     const softShadow = "shadow-[0px_4px_12px_rgba(0,0,0,0.03)] border border-neutral-100";
-    const buttonShadow = "shadow-[0px_2px_8px_rgba(0,0,0,0.05)] border border-neutral-50";
 
-    // Icon Filters for Red and Blue
-    const redFilter = "invert(23%) sepia(98%) saturate(7472%) hue-rotate(354deg) brightness(92%) contrast(115%)";
-    const blueFilter = "invert(8%) sepia(95%) saturate(7132%) hue-rotate(244deg) brightness(100%) contrast(146%)";
+    // Deep Red / Deep Blue Filters
+    const redFilter = "invert(16%) sepia(88%) saturate(6053%) hue-rotate(357deg) brightness(92%) contrast(118%)";
+    const blueFilter = "invert(14%) sepia(90%) saturate(4529%) hue-rotate(239deg) brightness(80%) contrast(124%)";
 
     return (
         <div className="fixed inset-0 z-50 flex items-end justify-center font-['Noto_Sans_JP'] text-[#333333]">
@@ -64,44 +64,46 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
             {/* Modal Container */}
             <div className="relative w-full max-w-[900px] h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
 
-                {/* Scrollable Content - Compact Padding to fit everything */}
+                {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-5 pb-20 no-scrollbar">
 
                     {/* Header Action Icons */}
                     <div className="flex justify-end gap-3 mb-4">
                         {/* Info (Green) */}
-                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                        <button className={iconButtonClass}>
                             <img src="/img/vector-17.svg" className="w-5 h-5" alt="Info" />
                         </button>
                         {/* Payment (Orange) */}
-                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                        <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Trash - Red */}
-                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                        {/* Trash - Deep Red */}
+                        <button className={iconButtonClass}>
                             <img src="/img/vector-13.svg" className="w-5 h-5" alt="Delete" style={{ filter: redFilter }} />
                         </button>
-                        {/* Edit - Blue */}
-                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                        {/* Edit - Deep Blue */}
+                        <button className={iconButtonClass}>
                             <img src="/img/vector-11.svg" className="w-5 h-5" alt="Edit" style={{ filter: blueFilter }} />
                         </button>
-                        {/* Close */}
+                        {/* Close - Standard SVG X Icon */}
                         <button
-                            className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}
+                            className={iconButtonClass}
                             onClick={onClose}
                         >
-                            <img src="/img/vector-10.svg" className="w-4 h-4 opacity-60" alt="Close" />
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                         </button>
                     </div>
 
-                    {/* Profile Section - Compact */}
+                    {/* Profile Section */}
                     <div className="flex gap-4 mb-4 px-1">
                         {/* Photo */}
                         <div className="flex-shrink-0">
                             <img src={patientInfo.photo} alt={patientInfo.name} className="w-24 h-28 object-cover rounded-lg shadow-sm border border-neutral-100" />
                         </div>
 
-                        {/* Name & Basic Info - Optimized width */}
+                        {/* Name & Basic Info - Standardized Font */}
                         <div className="flex flex-col justify-center gap-3 flex-1 min-w-0">
                             <div className="flex flex-col gap-0.5">
                                 <h2 className="text-xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
@@ -113,17 +115,17 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                                 <div className="border border-neutral-200/60 rounded overflow-hidden">
                                     <div className="flex border-b border-neutral-200/60">
                                         <div className="w-[70px] px-2 py-1.5 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">コース内容</div>
-                                        <div className="px-3 py-1.5 text-neutral-800 font-medium tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
+                                        <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
                                     </div>
                                     <div className="flex">
                                         <div className="w-[70px] px-2 py-1.5 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">前回来店</div>
-                                        <div className="px-3 py-1.5 text-neutral-800 font-medium tracking-wide bg-white flex-1 min-h-[28px]"></div>
+                                        <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 min-h-[28px]"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Goals & Cautions - Narrower */}
+                        {/* Goals & Cautions */}
                         <div className="flex gap-3 flex-shrink-0">
                             {/* Goal */}
                             <div className={`w-[160px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
@@ -160,22 +162,22 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
                     <div className="border-t border-neutral-100 my-4 mx-1"></div>
 
-                    {/* Middle Section: ToDo & Advice - Widen Advice */}
-                    <div className="grid grid-cols-[1fr_2fr] gap-4 mb-4 px-1">
-                        {/* ToDo - Narrower & Optimized Spacing */}
-                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-fit ${softShadow}`}>
+                    {/* Middle Section: ToDo & Advice - Equal Height */}
+                    <div className="grid grid-cols-[1fr_2fr] gap-4 mb-4 px-1 items-stretch">
+                        {/* ToDo */}
+                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-full ${softShadow}`}>
                             <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
                                 <img src="/img/vector-18.svg" className="w-4 h-4" alt="Todo" />
                                 <h3 className="font-medium text-xs text-neutral-700 tracking-wide">ToDo</h3>
                             </div>
-                            <div className="p-3 flex flex-col gap-1.5">
+                            <div className="p-3 flex flex-col gap-1.5 flex-1">
                                 {todoItems.map((item, i) => (
                                     <div
                                         key={i}
                                         className="flex items-center gap-2.5 p-1.5 rounded-lg hover:bg-blue-50/50 active:scale-[0.99] transition-all cursor-pointer group"
                                     >
                                         <div className="w-4 h-4 flex-shrink-0 flex items-center justify-center bg-white border border-neutral-300 rounded-full group-hover:border-blue-400 transition-colors">
-                                            {/* Unchecked by default */}
+                                            {/* Unchecked */}
                                         </div>
                                         <span className="text-[11px] font-medium text-neutral-700 group-hover:text-blue-600 transition-colors">{item}</span>
                                     </div>
@@ -183,13 +185,13 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                             </div>
                         </div>
 
-                        {/* Advice - Wider */}
-                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-fit ${softShadow}`}>
+                        {/* Advice */}
+                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-full ${softShadow}`}>
                             <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
                                 <img src="/img/vector-19.svg" className="w-4 h-4" alt="Advice" />
                                 <h3 className="font-medium text-xs text-neutral-700 tracking-wide">アドバイス</h3>
                             </div>
-                            <div className="p-3 px-6">
+                            <div className="p-3 px-6 flex-1">
                                 <ul className="list-disc list-outside space-y-2 ml-2">
                                     {adviceItems.map((item, i) => (
                                         <li key={i} className="text-[11px] font-medium text-neutral-700 leading-relaxed marker:text-blue-300 pl-1">
@@ -204,7 +206,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                     {/* Remarks Section */}
                     <div className={`bg-white rounded-xl overflow-hidden mb-4 mx-1 ${softShadow}`}>
                         <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
-                            <img src="/img/icon-park-solid-notes.svg" className="w-4 h-4 text-neutral-600" alt="Notes" />
+                            {/* Fixed Remarks Icon Contrast */}
+                            <img src="/img/icon-park-solid-notes.svg" className="w-4 h-4 text-neutral-600 opacity-100" alt="Notes" style={{ filter: "contrast(1.2)" }} />
                             <h3 className="font-medium text-xs text-neutral-700 tracking-wide">備考</h3>
                         </div>
                         <div className="h-16 bg-white p-3">
@@ -212,7 +215,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* History Table - Compact rows */}
+                    {/* History Table */}
                     <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-12 mx-1 ${softShadow}`}>
                         <div className="overflow-x-auto">
                             <table className="w-full text-center border-collapse">
