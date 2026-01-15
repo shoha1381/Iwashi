@@ -122,7 +122,7 @@ export const CustomerList = () => {
                                                 <td className="py-3 px-5 text-right">
                                                     <Link
                                                         to={`/customers/${customer.id}`}
-                                                        className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#55a5e8] rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_6px_rgba(85,165,232,0.25)]"
+                                                        className="inline-flex items-center justify-center px-5 py-1.5 text-xs font-medium text-white bg-[#55a5e8] rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_6px_rgba(85,165,232,0.25)]"
                                                     >
                                                         詳細
                                                     </Link>
