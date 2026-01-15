@@ -52,16 +52,10 @@ export const NavigationSection = () => {
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
                     <img
-                        className="absolute w-full h-full"
-                        alt="Analysis main"
-                        src="/img/analysis-main.svg"
+                        className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
+                        alt="Analysis"
+                        src="/img/vector-7.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
-                    />
-                    <img
-                        className="absolute w-full h-full"
-                        alt="Analysis star"
-                        src="/img/analysis-star.svg"
-                        style={{ filter: isActive ? BLUE_DARK : GRAY_DARK }}
                     />
                 </div>
             ),
@@ -72,11 +66,10 @@ export const NavigationSection = () => {
             path: "/sales",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
-                    <div className={`w-[60%] h-[55%] top-[35%] left-[20%] rounded-md absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />
                     <img
-                        className="absolute w-[92%] h-full top-0 left-[4%]"
+                        className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
                         alt="Sales"
-                        src="/img/vector-2.svg"
+                        src="/img/vector-15.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>
@@ -89,16 +82,10 @@ export const NavigationSection = () => {
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
                     <img
-                        className="absolute w-[75%] h-[75%] top-[12%] left-[12%]"
-                        alt="Summary 1"
-                        src="/img/vector-3.svg"
-                        style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
-                    />
-                    <img
-                        className="absolute w-[75%] h-[25%] top-[12%] left-[12%]"
-                        alt="Summary 2"
+                        className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
+                        alt="Summary"
                         src="/img/vector-4.svg"
-                        style={{ filter: isActive ? BLUE_DARK : GRAY_DARK }}
+                        style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>
             ),
@@ -130,11 +117,11 @@ export const NavigationSection = () => {
             path: "/settings",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
-                    <div className={`w-[40%] h-[40%] top-[28%] left-[30%] rounded-md absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />
+                    {/* Gear Icon */}
                     <img
                         className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
                         alt="Settings"
-                        src="/img/vector-7.svg"
+                        src="/img/vector-2.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>
