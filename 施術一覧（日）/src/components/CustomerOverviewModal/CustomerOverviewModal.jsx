@@ -51,9 +51,9 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
     const iconButtonClass = "w-11 h-11 rounded-full bg-white flex items-center justify-center text-neutral-400 hover:text-neutral-600 shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.08)] transition-all";
     const softShadow = "shadow-[0px_4px_12px_rgba(0,0,0,0.03)] border border-neutral-100";
 
-    // Deep Red / Deep Blue Filters
-    const redFilter = "invert(16%) sepia(88%) saturate(6053%) hue-rotate(357deg) brightness(92%) contrast(118%)";
-    const blueFilter = "invert(14%) sepia(90%) saturate(4529%) hue-rotate(239deg) brightness(80%) contrast(124%)";
+    // Deep Red / Deep Blue Filters - Enhanced saturation
+    const redFilter = "invert(12%) sepia(95%) saturate(7000%) hue-rotate(0deg) brightness(85%) contrast(120%)";
+    const blueFilter = "invert(10%) sepia(100%) saturate(6000%) hue-rotate(220deg) brightness(70%) contrast(130%)";
 
     return (
         <div className="fixed inset-0 z-50 flex items-end justify-center font-['Noto_Sans_JP'] text-[#333333]">
@@ -112,17 +112,16 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                                 <span className="text-[10px] text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
                             </div>
 
-                            <div className="text-xs min-w-0 w-full max-w-[280px]">
-                                {/* Compact Table */}
+                            <div className="min-w-0 w-full max-w-[300px]">
+                                {/* Compact Table - Font matching Goal/Caution sections */}
                                 <div className="border border-neutral-200/60 rounded overflow-hidden">
                                     <div className="flex border-b border-neutral-200/60">
-                                        <div className="w-[70px] px-2 py-1.5 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">コース内容</div>
-                                        <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
+                                        <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">コース内容</div>
+                                        <div className="px-3 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
                                     </div>
                                     <div className="flex">
-                                        {/* Changed Label to '媒体' and Value to 'ネSP' */}
-                                        <div className="w-[70px] px-2 py-1.5 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">媒体</div>
-                                        <div className="px-3 py-1.5 text-neutral-800 text-[11px] font-medium tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
+                                        <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">媒体</div>
+                                        <div className="px-3 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
                                     </div>
                                 </div>
                             </div>
@@ -209,8 +208,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                     {/* Remarks Section */}
                     <div className={`bg-white rounded-xl overflow-hidden mb-4 mx-1 ${softShadow}`}>
                         <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
-                            {/* Fixed Remarks Icon Contrast */}
-                            <img src="/img/icon-park-solid-notes.svg" className="w-4 h-4 text-neutral-600 opacity-100" alt="Notes" style={{ filter: "contrast(1.2)" }} />
+                            {/* Fixed Remarks Icon - Clear and visible */}
+                            <img src="/img/icon-park-solid-notes.svg" className="w-4 h-4" alt="Notes" style={{ filter: "brightness(0) saturate(100%) invert(45%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(90%)" }} />
                             <h3 className="font-medium text-xs text-neutral-700 tracking-wide">備考</h3>
                         </div>
                         <div className="h-16 bg-white p-3">
