@@ -100,31 +100,33 @@ export const CustomerList = () => {
                             <div className="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-100">
                                 <table className="w-full border-collapse bg-white">
                                     <thead>
-                                        <tr className="bg-neutral-100 text-neutral-600 text-left border-b border-neutral-200">
+                                        <tr className="bg-[#55a5e8] text-white text-left">
                                             <th className="py-3 px-5 font-medium text-sm">顧客名</th>
                                             <th className="py-3 px-5 font-medium text-sm">顧客名（カナ）</th>
                                             <th className="py-3 px-5 font-medium text-sm">電話番号</th>
                                             <th className="py-3 px-5 font-medium text-sm">店舗</th>
+                                            <th className="py-3 px-5 font-medium text-sm w-20"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {filteredCustomers.map((customer, index) => (
                                             <tr
                                                 key={customer.id}
-                                                className={`border-b border-neutral-100 hover:bg-blue-50/30 transition-colors cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-neutral-50/50'
+                                                className={`border-b border-neutral-100 hover:bg-blue-50/30 transition-colors ${index % 2 === 0 ? 'bg-white' : 'bg-neutral-50/50'
                                                     }`}
                                             >
-                                                <td className="py-3 px-5">
-                                                    <Link
-                                                        to={`/customers/${customer.id}`}
-                                                        className="text-sm text-neutral-700 hover:text-blue-500 transition-colors"
-                                                    >
-                                                        {customer.name}
-                                                    </Link>
-                                                </td>
+                                                <td className="py-3 px-5 text-sm text-neutral-700">{customer.name}</td>
                                                 <td className="py-3 px-5 text-sm text-neutral-500">{customer.nameKana}</td>
                                                 <td className="py-3 px-5 text-sm text-neutral-500">{customer.phone}</td>
                                                 <td className="py-3 px-5 text-sm text-neutral-500">{customer.store}</td>
+                                                <td className="py-3 px-5 text-right">
+                                                    <Link
+                                                        to={`/customers/${customer.id}`}
+                                                        className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium text-white bg-[#55a5e8] rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_6px_rgba(85,165,232,0.25)]"
+                                                    >
+                                                        詳細
+                                                    </Link>
+                                                </td>
                                             </tr>
                                         ))}
                                     </tbody>

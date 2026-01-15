@@ -83,7 +83,7 @@ export const HeaderSection = ({
     return (
         <header className="header-nav">
             <div className="px-4 md:px-6 py-3 md:py-4">
-                <div className={`flex items-center ${config.hideControls ? 'justify-end w-full' : 'justify-between gap-2 md:gap-4 flex-wrap'}`}>
+                <div className={`flex items-center ${config.hideControls ? 'justify-start w-full' : 'justify-between gap-2 md:gap-4 flex-wrap'}`}>
                     {/* Left: Title or Date Navigation - Only show for schedule or non-hideControls pages */}
                     {!config.hideControls && (
                         <div className="flex items-center gap-2 md:gap-4">
@@ -129,7 +129,7 @@ export const HeaderSection = ({
                         </div>
                     )}
 
-                    {/* Title for hideControls pages - positioned on right */}
+                    {/* Title for hideControls pages - positioned on left */}
                     {config.hideControls && (
                         <span className="text-base font-light text-neutral-500 tracking-wide">
                             {config.title}
