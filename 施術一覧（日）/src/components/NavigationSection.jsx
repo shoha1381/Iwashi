@@ -13,7 +13,7 @@ export const NavigationSection = () => {
     const getActiveItem = () => {
         const path = location.pathname;
         if (path.startsWith('/customers')) return 'customers';
-        if (path.startsWith('/checkout')) return 'sales';
+        if (path.startsWith('/sales')) return 'sales';
         if (path.startsWith('/analytics')) return 'analysis';
         if (path.startsWith('/summary')) return 'summary';
         if (path.startsWith('/settings')) return 'settings';
@@ -69,7 +69,7 @@ export const NavigationSection = () => {
         {
             id: "sales",
             label: "売上",
-            path: "/checkout",
+            path: "/sales",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
                     <div className={`w-[60%] h-[55%] top-[35%] left-[20%] rounded-md absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />

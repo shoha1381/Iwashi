@@ -6,6 +6,7 @@ import { Checkout } from "./screens/Checkout";
 import { Analytics } from "./screens/Analytics";
 import { Summary } from "./screens/Summary";
 import { Settings } from "./screens/Settings";
+import { Sales } from "./screens/Sales";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
     {
         path: "/checkout",
         element: <Checkout />,
+    },
+    {
+        path: "/sales",
+        element: <Sales />,
     },
     {
         path: "/analytics",
