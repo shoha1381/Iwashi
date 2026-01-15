@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { NavigationSection } from "../../components/NavigationSection";
+import { HeaderSection } from "../../components/HeaderSection";
 
 // Icons
 const SearchIcon = () => (
@@ -50,11 +51,8 @@ export const CustomerList = () => {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen overflow-hidden">
-                {/* Header - Matching the calendar screen style */}
-                <header className="bg-white/80 backdrop-blur-sm border-b border-neutral-200/50 px-6 py-5">
-                    <h1 className="text-3xl font-bold text-neutral-800">顧客</h1>
-                    <h2 className="text-base text-neutral-400 mt-1">客</h2>
-                </header>
+                {/* Unified Header */}
+                <HeaderSection selectedStore="銀座店" />
 
                 {/* Search and Filter Bar */}
                 <div className="bg-white/60 backdrop-blur-sm border-b border-neutral-200/50 px-6 py-4 flex flex-wrap items-center gap-4">
@@ -135,4 +133,3 @@ export const CustomerList = () => {
         </div>
     );
 };
-

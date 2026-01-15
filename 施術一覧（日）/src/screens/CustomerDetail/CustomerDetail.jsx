@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { NavigationSection } from "../../components/NavigationSection";
+import { HeaderSection } from "../../components/HeaderSection";
 
 // Icons
 const DocumentIcon = () => (
@@ -67,20 +68,8 @@ export const CustomerDetail = () => {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen overflow-auto">
-                {/* Header with Date - Matching calendar style */}
-                <header className="bg-white/80 backdrop-blur-sm border-b border-neutral-200/50 px-6 py-3 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                        <span className="text-lg text-neutral-700 font-medium">2025/10/06</span>
-                        <span className="text-sm text-neutral-400">月</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <span className="text-sm text-neutral-600">銀座店</span>
-                        <div className="flex gap-1">
-                            <Link to="/" className="px-4 py-1.5 bg-blue-500 text-white text-sm rounded-full shadow-sm hover:bg-blue-600 transition-colors">日</Link>
-                            <button className="px-4 py-1.5 bg-white text-neutral-600 text-sm rounded-full border border-neutral-200 hover:bg-neutral-50 transition-colors">週</button>
-                        </div>
-                    </div>
-                </header>
+                {/* Unified Header */}
+                <HeaderSection selectedStore="銀座店" />
 
                 {/* Customer Profile Card */}
                 <div className="p-6">
