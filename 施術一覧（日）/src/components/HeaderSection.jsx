@@ -129,9 +129,9 @@ export const HeaderSection = ({
                         </div>
                     )}
 
-                    {/* Title for hideControls pages - positioned on left */}
+                    {/* Title for hideControls pages - positioned on left with slight offset */}
                     {config.hideControls && (
-                        <span className="text-lg font-light text-neutral-600 tracking-wide">
+                        <span className="text-lg font-light text-neutral-600 tracking-wide ml-2">
                             {config.title}
                         </span>
                     )}
