@@ -28,7 +28,9 @@ export const BottomNavigationSection = ({ selectedDate, formatDate }) => {
                         key={index}
                         className={`min-w-0 pt-5 pb-3 px-1 border-r border-neutral-100 transition-colors cursor-pointer ${staff.absent
                             ? "bg-neutral-50/50 hover:bg-neutral-100/50"
-                            : "hover:bg-neutral-50"
+                            : staff.name === "野明みゆ"
+                                ? "bg-[#e6f4ff] hover:bg-[#d9effd]"
+                                : "hover:bg-neutral-50"
                             }`}
                     >
                         <div className="text-center">

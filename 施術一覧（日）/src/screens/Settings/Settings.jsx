@@ -8,7 +8,7 @@ export const Settings = () => {
     // Mock user data
     const userData = [
         { field: "ID", value: "2" },
-        { field: "名前", value: "伊藤彰吾" },
+        { field: "名前", value: "野明みゆ" },
     ];
 
     return (
@@ -28,7 +28,7 @@ export const Settings = () => {
                             {/* User Name Card - Glassmorphism */}
                             <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-100 p-5 mb-8">
                                 <h1 className="text-xl font-light text-neutral-700 tracking-wide">
-                                    伊藤彰吾さん
+                                    野明みゆさん
                                 </h1>
                             </div>
 

@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
+
 // Appointment Card
-const AppointmentCard = ({ slot, view }) => {
+const AppointmentCard = ({ slot, view, onClick }) => {
     if (!slot.name && !slot.service) return null;
     if (slot.nameColor === "text-transparent") return null;
 
@@ -12,7 +14,10 @@ const AppointmentCard = ({ slot, view }) => {
     };
 
     return (
-        <div className={`appointment-card ${getCardStyle()} h-full flex flex-col`}>
+        <div
+            className={`appointment-card ${getCardStyle()} h-full flex flex-col cursor-pointer hover:ring-2 hover:ring-[#4aa9fc]/50 transition-all`}
+            onClick={onClick}
+        >
             {/* Badge Row */}
             {(slot.badge || slot.icon) && (
                 <div className="flex items-center gap-1 mb-1">
@@ -40,10 +45,8 @@ const AppointmentCard = ({ slot, view }) => {
     );
 };
 
-// Time Row - with absent columns
-// Time Row - with absent columns
-// Time Row - with absent columns
-const TimeRow = ({ row, isEven, view }) => {
+// Time Row - with absent columns and highlighted first column
+const TimeRow = ({ row, isEven, view, onSlotClick, onReservationClick }) => {
     const heightClass = view === 'day' ? 'h-28' : 'h-20';
     return (
         <div
@@ -55,19 +58,43 @@ const TimeRow = ({ row, isEven, view }) => {
             </div>
 
             {row.slots.map((slot, i) => (
-                <div key={i} className={`min-w-0 ${heightClass} p-1 border-r border-b border-neutral-100`}>
-                    <AppointmentCard slot={slot} view={view} />
+                <div
+                    key={i}
+                    className={`min-w-0 ${heightClass} p-1 border-r border-b border-neutral-100 
+                        ${i === 0 ? "bg-[#e6f4ff]/40" : ""} 
+                        ${!slot.name && !slot.service ? 'cursor-pointer hover:bg-[#4aa9fc]/5 transition-colors' : ''}`}
+                    onClick={() => {
+                        if (slot.name || slot.service) {
+                            onReservationClick?.(slot, row.time);
+                        } else {
+                            onSlotClick?.(row.time, i);
+                        }
+                    }}
+                >
+                    <AppointmentCard
+                        slot={slot}
+                        view={view}
+                        onClick={() => onReservationClick?.(slot, row.time)}
+                    />
                 </div>
             ))}
 
-            {/* Absent staff columns - half width (0.5fr) to match header */}
+            {/* Absent staff columns */}
             <div className={`min-w-0 ${heightClass} border-r border-b border-neutral-100 bg-neutral-50/50`} />
             <div className={`min-w-0 ${heightClass} border-b border-neutral-100 bg-neutral-50/50`} />
         </div>
     );
 };
 
-export const ScheduleMainSection = ({ date, view }) => {
+export const ScheduleMainSection = ({ date, view, onSlotClick, onReservationClick }) => {
+    const [now, setNow] = useState(new Date());
+
+    useEffect(() => {
+        const interval = setInterval(() => setNow(new Date()), 60000); // Update every minute
+        return () => clearInterval(interval);
+    }, []);
+
+    // Initial dummy data
     const scheduleData = [
         {
             time: "10", slots: [
@@ -148,9 +175,51 @@ export const ScheduleMainSection = ({ date, view }) => {
         { time: "22", slots: [{}, {}, {}, {}, {}, {}, {}] },
     ];
 
+    // Current Time Line Position Logic
+    // Grid starts at 10:00
+    // Each hour is 'h-28' (112px) in Day view, 'h-20' (80px) in Week view
+    // Note: Tailwind h-28 is 7rem = 112px. h-20 is 5rem = 80px.
+    const startHour = 10;
+    const hourHeight = view === 'day' ? 112 : 80;
+
+    // Calculate minutes from 10:00
+    const currentHours = now.getHours();
+    const currentMinutes = now.getMinutes();
+    const minutesFromStart = (currentHours - startHour) * 60 + currentMinutes;
+
+    // Calculate pixel offset
+    const topOffset = (minutesFromStart / 60) * hourHeight;
+
+    // Check if within bounds (10:00 - 23:00)
+    const isVisible = currentHours >= 10 && currentHours < 23;
+
     return (
-        <section>
-            {scheduleData.map((row, i) => <TimeRow key={i} row={row} isEven={i % 2 === 0} view={view} />)}
+        <section className="relative">
+            {/* Current Time Indicator */}
+            {isVisible && (
+                <div
+                    className="absolute left-0 right-0 z-20 pointer-events-none flex items-center"
+                    style={{ top: `${topOffset}px` }}
+                >
+                    {/* Circle Indicator on the left axis */}
+                    <div className="w-[56px] flex justify-end pr-1">
+                        <div className="w-2.5 h-2.5 rounded-full bg-[#00bfff] shadow-[0_0_0_2px_rgba(0,191,255,0.2)]"></div>
+                    </div>
+                    {/* Line across the board */}
+                    <div className="flex-1 h-[2px] bg-[#00bfff] shadow-[0_1px_3px_rgba(0,191,255,0.3)]"></div>
+                </div>
+            )}
+
+            {scheduleData.map((row, i) => (
+                <TimeRow
+                    key={i}
+                    row={row}
+                    isEven={i % 2 === 0}
+                    view={view}
+                    onSlotClick={onSlotClick}
+                    onReservationClick={onReservationClick}
+                />
+            ))}
         </section>
     );
 };

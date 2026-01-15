@@ -93,11 +93,6 @@ export const Summary = () => {
 
                 {/* Content Area */}
                 <div className="flex-1 overflow-y-auto pt-16 w-full relative">
-                    {/* Background decoration */}
-                    <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-                        <div className="absolute top-[-30%] left-[-10%] w-[50%] h-[50%] bg-blue-200/20 rounded-full blur-[100px]" />
-                        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-200/20 rounded-full blur-[100px]" />
-                    </div>
 
                     <div className="relative z-10 flex flex-col items-center py-8 px-6">
 

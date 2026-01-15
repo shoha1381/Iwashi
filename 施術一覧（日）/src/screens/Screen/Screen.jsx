@@ -3,11 +3,21 @@ import { DateNavigationSection } from "./sections/DateNavigationSection";
 import { BottomNavigationSection } from "./sections/BottomNavigationSection";
 import { ScheduleMainSection } from "./sections/ScheduleMainSection";
 import { NavigationSection } from "../../components/NavigationSection";
+import { MoreOptionsMenu } from "../../components/MoreOptionsMenu";
+import { ReservationBookingModal } from "../../components/ReservationBookingModal";
+import { CustomerDetailPopup } from "../../components/CustomerDetailPopup";
 
 export const Screen = () => {
     const [selectedDate, setSelectedDate] = useState(new Date(2025, 9, 6));
     const [selectedView, setSelectedView] = useState("day");
     const [selectedStore, setSelectedStore] = useState("銀座店");
+
+    // Popup state
+    const [showMoreMenu, setShowMoreMenu] = useState(false);
+    const [showBookingModal, setShowBookingModal] = useState(false);
+    const [showCustomerPopup, setShowCustomerPopup] = useState(false);
+    const [selectedSlot, setSelectedSlot] = useState(null);
+    const [selectedReservation, setSelectedReservation] = useState(null);
 
     const formatDate = (date) => {
         const days = ["日", "月", "火", "水", "木", "金", "土"];
@@ -163,6 +173,7 @@ export const Screen = () => {
                     setSelectedStore={setSelectedStore}
                     onTodayClick={() => setSelectedDate(new Date())}
                     onSearchClick={() => alert("検索機能は開発中です")}
+                    onMoreClick={() => setShowMoreMenu(true)}
                 />
 
                 {/* Schedule Area - Scrollable with sticky staff row */}
@@ -190,12 +201,42 @@ export const Screen = () => {
                                         </span>
                                     </div>
                                 )}
-                                <ScheduleMainSection date={date} view={selectedView} />
+                                <ScheduleMainSection
+                                    date={date}
+                                    view={selectedView}
+                                    onSlotClick={(time, staffIndex) => {
+                                        setSelectedSlot({ startTime: `${time}:00`, endTime: `${parseInt(time) + 1}:00`, date: formatDate(date).full });
+                                        setShowBookingModal(true);
+                                    }}
+                                    onReservationClick={(slot, time) => {
+                                        if (slot.name) {
+                                            setSelectedReservation({ ...slot, time });
+                                            setShowCustomerPopup(true);
+                                        }
+                                    }}
+                                />
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
+
+            {/* Popup Components */}
+            <MoreOptionsMenu
+                isOpen={showMoreMenu}
+                onClose={() => setShowMoreMenu(false)}
+                anchorPosition={{ top: "64px", right: "24px" }}
+            />
+            <ReservationBookingModal
+                isOpen={showBookingModal}
+                onClose={() => setShowBookingModal(false)}
+                slotInfo={selectedSlot}
+            />
+            <CustomerDetailPopup
+                isOpen={showCustomerPopup}
+                onClose={() => setShowCustomerPopup(false)}
+                reservationInfo={selectedReservation}
+            />
         </div>
     );
 };
