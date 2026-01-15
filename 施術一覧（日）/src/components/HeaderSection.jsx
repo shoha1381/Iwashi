@@ -37,24 +37,27 @@ const getPageConfig = (pathname) => {
         return { type: "schedule", title: null, subtitle: null };
     }
     if (pathname.startsWith("/customers/")) {
-        return { type: "detail", title: "顧客概要", subtitle: null, hideControls: true };
+        return { type: "detail", title: "顧客概要", hideControls: true };
     }
     if (pathname === "/customers") {
-        return { type: "list", title: "顧客", subtitle: null, hideControls: true };
+        return { type: "list", title: "顧客", hideControls: true };
+    }
+    if (pathname === "/sales") {
+        return { type: "page", title: "売上", hideControls: true };
     }
     if (pathname === "/checkout") {
-        return { type: "modal", title: "売上", subtitle: "お会計" };
+        return { type: "modal", title: "お会計", hideControls: true };
     }
     if (pathname === "/analytics") {
-        return { type: "page", title: "分析", subtitle: "データ分析" };
+        return { type: "page", title: "分析", hideControls: true };
     }
     if (pathname === "/summary") {
-        return { type: "page", title: "集計", subtitle: "月次集計" };
+        return { type: "page", title: "集計", hideControls: true };
     }
     if (pathname === "/settings") {
-        return { type: "page", title: "設定", subtitle: "システム設定" };
+        return { type: "page", title: "設定", hideControls: true };
     }
-    return { type: "page", title: "ページ", subtitle: "" };
+    return { type: "page", title: "ページ", hideControls: true };
 };
 
 export const HeaderSection = ({
@@ -187,6 +190,7 @@ export const HeaderSection = ({
                             <button className="icon-button" aria-label="メニュー"><MoreIcon /></button>
                         </div>
                     )}
+
                 </div>
             </div>
         </header>
