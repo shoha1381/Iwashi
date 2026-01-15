@@ -1,20 +1,69 @@
 import React from "react";
 
-export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
+// Default data for Rika Miura
+const RIKA_DATA = {
+    name: "三浦 梨花",
+    reading: "ミウラリカ・女・25歳",
+    photo: "/img/image-2.png", // Using the original image for Rika
+    courseInfo: "SP・初回",
+    media: "ネSP",
+    goal: "1月の結婚式に向けて、右のエラはりを改善する",
+    cautions: [
+        { label: "注意事項", text: "顎・フェイスライン整形あり" },
+        { label: "注意ワード", text: "太った/痩せた、肌の色、整形跡" }
+    ],
+    labels: [
+        { type: "beginner", icon: "/img/beginner-mark.png" }
+    ],
+    customerNumber: "12345678",
+    firstVisit: "2024/01/15",
+    lastVisit: "2024/10/05",
+    rank: "ゴールド"
+};
+
+export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DATA }) => {
     if (!isOpen) return null;
 
-    // Derived Data
-    const patientInfo = {
-        name: "三浦 梨花",
-        reading: "ミウラリカ・女・25歳",
-        courseInfo: "SP・初回",
-        media: "ネSP", // Changed from Previous Visit
-        goal: "1月の結婚式に向けて、右のエラはりを改善する",
-        cautions: [
-            { label: "注意事項", text: "顎・フェイスライン整形あり" },
-            { label: "注意ワード", text: "太った/痩せた、肌の色、整形跡" }
-        ],
-        photo: "/img/image-2.png"
+    // Use provided customerData or fall back to Rika's data (though logic should ensure data is passed)
+    const data = customerData || RIKA_DATA;
+
+    // Labels/Badges rendering helper
+    const renderLabels = () => {
+        if (!data.labels || data.labels.length === 0) return null;
+        return (
+            <div className="flex items-center gap-2 mr-auto">
+                {data.labels.map((label, index) => {
+                    if (label.type === "beginner") {
+                        return (
+                            <div key={index} className="w-11 h-11 flex items-center justify-center">
+                                <img src={label.icon} alt="Beginner" className="w-6 h-10 object-contain" />
+                                {/* Beginner mark is vertical. Adjust size/aspect if needed based on provided asset. 
+                                    The asset 15-1.png is likely the colored mark. 
+                                    Reference shows it inside a box or standalone. 
+                                    User said "Same height/size as other buttons". 
+                                    Let's style it to fit nicely.
+                                */}
+                            </div>
+                        );
+                    }
+                    if (label.type === "p-mark") {
+                        return (
+                            <div key={index} className="w-11 h-11 rounded-full bg-red-100 flex items-center justify-center text-red-500 font-bold border border-red-200 shadow-sm">
+                                P
+                            </div>
+                        );
+                    }
+                    if (label.type === "text") {
+                        return (
+                            <div key={index} className="h-11 px-3 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 font-medium text-sm border border-neutral-200 shadow-sm">
+                                {label.text}
+                            </div>
+                        );
+                    }
+                    return null;
+                })}
+            </div>
+        );
     };
 
     const todoItems = [
@@ -31,11 +80,11 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
         "短い間隔で通っていただくと、定着が良くなることを伝えましょう。",
     ];
 
+    const numberedColumns = Array.from({ length: 14 }, (_, i) => ({ label: `${i + 2} `, width: "w-7" }));
+
     const historyColumns = [
         { label: "項目", width: "w-12" },
-        ...Array.from({ length: 14 }, (_, i) => ({ label: `${i + 2}`, width: "w-7" })),
-        // Fixed: Removed duplicate 15
-        // Expanded widths and removed newlines as requested
+        ...numberedColumns,
         { label: "①頻度", width: "w-11" },
         { label: "①効果", width: "w-11" },
         { label: "③継続", width: "w-11" },
@@ -69,47 +118,65 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                 {/* Scrollable Content - Removed large bottom padding */}
                 <div className="flex-1 overflow-y-auto p-5 no-scrollbar">
 
-                    {/* Header Action Icons - Order from right: Close, Edit, Trash */}
-                    <div className="flex justify-end gap-3 mb-4">
-                        {/* Info (Green) */}
-                        <button className={iconButtonClass}>
-                            <img src="/img/vector-17.svg" className="w-5 h-5" alt="Info" />
-                        </button>
-                        {/* Payment (Orange) */}
-                        <button className={iconButtonClass}>
-                            <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
-                        </button>
-                        {/* Delete - Trash Icon (Red) */}
-                        <button className={iconButtonClass}>
-                            <img src="/img/trash-icon.svg" className="w-5 h-5" alt="Delete" />
-                        </button>
-                        {/* Edit - Pen Icon (Blue) */}
-                        <button className={iconButtonClass}>
-                            <img src="/img/edit-icon.svg" className="w-5 h-5" alt="Edit" />
-                        </button>
-                        {/* Close - Standard SVG X Icon */}
-                        <button
-                            className={iconButtonClass}
-                            onClick={onClose}
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+                    {/* Header Action Icons - Order from right: Close, Edit, Trash. Labels on Left. */}
+                    <div className="flex items-center justify-end mb-4 relative">
+                        {/* Left Side Labels (Beginner Mark, etc) */}
+                        <div className="absolute left-0 flex items-center gap-3">
+                            {renderLabels()}
+                        </div>
+
+                        {/* Right Side Actions */}
+                        <div className="flex gap-3 ml-auto">
+                            {/* Info (Green) */}
+                            <button className={iconButtonClass}>
+                                <img src="/img/vector-17.svg" className="w-5 h-5" alt="Info" />
+                            </button>
+                            {/* Payment (Orange) */}
+                            <button className={iconButtonClass}>
+                                <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
+                            </button>
+                            {/* Delete - Trash Icon (Red) */}
+                            <button className={iconButtonClass}>
+                                <img src="/img/trash-icon.svg" className="w-5 h-5" alt="Delete" />
+                            </button>
+                            {/* Edit - Pen Icon (Blue) */}
+                            <button className={iconButtonClass}>
+                                <img src="/img/edit-icon.svg" className="w-5 h-5" alt="Edit" />
+                            </button>
+                            {/* Close - Standard SVG X Icon */}
+                            <button
+                                className={iconButtonClass}
+                                onClick={onClose}
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
+
+                    {/* Divider Line (reusing style from Goal/Caution separator if valid, or just simple border) */}
+                    {/* User requested: "Put a divider line below these buttons. Reuse the divider between Goal/Caution and ToDo/Advice" */}
+                    {/* Looking at reference code, there are vectors like vector-80.svg used as dividers. */}
+                    {/* For now, a simple CSS border with dashed/solid style matching the concept.
+                       The "Goal" section has a border. I will use a simple hr-like div. */}
+                    <div className="w-full h-px bg-neutral-200/60 mb-4" />
 
                     {/* Profile Section */}
                     <div className="flex gap-4 mb-4 px-1">
                         {/* Photo - Enlarged to match Caution height */}
                         <div className="flex-shrink-0">
-                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-28 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
+                            {/* Photo - Enlarged to match Caution height */}
+                            <div className="flex-shrink-0">
+                                <img src={data.photo} alt={data.name} className="w-28 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
+                            </div>
                         </div>
 
                         {/* Name & Basic Info - Shifted right for balance */}
                         <div className="flex flex-col justify-center gap-3 flex-1 min-w-0 pl-3">
                             <div className="flex flex-col gap-0.5">
-                                <h2 className="text-xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
-                                <span className="text-[10px] text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
+                                <h2 className="text-xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{data.name}</h2>
+                                <span className="text-[10px] text-neutral-500 whitespace-nowrap">{data.reading}</span>
                             </div>
 
                             <div className="min-w-0 w-full max-w-[240px]">
@@ -117,11 +184,11 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                                 <div className="border border-neutral-200/60 rounded overflow-hidden">
                                     <div className="flex border-b border-neutral-200/60">
                                         <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">コース内容</div>
-                                        <div className="px-2 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
+                                        <div className="px-2 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{data.courseInfo}</div>
                                     </div>
                                     <div className="flex">
                                         <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">媒体</div>
-                                        <div className="px-2 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
+                                        <div className="px-2 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{data.media}</div>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +202,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                                     <h3 className="font-medium text-[11px] text-neutral-700 tracking-wide">目標</h3>
                                 </div>
                                 <div className="p-3 text-[11px] font-medium text-neutral-800 leading-relaxed flex-1 flex text-left items-start">
-                                    {patientInfo.goal}
+                                    {data.goal}
                                 </div>
                             </div>
 
@@ -148,13 +215,13 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                                     <div className="p-2 border-b border-dashed border-neutral-200">
                                         <span className="text-[10px] text-neutral-400 block mb-0.5">注意事項</span>
                                         <span className="text-[11px] font-medium text-neutral-800 leading-snug block">
-                                            {patientInfo.cautions[0].text}
+                                            {data.cautions[0].text}
                                         </span>
                                     </div>
                                     <div className="p-2">
                                         <span className="text-[10px] text-neutral-400 block mb-0.5">注意ワード</span>
                                         <span className="text-[11px] font-medium text-neutral-800 leading-snug block">
-                                            {patientInfo.cautions[1].text}
+                                            {data.cautions[1].text}
                                         </span>
                                     </div>
                                 </div>
@@ -265,21 +332,21 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
             {/* Animation Style */}
             <style>{`
-                @keyframes slideUp {
-                    from { transform: translateY(100%); opacity: 0; }
-                    to { transform: translateY(0); opacity: 1; }
-                }
-                .animate-slideUp {
-                    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-                }
-                .no-scrollbar::-webkit-scrollbar {
-                    display: none;
-                }
-                .no-scrollbar {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-            `}</style>
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.animate-slideUp {
+    animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+`}</style>
         </div>
     );
 };

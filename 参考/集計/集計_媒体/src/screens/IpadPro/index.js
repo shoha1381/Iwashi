@@ -1,0 +1,1 @@
+export { IpadPro } from "./IpadPro";

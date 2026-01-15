@@ -1,0 +1,1 @@
+export { EntypoTrash } from "./EntypoTrash";

@@ -8,6 +8,47 @@ import { ReservationBookingModal } from "../../components/ReservationBookingModa
 import { CustomerDetailPopup } from "../../components/CustomerDetailPopup";
 import { CustomerOverviewModal } from "../../components/CustomerOverviewModal";
 
+// Mock Data for Customers
+const RIKA_DATA = {
+    name: "三浦 梨花",
+    reading: "ミウラリカ・女・25歳",
+    photo: "/img/image-2.png",
+    courseInfo: "SP・初回",
+    media: "ネSP",
+    goal: "1月の結婚式に向けて、右のエラはりを改善する",
+    cautions: [
+        { label: "注意事項", text: "顎・フェイスライン整形あり" },
+        { label: "注意ワード", text: "太った/痩せた、肌の色、整形跡" }
+    ],
+    labels: [
+        { type: "beginner", icon: "/img/beginner-mark.png" }
+    ],
+    customerNumber: "12345678",
+    firstVisit: "2024/01/15",
+    lastVisit: "2024/10/05",
+    rank: "ゴールド"
+};
+
+const SHOHA_DATA = {
+    name: "佐藤 祥羽",
+    reading: "サトウショウハ・男・21歳",
+    photo: "/img/shoha-sato.png",
+    courseInfo: "SP・１回目（計16回）",
+    media: "ネSP", // Assuming same or similar, or derived from reference "SP 16 (7)"
+    goal: "同窓会に向けて、面長を改善する",
+    cautions: [
+        { label: "注意事項", text: "鼻の整形あり" },
+        { label: "注意ワード", text: "鼻が高い/肌荒れ" }
+    ],
+    labels: [
+        // No special marks for Shoha
+    ],
+    customerNumber: "87654321",
+    firstVisit: "2024/05/20",
+    lastVisit: "7日前",
+    rank: "シルバー"
+};
+
 export const Screen = () => {
     const [selectedDate, setSelectedDate] = useState(new Date(2025, 9, 6));
     const [selectedView, setSelectedView] = useState("day");
@@ -20,6 +61,7 @@ export const Screen = () => {
     const [showCustomerOverview, setShowCustomerOverview] = useState(false);
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectedReservation, setSelectedReservation] = useState(null);
+    const [selectedCustomerData, setSelectedCustomerData] = useState(null);
 
     const formatDate = (date) => {
         const days = ["日", "月", "火", "水", "木", "金", "土"];
@@ -214,9 +256,21 @@ export const Screen = () => {
                                         if (slot.name) {
                                             setSelectedReservation({ ...slot, time });
                                             if (slot.name.includes("三浦")) {
+                                                setSelectedCustomerData(RIKA_DATA);
+                                                setShowCustomerOverview(true);
+                                            } else if (slot.name.includes("佐藤 祥羽")) {
+                                                setSelectedCustomerData(SHOHA_DATA);
                                                 setShowCustomerOverview(true);
                                             } else {
-                                                setShowCustomerPopup(true);
+                                                // For other customers, use Rika's template with modified name
+                                                const otherCustomerData = {
+                                                    ...RIKA_DATA,
+                                                    name: slot.name,
+                                                    reading: "", // Clear reading for other customers
+                                                    labels: [] // No special labels
+                                                };
+                                                setSelectedCustomerData(otherCustomerData);
+                                                setShowCustomerOverview(true);
                                             }
                                         }
                                     }}
@@ -246,7 +300,7 @@ export const Screen = () => {
             <CustomerOverviewModal
                 isOpen={showCustomerOverview}
                 onClose={() => setShowCustomerOverview(false)}
-                slotInfo={selectedReservation}
+                customerData={selectedCustomerData}
             />
         </div>
     );

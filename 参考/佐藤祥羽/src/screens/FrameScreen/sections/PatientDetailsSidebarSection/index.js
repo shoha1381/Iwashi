@@ -1,0 +1,1 @@
+export { PatientDetailsSidebarSection } from "./PatientDetailsSidebarSection";

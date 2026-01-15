@@ -5,6 +5,9 @@ import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => ({
+  server: {
+    host: true,
+  },
   plugins: [react(), mode === "development" && screenGraphPlugin()],
   publicDir: "./static",
   base: "./",
