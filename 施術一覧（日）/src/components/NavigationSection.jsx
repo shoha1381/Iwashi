@@ -67,9 +67,9 @@ export const NavigationSection = () => {
             label: "売上",
             path: "/sales",
             icon: (isActive) => (
-                <div className="w-7 h-7 relative flex items-center justify-center">
+                <div className="w-7 h-7 relative flex items-center justify-center overflow-hidden">
                     {/* Reference uses vector-2.svg with rounded background for Sales */}
-                    <div className={`w-[68%] h-[63%] top-[32%] left-[16%] rounded-[10px] absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />
+                    <div className={`w-[60%] h-[55%] top-[35%] left-[20%] rounded-[8px] absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />
                     <img
                         className="absolute w-[92%] h-full top-0 left-[4%]"
                         alt="Sales"
