@@ -190,8 +190,12 @@ export const ScheduleMainSection = ({ date, view, onSlotClick, onReservationClic
     // Calculate pixel offset
     const topOffset = (minutesFromStart / 60) * hourHeight;
 
-    // Check if within bounds (10:00 - 23:00)
-    const isVisible = currentHours >= 10 && currentHours < 23;
+    // Check if within bounds (10:00 - 23:00) AND if it is today
+    const isToday = date.getDate() === now.getDate() &&
+        date.getMonth() === now.getMonth() &&
+        date.getFullYear() === now.getFullYear();
+
+    const isVisible = isToday && currentHours >= 10 && currentHours < 23;
 
     return (
         <section className="relative">
