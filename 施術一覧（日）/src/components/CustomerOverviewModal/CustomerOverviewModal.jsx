@@ -67,7 +67,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
             <div className="relative w-full max-w-[900px] h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
 
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-5 pb-28 no-scrollbar">
+                <div className="flex-1 overflow-y-auto p-5 pb-16 no-scrollbar">
 
                     {/* Header Action Icons - Order from right: Close, Edit, Trash */}
                     <div className="flex justify-end gap-3 mb-4">
