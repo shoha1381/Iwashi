@@ -46,7 +46,6 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
         { label: "⑧\n写真", width: "w-8" },
     ];
 
-    // Whiter, cleaner shadow for "White Neumorphism"
     const softShadow = "shadow-[0px_4px_12px_rgba(0,0,0,0.03)] border border-neutral-100";
     const buttonShadow = "shadow-[0px_2px_8px_rgba(0,0,0,0.05)] border border-neutral-50";
 
@@ -58,97 +57,98 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                 onClick={onClose}
             />
 
-            {/* Modal Container: Changed to pure White for cleaner look */}
-            <div className="relative w-full max-w-[850px] h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
+            {/* Modal Container */}
+            <div className="relative w-full max-w-[900px] h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
 
                 {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-6 pb-24">
+                <div className="flex-1 overflow-y-auto p-8 pb-24">
 
-                    {/* Header Action Icons */}
-                    <div className="flex justify-end gap-3 mb-6">
+                    {/* Header Action Icons - Larger Size */}
+                    <div className="flex justify-end gap-3 mb-8">
                         {/* Info (Green) */}
-                        <button className={`w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
-                            <img src="/img/vector-17.svg" className="w-4 h-4" alt="Info" />
+                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                            <img src="/img/vector-17.svg" className="w-5 h-5" alt="Info" />
                         </button>
                         {/* Payment (Orange) */}
-                        <button className={`w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
-                            <img src="/img/vector-15.svg" className="w-4 h-4" alt="Payment" />
+                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                            <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Trash - Increased Contrast */}
-                        <button className={`w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
-                            <img src="/img/vector-13.svg" className="w-4 h-4 opacity-80" alt="Delete" />
+                        {/* Trash */}
+                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                            <img src="/img/vector-13.svg" className="w-5 h-5 opacity-80" alt="Delete" />
                         </button>
-                        {/* Edit - Increased Contrast */}
-                        <button className={`w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
-                            <img src="/img/vector-11.svg" className="w-4 h-4 opacity-80" alt="Edit" />
+                        {/* Edit */}
+                        <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
+                            <img src="/img/vector-11.svg" className="w-5 h-5 opacity-80" alt="Edit" />
                         </button>
                         {/* Close */}
                         <button
-                            className={`w-9 h-9 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}
+                            className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}
                             onClick={onClose}
                         >
-                            <img src="/img/vector-10.svg" className="w-3.5 h-3.5 opacity-60" alt="Close" />
+                            <img src="/img/vector-10.svg" className="w-4 h-4 opacity-60" alt="Close" />
                         </button>
                     </div>
 
-                    {/* Profile Section - Fixed Layout Layout */}
-                    <div className="flex gap-6 mb-6 px-1">
+                    {/* Profile Section */}
+                    <div className="flex gap-8 mb-8 px-2">
                         {/* Photo */}
                         <div className="flex-shrink-0">
-                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-28 h-32 object-cover rounded-lg shadow-sm border border-neutral-100" />
+                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-32 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
                         </div>
 
-                        {/* Name & Basic Info - Fixed Flex Structure */}
-                        <div className="flex flex-col justify-center gap-4 flex-1 min-w-0">
+                        {/* Name & Basic Info - Adjusted Layout */}
+                        <div className="flex flex-col justify-center gap-6 flex-1 min-w-0">
                             <div className="flex flex-col gap-1">
                                 <h2 className="text-2xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
                                 <span className="text-xs text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
                             </div>
 
-                            <div className="flex items-center gap-4">
-                                <div className={`bg-white px-4 py-2 min-w-[80px] text-center rounded-lg ${softShadow}`}>
+                            <div className="flex items-start gap-4">
+                                <div className={`bg-white px-5 py-3 min-w-[80px] text-center rounded-lg ${softShadow}`}>
                                     <span className="text-xs font-medium text-neutral-600">施術</span>
                                 </div>
-                                <div className="text-xs flex flex-col gap-1.5 min-w-0">
-                                    <div className="flex gap-3">
-                                        <span className="text-neutral-400 whitespace-nowrap min-w-[60px]">コース内容</span>
-                                        <span className="font-medium text-neutral-800 tracking-wide truncate">{patientInfo.courseInfo}</span>
-                                    </div>
-                                    <div className="flex gap-3">
-                                        <span className="text-neutral-400 whitespace-nowrap min-w-[60px]">前回来店</span>
-                                        <span className="font-medium text-neutral-800">-</span>
+                                <div className="text-xs min-w-0 flex-1">
+                                    {/* Table-like Layout for Course Info */}
+                                    <div className="border border-neutral-200/60 rounded overflow-hidden">
+                                        <div className="flex border-b border-neutral-200/60">
+                                            <div className="w-[80px] px-3 py-2 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">コース内容</div>
+                                            <div className="px-4 py-2 text-neutral-800 font-medium tracking-wide bg-white flex-1">{patientInfo.courseInfo}</div>
+                                        </div>
+                                        <div className="flex">
+                                            <div className="w-[80px] px-3 py-2 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">前回来店</div>
+                                            <div className="px-4 py-2 text-neutral-800 font-medium tracking-wide bg-white flex-1 min-h-[32px]"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Goals & Cautions - Clearer Separation */}
-                        <div className="flex gap-3 flex-shrink-0">
+                        {/* Goals & Cautions */}
+                        <div className="flex gap-4 flex-shrink-0">
                             {/* Goal */}
-                            <div className={`w-[200px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
-                                <div className="bg-neutral-50 px-3 py-2 text-center border-b border-neutral-100">
+                            <div className={`w-[220px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
+                                <div className="bg-neutral-50 px-4 py-2 text-center border-b border-neutral-100">
                                     <span className="text-[11px] font-medium text-neutral-600 tracking-wider">目標</span>
                                 </div>
-                                <div className="p-3 text-xs font-medium text-neutral-800 leading-relaxed flex-1 flex items-center justify-center text-center">
+                                <div className="p-4 text-xs font-medium text-neutral-800 leading-relaxed flex-1 flex items-center justify-center text-center">
                                     {patientInfo.goal}
                                 </div>
                             </div>
 
-                            {/* Caution - Clearer Split */}
-                            <div className={`w-[210px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
-                                <div className="bg-neutral-50 px-3 py-2 text-center border-b border-neutral-100">
+                            {/* Caution */}
+                            <div className={`w-[240px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
+                                <div className="bg-neutral-50 px-4 py-2 text-center border-b border-neutral-100">
                                     <span className="text-[11px] font-medium text-neutral-600 tracking-wider">注意</span>
                                 </div>
                                 <div className="flex flex-col h-full">
-                                    {/* Item 1 */}
-                                    <div className="p-2.5 border-b border-dashed border-neutral-200">
+                                    <div className="p-3 border-b border-dashed border-neutral-200">
                                         <span className="text-[10px] text-neutral-400 block mb-1">注意事項</span>
                                         <span className="text-xs font-medium text-neutral-800 leading-snug block">
                                             {patientInfo.cautions[0].text}
                                         </span>
                                     </div>
-                                    {/* Item 2 */}
-                                    <div className="p-2.5">
+                                    <div className="p-3">
                                         <span className="text-[10px] text-neutral-400 block mb-1">注意ワード</span>
                                         <span className="text-xs font-medium text-neutral-800 leading-snug block">
                                             {patientInfo.cautions[1].text}
@@ -159,23 +159,23 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    <div className="border-t border-neutral-100 my-6 mx-1"></div>
+                    <div className="border-t border-neutral-100 my-8 mx-2"></div>
 
-                    {/* Middle Section: ToDo & Advice */}
-                    <div className="grid grid-cols-2 gap-6 mb-6 px-1">
-                        {/* ToDo - Clickable Feel */}
+                    {/* Middle Section: ToDo & Advice - Widen Advice (35% / 65%) */}
+                    <div className="grid grid-cols-[1fr_1.6fr] gap-8 mb-8 px-2">
+                        {/* ToDo - Narrower */}
                         <div className={`bg-white rounded-xl overflow-hidden flex flex-col ${softShadow}`}>
-                            <div className="px-4 py-2.5 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
-                                <img src="/img/vector-18.svg" className="w-4 h-4" alt="Todo" />
+                            <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-3">
+                                <img src="/img/vector-18.svg" className="w-5 h-5" alt="Todo" />
                                 <h3 className="font-medium text-sm text-neutral-700 tracking-wide">ToDo</h3>
                             </div>
-                            <div className="p-3 flex flex-col gap-2">
+                            <div className="p-4 flex flex-col gap-3">
                                 {todoItems.map((item, i) => (
                                     <div
                                         key={i}
-                                        className="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50/50 active:scale-[0.99] transition-all cursor-pointer group"
+                                        className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-blue-50/50 active:scale-[0.99] transition-all cursor-pointer group"
                                     >
-                                        <div className="w-5 h-5 flex items-center justify-center bg-blue-100 text-blue-500 rounded-full group-hover:bg-blue-200 transition-colors">
+                                        <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center bg-blue-100 text-blue-500 rounded-full group-hover:bg-blue-200 transition-colors">
                                             <img src="/img/check.svg" className="w-3 h-3" alt="check" />
                                         </div>
                                         <span className="text-xs font-medium text-neutral-700 group-hover:text-blue-600 transition-colors">{item}</span>
@@ -184,16 +184,16 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                             </div>
                         </div>
 
-                        {/* Advice */}
+                        {/* Advice - Wider */}
                         <div className={`bg-white rounded-xl overflow-hidden flex flex-col ${softShadow}`}>
-                            <div className="px-4 py-2.5 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
-                                <img src="/img/vector-19.svg" className="w-4 h-4" alt="Advice" />
+                            <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-3">
+                                <img src="/img/vector-19.svg" className="w-5 h-5" alt="Advice" />
                                 <h3 className="font-medium text-sm text-neutral-700 tracking-wide">アドバイス</h3>
                             </div>
-                            <div className="p-4 px-6">
-                                <ul className="list-disc list-outside space-y-3">
+                            <div className="p-5 px-8">
+                                <ul className="list-disc list-outside space-y-4 ml-2">
                                     {adviceItems.map((item, i) => (
-                                        <li key={i} className="text-xs font-medium text-neutral-700 leading-relaxed marker:text-blue-300 pl-1">
+                                        <li key={i} className="text-xs font-medium text-neutral-700 leading-relaxed marker:text-blue-300 pl-2">
                                             {item}
                                         </li>
                                     ))}
@@ -202,19 +202,19 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* Remarks Section - Darker Icon */}
-                    <div className={`bg-white rounded-xl overflow-hidden mb-6 mx-1 ${softShadow}`}>
-                        <div className="px-4 py-2.5 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
-                            <img src="/img/icon-park-solid-notes.svg" className="w-4 h-4 opacity-100 text-neutral-600" alt="Notes" />
+                    {/* Remarks Section - Fixed Icon & Spacing */}
+                    <div className={`bg-white rounded-xl overflow-hidden mb-8 mx-2 ${softShadow}`}>
+                        <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-3">
+                            <img src="/img/icon-park-solid-notes.svg" className="w-5 h-5 text-neutral-600" alt="Notes" />
                             <h3 className="font-medium text-sm text-neutral-700 tracking-wide">備考</h3>
                         </div>
-                        <div className="h-24 bg-white p-4">
+                        <div className="h-28 bg-white p-5">
                             <textarea className="w-full h-full resize-none outline-none text-xs text-neutral-700" placeholder="備考を入力..."></textarea>
                         </div>
                     </div>
 
                     {/* History Table */}
-                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-8 mx-1 ${softShadow}`}>
+                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-12 mx-2 ${softShadow}`}>
                         <div className="overflow-x-auto">
                             <table className="w-full text-center border-collapse">
                                 <thead>
@@ -245,15 +245,15 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
                 </div>
 
-                {/* Footer Actions (Sticky Bottom) - White Background */}
-                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 p-4 flex justify-center gap-6 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-                    <button className="w-36 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
+                {/* Footer Actions (Sticky Bottom) - Right Aligned */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 p-5 flex justify-end gap-6 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-10">
+                    <button className="w-36 h-11 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
                         問診票入力
                     </button>
-                    <button className="w-36 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
+                    <button className="w-36 h-11 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
                         LINE登録
                     </button>
-                    <button className="w-36 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
+                    <button className="w-36 h-11 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
                         施術
                     </button>
                 </div>
