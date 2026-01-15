@@ -1,4 +1,128 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "src/screens/Screen/Screen.jsx",
+      "label": "Screen",
+      "routes": [
+        "/",
+        "/schedule"
+      ],
+      "isRoot": true
+    },
+    {
+      "id": "src/screens/CustomerList/CustomerList.jsx",
+      "label": "CustomerList",
+      "routes": [
+        "/customers"
+      ]
+    },
+    {
+      "id": "src/screens/CustomerDetail/CustomerDetail.jsx",
+      "label": "CustomerDetail",
+      "routes": [
+        "/customers/:id"
+      ]
+    },
+    {
+      "id": "src/screens/Checkout/Checkout.jsx",
+      "label": "Checkout",
+      "routes": [
+        "/checkout"
+      ]
+    },
+    {
+      "id": "src/screens/Sales/Sales.jsx",
+      "label": "Sales",
+      "routes": [
+        "/sales"
+      ]
+    },
+    {
+      "id": "src/screens/Analytics/Analytics.jsx",
+      "label": "Analytics",
+      "routes": [
+        "/analytics"
+      ]
+    },
+    {
+      "id": "src/screens/Summary/Summary.jsx",
+      "label": "Summary",
+      "routes": [
+        "/summary"
+      ]
+    },
+    {
+      "id": "src/screens/Settings/Settings.jsx",
+      "label": "Settings",
+      "routes": [
+        "/settings"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "src/screens/CustomerDetail/CustomerDetail.jsx:81:32-to-src/screens/CustomerList/CustomerList.jsx",
+      "source": "src/screens/CustomerDetail/CustomerDetail.jsx",
+      "target": "src/screens/CustomerList/CustomerList.jsx",
+      "data": {
+        "viaRoute": "/customers",
+        "trigger": {
+          "element": "<Link to=\"/customers\" className=\"p-2 hover:bg-neutral-100 rounded-lg transition-colors text-neutral-400 hover:text-neutral-600\">\n                                    <CloseIcon />\n                                </Link>",
+          "line": 81,
+          "endLine": 83,
+          "column": 32,
+          "endColumn": 39,
+          "sourceFile": "src/screens/CustomerDetail/CustomerDetail.jsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/CustomerDetail/CustomerDetail.jsx:177:32-to-src/screens/Screen/Screen.jsx",
+      "source": "src/screens/CustomerDetail/CustomerDetail.jsx",
+      "target": "src/screens/Screen/Screen.jsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "<Link to=\"/\" className=\"px-6 py-2.5 bg-blue-500 text-white text-sm font-medium rounded-full hover:bg-blue-600 transition-colors\">\n                                    施術\n                                </Link>",
+          "line": 177,
+          "endLine": 179,
+          "column": 32,
+          "endColumn": 39,
+          "sourceFile": "src/screens/CustomerDetail/CustomerDetail.jsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/Checkout/Checkout.jsx:38:32-to-src/screens/Screen/Screen.jsx",
+      "source": "src/screens/Checkout/Checkout.jsx",
+      "target": "src/screens/Screen/Screen.jsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "<Link to=\"/\" className=\"p-2 hover:bg-neutral-100 rounded-lg transition-colors text-neutral-400 hover:text-neutral-600\">\n                                    <CloseIcon />\n                                </Link>",
+          "line": 38,
+          "endLine": 40,
+          "column": 32,
+          "endColumn": 39,
+          "sourceFile": "src/screens/Checkout/Checkout.jsx"
+        }
+      }
+    },
+    {
+      "id": "src/screens/Checkout/Checkout.jsx:96:32-to-src/screens/Screen/Screen.jsx",
+      "source": "src/screens/Checkout/Checkout.jsx",
+      "target": "src/screens/Screen/Screen.jsx",
+      "data": {
+        "viaRoute": "/",
+        "trigger": {
+          "element": "<Link\n                                    to=\"/\"\n                                    className=\"flex-1 py-3 text-center bg-neutral-200 text-neutral-700 text-sm font-medium rounded-full hover:bg-neutral-300 transition-colors\"\n                                >\n                                    キャンセル\n                                </Link>",
+          "line": 96,
+          "endLine": 101,
+          "column": 32,
+          "endColumn": 39,
+          "sourceFile": "src/screens/Checkout/Checkout.jsx"
+        }
+      }
+    }
+  ]
 }

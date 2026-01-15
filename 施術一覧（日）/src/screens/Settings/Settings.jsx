@@ -60,8 +60,8 @@ export const Settings = () => {
                                 <button
                                     onClick={() => setActiveTab("password")}
                                     className={`px-8 py-4 rounded-full font-bold text-sm tracking-wide transition-all shadow-[0_2px_12px_rgba(0,0,0,0.08)] ${activeTab === "password"
-                                            ? "bg-[#55a5e8]/80 text-white backdrop-blur-sm shadow-[0_4px_16px_rgba(85,165,232,0.35)]"
-                                            : "bg-white/80 backdrop-blur-sm text-neutral-700 hover:bg-white hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
+                                        ? "bg-[#4a9fef] text-white backdrop-blur-sm shadow-[0_4px_16px_rgba(74,159,239,0.35)]"
+                                        : "bg-white/80 backdrop-blur-sm text-neutral-700 hover:bg-white hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
                                         }`}
                                 >
                                     パスワード変更
@@ -69,8 +69,8 @@ export const Settings = () => {
                                 <button
                                     onClick={() => setActiveTab("treatment")}
                                     className={`px-8 py-4 rounded-full font-bold text-sm tracking-wide transition-all shadow-[0_2px_12px_rgba(0,0,0,0.08)] ${activeTab === "treatment"
-                                            ? "bg-[#55a5e8]/80 text-white backdrop-blur-sm shadow-[0_4px_16px_rgba(85,165,232,0.35)]"
-                                            : "bg-white/80 backdrop-blur-sm text-neutral-700 hover:bg-white hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
+                                        ? "bg-[#4a9fef] text-white backdrop-blur-sm shadow-[0_4px_16px_rgba(74,159,239,0.35)]"
+                                        : "bg-white/80 backdrop-blur-sm text-neutral-700 hover:bg-white hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)]"
                                         }`}
                                 >
                                     施術集計
@@ -107,7 +107,7 @@ export const Settings = () => {
                                                     placeholder="新しいパスワードを再入力"
                                                 />
                                             </div>
-                                            <button className="mt-4 px-6 py-3 bg-[#55a5e8] text-white rounded-xl font-medium text-sm hover:bg-[#4a96d8] transition-colors shadow-[0_4px_12px_rgba(85,165,232,0.3)]">
+                                            <button className="mt-4 px-6 py-3 bg-[#4a9fef] text-white rounded-xl font-medium text-sm hover:bg-[#3b8de0] transition-colors shadow-[0_4px_12px_rgba(74,159,239,0.3)]">
                                                 パスワードを変更
                                             </button>
                                         </div>
