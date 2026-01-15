@@ -63,11 +63,11 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                 onClick={onClose}
             />
 
-            {/* Modal Container */}
-            <div className="relative w-full max-w-[900px] h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
+            {/* Modal Container - Changed to max-h-[92vh] for auto height to remove empty space */}
+            <div className="relative w-full max-w-[900px] max-h-[92vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col animate-slideUp">
 
-                {/* Scrollable Content */}
-                <div className="flex-1 overflow-y-auto p-5 pb-28 no-scrollbar">
+                {/* Scrollable Content - Removed large bottom padding */}
+                <div className="flex-1 overflow-y-auto p-5 no-scrollbar">
 
                     {/* Header Action Icons - Order from right: Close, Edit, Trash */}
                     <div className="flex justify-end gap-3 mb-4">
@@ -249,8 +249,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
                 </div>
 
-                {/* Footer Actions (Sticky Bottom) - Restored p-8 as requested */}
-                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 p-8 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-8">
+                {/* Footer Actions (Sticky Bottom) - Changed to relative positioning */}
+                <div className="bg-white border-t border-neutral-100 p-8 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-8">
                     <button className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
                         問診票入力
                     </button>
