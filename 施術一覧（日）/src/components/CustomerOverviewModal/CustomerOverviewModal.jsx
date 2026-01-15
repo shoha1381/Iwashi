@@ -79,12 +79,9 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Trash - New icon from 捨てる folder */}
+                        {/* Trash - Single icon from 捨てる folder */}
                         <button className={iconButtonClass}>
-                            <div className="w-5 h-5 relative">
-                                <img src="/img/trash-icon.svg" className="absolute w-full h-full" alt="Delete" />
-                                <img src="/img/trash-icon-lid.svg" className="absolute w-[80%] h-[20%] top-0 left-[10%]" alt="" />
-                            </div>
+                            <img src="/img/trash-icon.svg" className="w-5 h-5" alt="Delete" />
                         </button>
                         {/* Edit - Blue */}
                         <button className={iconButtonClass}>
@@ -220,8 +217,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* History Table - No bottom margin */}
-                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mx-1 ${softShadow}`}>
+                    {/* History Table - Proper spacing */}
+                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-4 mx-1 ${softShadow}`}>
                         <div className="overflow-x-auto">
                             <table className="w-full text-center border-collapse">
                                 <thead>
