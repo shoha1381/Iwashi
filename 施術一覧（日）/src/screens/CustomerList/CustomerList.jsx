@@ -100,7 +100,7 @@ export const CustomerList = () => {
                             <div className="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-100">
                                 <table className="w-full border-collapse bg-white">
                                     <thead>
-                                        <tr className="bg-[#4a90c8] text-white text-left">
+                                        <tr className="bg-neutral-100 text-neutral-600 text-left border-b border-neutral-200">
                                             <th className="py-3 px-5 font-medium text-sm">顧客名</th>
                                             <th className="py-3 px-5 font-medium text-sm">顧客名（カナ）</th>
                                             <th className="py-3 px-5 font-medium text-sm">電話番号</th>

@@ -83,55 +83,58 @@ export const HeaderSection = ({
     return (
         <header className="header-nav">
             <div className="px-4 md:px-6 py-3 md:py-4">
-                <div className="flex items-center justify-between gap-2 md:gap-4 flex-wrap">
-                    {/* Left: Title or Date Navigation */}
-                    <div className="flex items-center gap-2 md:gap-4">
-                        {isSchedulePage && navigateDate ? (
-                            <>
-                                {/* Schedule: Date navigation */}
-                                <button onClick={() => navigateDate(-1)} className="nav-arrow" aria-label="前の日">
-                                    <ChevronLeftIcon />
-                                </button>
+                <div className={`flex items-center ${config.hideControls ? 'justify-end w-full' : 'justify-between gap-2 md:gap-4 flex-wrap'}`}>
+                    {/* Left: Title or Date Navigation - Only show for schedule or non-hideControls pages */}
+                    {!config.hideControls && (
+                        <div className="flex items-center gap-2 md:gap-4">
+                            {isSchedulePage && navigateDate ? (
+                                <>
+                                    {/* Schedule: Date navigation */}
+                                    <button onClick={() => navigateDate(-1)} className="nav-arrow" aria-label="前の日">
+                                        <ChevronLeftIcon />
+                                    </button>
 
-                                <div className="flex items-baseline gap-1 md:gap-2">
-                                    {selectedView === "week" ? (
-                                        <>
-                                            <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
-                                                {dateInfo?.full}
-                                            </span>
-                                            <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo?.dayOfWeek}</span>
-                                            <span className="text-xs md:text-sm font-normal text-neutral-400 mx-1">〜</span>
-                                            <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
-                                                {dateInfo?.weekEnd}
-                                            </span>
-                                            <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo?.weekEndDay}</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo?.full}</span>
-                                            <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo?.dayOfWeek}</span>
-                                        </>
-                                    )}
-                                </div>
+                                    <div className="flex items-baseline gap-1 md:gap-2">
+                                        {selectedView === "week" ? (
+                                            <>
+                                                <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
+                                                    {dateInfo?.full}
+                                                </span>
+                                                <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo?.dayOfWeek}</span>
+                                                <span className="text-xs md:text-sm font-normal text-neutral-400 mx-1">〜</span>
+                                                <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
+                                                    {dateInfo?.weekEnd}
+                                                </span>
+                                                <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo?.weekEndDay}</span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo?.full}</span>
+                                                <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo?.dayOfWeek}</span>
+                                            </>
+                                        )}
+                                    </div>
 
-                                <button onClick={() => navigateDate(1)} className="nav-arrow" aria-label="次の日">
-                                    <ChevronRightIcon />
-                                </button>
-                            </>
-                        ) : (
-                            /* Other pages: Title - Light font for glassmorphism style */
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-xl md:text-2xl font-light text-neutral-700 tracking-wide">
-                                    {config.title}
-                                </span>
-                                {config.subtitle && (
-                                    <span className="text-xs md:text-sm font-normal text-neutral-400">
-                                        {config.subtitle}
+                                    <button onClick={() => navigateDate(1)} className="nav-arrow" aria-label="次の日">
+                                        <ChevronRightIcon />
+                                    </button>
+                                </>
+                            ) : (
+                                <div className="flex items-baseline gap-2">
+                                    <span className="text-base md:text-lg font-medium text-neutral-800 tracking-wide">
+                                        {config.title}
                                     </span>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Title for hideControls pages - positioned on right */}
+                    {config.hideControls && (
+                        <span className="text-base font-light text-neutral-500 tracking-wide">
+                            {config.title}
+                        </span>
+                    )}
 
                     {/* Right: Controls - Only show for schedule page */}
                     {!config.hideControls && (
