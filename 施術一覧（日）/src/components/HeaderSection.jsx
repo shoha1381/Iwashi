@@ -37,10 +37,10 @@ const getPageConfig = (pathname) => {
         return { type: "schedule", title: null, subtitle: null };
     }
     if (pathname.startsWith("/customers/")) {
-        return { type: "detail", title: "顧客概要", subtitle: "顧客詳細" };
+        return { type: "detail", title: "顧客概要", subtitle: null, hideControls: true };
     }
     if (pathname === "/customers") {
-        return { type: "list", title: "顧客", subtitle: "顧客一覧" };
+        return { type: "list", title: "顧客", subtitle: null, hideControls: true };
     }
     if (pathname === "/checkout") {
         return { type: "modal", title: "売上", subtitle: "お会計" };
@@ -119,9 +119,9 @@ export const HeaderSection = ({
                                 </button>
                             </>
                         ) : (
-                            /* Other pages: Title */
+                            /* Other pages: Title - Light font for glassmorphism style */
                             <div className="flex items-baseline gap-2">
-                                <span className="text-base md:text-lg font-medium text-neutral-800 tracking-wide">
+                                <span className="text-xl md:text-2xl font-light text-neutral-700 tracking-wide">
                                     {config.title}
                                 </span>
                                 {config.subtitle && (
@@ -133,55 +133,57 @@ export const HeaderSection = ({
                         )}
                     </div>
 
-                    {/* Right: Controls */}
-                    <div className="flex items-center gap-1 md:gap-2">
-                        {/* Store Selector - Always visible */}
-                        <button
-                            className="relative h-9 px-4 bg-white/90 rounded-full overflow-hidden flex items-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow duration-200"
-                            type="button"
-                            aria-label="店舗を選択"
-                        >
-                            <span className="font-medium text-[#5e6367] text-[13px] tracking-[0.5px] whitespace-nowrap">
-                                {selectedStore}
-                            </span>
-                            <svg className="w-2 h-2 text-[#999]" viewBox="0 0 8 5" fill="currentColor">
-                                <path d="M4 5L0 0h8L4 5z" />
-                            </svg>
-                        </button>
-
-                        {/* View Toggle - Only on schedule page */}
-                        {isSchedulePage && setSelectedView && (
-                            <div
-                                className="relative h-9 p-1 bg-white/90 rounded-full flex items-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
-                                role="tablist"
-                                aria-label="表示期間選択"
+                    {/* Right: Controls - Only show for schedule page */}
+                    {!config.hideControls && (
+                        <div className="flex items-center gap-1 md:gap-2">
+                            {/* Store Selector */}
+                            <button
+                                className="relative h-9 px-4 bg-white/90 rounded-full overflow-hidden flex items-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow duration-200"
+                                type="button"
+                                aria-label="店舗を選択"
                             >
-                                {viewOptions.map((option) => (
-                                    <button
-                                        key={option.id}
-                                        role="tab"
-                                        aria-selected={selectedView === option.id}
-                                        onClick={() => setSelectedView(option.id)}
-                                        className={`relative px-5 h-7 flex items-center justify-center rounded-full text-[13px] font-medium tracking-[0.5px] transition-all duration-200 ${selectedView === option.id
-                                            ? "bg-[#0088ffb2] text-white shadow-[0_2px_6px_rgba(0,136,255,0.25)]"
-                                            : "text-[#888] hover:text-[#666]"
-                                            }`}
-                                    >
-                                        {option.label}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                                <span className="font-medium text-[#5e6367] text-[13px] tracking-[0.5px] whitespace-nowrap">
+                                    {selectedStore}
+                                </span>
+                                <svg className="w-2 h-2 text-[#999]" viewBox="0 0 8 5" fill="currentColor">
+                                    <path d="M4 5L0 0h8L4 5z" />
+                                </svg>
+                            </button>
 
-                        {/* Action Buttons - contextual */}
-                        {isSchedulePage && (
-                            <>
-                                <button className="icon-button hidden sm:flex" aria-label="検索" onClick={onSearchClick}><SearchIcon /></button>
-                                <button className="icon-button" aria-label="今日に戻る" onClick={onTodayClick}><CalendarIcon /></button>
-                            </>
-                        )}
-                        <button className="icon-button" aria-label="メニュー"><MoreIcon /></button>
-                    </div>
+                            {/* View Toggle - Only on schedule page */}
+                            {isSchedulePage && setSelectedView && (
+                                <div
+                                    className="relative h-9 p-1 bg-white/90 rounded-full flex items-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                                    role="tablist"
+                                    aria-label="表示期間選択"
+                                >
+                                    {viewOptions.map((option) => (
+                                        <button
+                                            key={option.id}
+                                            role="tab"
+                                            aria-selected={selectedView === option.id}
+                                            onClick={() => setSelectedView(option.id)}
+                                            className={`relative px-5 h-7 flex items-center justify-center rounded-full text-[13px] font-medium tracking-[0.5px] transition-all duration-200 ${selectedView === option.id
+                                                ? "bg-[#0088ffb2] text-white shadow-[0_2px_6px_rgba(0,136,255,0.25)]"
+                                                : "text-[#888] hover:text-[#666]"
+                                                }`}
+                                        >
+                                            {option.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Action Buttons - contextual */}
+                            {isSchedulePage && (
+                                <>
+                                    <button className="icon-button hidden sm:flex" aria-label="検索" onClick={onSearchClick}><SearchIcon /></button>
+                                    <button className="icon-button" aria-label="今日に戻る" onClick={onTodayClick}><CalendarIcon /></button>
+                                </>
+                            )}
+                            <button className="icon-button" aria-label="メニュー"><MoreIcon /></button>
+                        </div>
+                    )}
                 </div>
             </div>
         </header>

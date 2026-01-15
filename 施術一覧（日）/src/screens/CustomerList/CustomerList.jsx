@@ -56,78 +56,80 @@ export const CustomerList = () => {
                 {/* Content Area */}
                 <div className="flex-1 overflow-y-auto pt-16 w-full">
                     <div className="bg-white min-h-full">
-                        {/* Search and Filter Bar - Matching reference design */}
+                        {/* Search and Filter Bar - Glassmorphism style with soft shadows */}
                         <div className="px-6 py-5 flex flex-wrap items-center gap-4">
-                            {/* Name Search - teal border style */}
+                            {/* Name Search - Glassmorphism soft shadow */}
                             <div className="relative flex-1 min-w-[200px] max-w-[280px]">
                                 <input
                                     type="text"
                                     placeholder="顧客名で検索"
                                     value={searchName}
                                     onChange={(e) => setSearchName(e.target.value)}
-                                    className="w-full h-9 pl-4 pr-10 border-2 border-[#5DADE2] rounded text-sm bg-white focus:outline-none focus:ring-0 focus:border-[#3498db] placeholder:text-neutral-400"
+                                    className="w-full h-10 pl-4 pr-12 bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/20 focus:border-blue-300 placeholder:text-neutral-400 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all"
                                 />
-                                <button className="absolute right-0 top-0 h-9 w-9 flex items-center justify-center bg-[#3498db] text-white rounded-r hover:bg-[#2980b9] transition-colors">
+                                <button className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-[#55a5e8] text-white rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_8px_rgba(85,165,232,0.3)]">
                                     <SearchIcon />
                                 </button>
                             </div>
 
-                            {/* Phone Search - teal border style */}
+                            {/* Phone Search - Glassmorphism soft shadow */}
                             <div className="relative flex-1 min-w-[200px] max-w-[280px]">
                                 <input
                                     type="text"
                                     placeholder="電話番号で検索"
                                     value={searchPhone}
                                     onChange={(e) => setSearchPhone(e.target.value)}
-                                    className="w-full h-9 pl-4 pr-10 border-2 border-[#5DADE2] rounded text-sm bg-white focus:outline-none focus:ring-0 focus:border-[#3498db] placeholder:text-neutral-400"
+                                    className="w-full h-10 pl-4 pr-12 bg-white/80 backdrop-blur-sm border border-neutral-200/60 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-400/20 focus:border-blue-300 placeholder:text-neutral-400 shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all"
                                 />
-                                <button className="absolute right-0 top-0 h-9 w-9 flex items-center justify-center bg-[#3498db] text-white rounded-r hover:bg-[#2980b9] transition-colors">
+                                <button className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-[#55a5e8] text-white rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_8px_rgba(85,165,232,0.3)]">
                                     <SearchIcon />
                                 </button>
                             </div>
 
-                            {/* Filter Dropdown - Right aligned */}
+                            {/* Filter Dropdown - Right aligned, soft style */}
                             <div className="ml-auto">
-                                <button className="flex items-center gap-2 h-9 px-3 text-sm text-neutral-600 hover:text-neutral-800 transition-colors">
+                                <button className="flex items-center gap-2 h-10 px-4 text-sm text-neutral-500 hover:text-neutral-700 transition-colors">
                                     {filterOption}
                                     <ChevronDownIcon />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Customer Table - Matching reference blue header */}
+                        {/* Customer Table - Glassmorphism style with soft shadows */}
                         <div className="px-6 pb-6">
-                            <table className="w-full border-collapse">
-                                <thead>
-                                    <tr className="bg-[#3b82f6] text-white text-left">
-                                        <th className="py-2.5 px-4 font-medium text-sm border-r border-[#5b9aff] first:rounded-tl">顧客名</th>
-                                        <th className="py-2.5 px-4 font-medium text-sm border-r border-[#5b9aff]">顧客名（カナ）</th>
-                                        <th className="py-2.5 px-4 font-medium text-sm border-r border-[#5b9aff]">電話番号</th>
-                                        <th className="py-2.5 px-4 font-medium text-sm last:rounded-tr">店舗</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {filteredCustomers.map((customer, index) => (
-                                        <tr
-                                            key={customer.id}
-                                            className={`border-b border-neutral-200 hover:bg-blue-50/50 transition-colors cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-neutral-50/80'
-                                                }`}
-                                        >
-                                            <td className="py-2.5 px-4 border-r border-neutral-200">
-                                                <Link
-                                                    to={`/customers/${customer.id}`}
-                                                    className="text-sm text-neutral-700 hover:text-blue-600 transition-colors"
-                                                >
-                                                    {customer.name}
-                                                </Link>
-                                            </td>
-                                            <td className="py-2.5 px-4 text-sm text-neutral-500 border-r border-neutral-200">{customer.nameKana}</td>
-                                            <td className="py-2.5 px-4 text-sm text-neutral-500 border-r border-neutral-200">{customer.phone}</td>
-                                            <td className="py-2.5 px-4 text-sm text-neutral-500">{customer.store}</td>
+                            <div className="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-100">
+                                <table className="w-full border-collapse bg-white">
+                                    <thead>
+                                        <tr className="bg-[#4a90c8] text-white text-left">
+                                            <th className="py-3 px-5 font-medium text-sm">顧客名</th>
+                                            <th className="py-3 px-5 font-medium text-sm">顧客名（カナ）</th>
+                                            <th className="py-3 px-5 font-medium text-sm">電話番号</th>
+                                            <th className="py-3 px-5 font-medium text-sm">店舗</th>
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {filteredCustomers.map((customer, index) => (
+                                            <tr
+                                                key={customer.id}
+                                                className={`border-b border-neutral-100 hover:bg-blue-50/30 transition-colors cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-neutral-50/50'
+                                                    }`}
+                                            >
+                                                <td className="py-3 px-5">
+                                                    <Link
+                                                        to={`/customers/${customer.id}`}
+                                                        className="text-sm text-neutral-700 hover:text-blue-500 transition-colors"
+                                                    >
+                                                        {customer.name}
+                                                    </Link>
+                                                </td>
+                                                <td className="py-3 px-5 text-sm text-neutral-500">{customer.nameKana}</td>
+                                                <td className="py-3 px-5 text-sm text-neutral-500">{customer.phone}</td>
+                                                <td className="py-3 px-5 text-sm text-neutral-500">{customer.store}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
