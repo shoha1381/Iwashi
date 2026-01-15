@@ -6,6 +6,7 @@ import { NavigationSection } from "../../components/NavigationSection";
 import { MoreOptionsMenu } from "../../components/MoreOptionsMenu";
 import { ReservationBookingModal } from "../../components/ReservationBookingModal";
 import { CustomerDetailPopup } from "../../components/CustomerDetailPopup";
+import { CustomerOverviewModal } from "../../components/CustomerOverviewModal";
 
 export const Screen = () => {
     const [selectedDate, setSelectedDate] = useState(new Date(2025, 9, 6));
@@ -16,6 +17,7 @@ export const Screen = () => {
     const [showMoreMenu, setShowMoreMenu] = useState(false);
     const [showBookingModal, setShowBookingModal] = useState(false);
     const [showCustomerPopup, setShowCustomerPopup] = useState(false);
+    const [showCustomerOverview, setShowCustomerOverview] = useState(false);
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectedReservation, setSelectedReservation] = useState(null);
 
@@ -211,7 +213,11 @@ export const Screen = () => {
                                     onReservationClick={(slot, time) => {
                                         if (slot.name) {
                                             setSelectedReservation({ ...slot, time });
-                                            setShowCustomerPopup(true);
+                                            if (slot.name.includes("三浦")) {
+                                                setShowCustomerOverview(true);
+                                            } else {
+                                                setShowCustomerPopup(true);
+                                            }
                                         }
                                     }}
                                 />
@@ -236,6 +242,11 @@ export const Screen = () => {
                 isOpen={showCustomerPopup}
                 onClose={() => setShowCustomerPopup(false)}
                 reservationInfo={selectedReservation}
+            />
+            <CustomerOverviewModal
+                isOpen={showCustomerOverview}
+                onClose={() => setShowCustomerOverview(false)}
+                slotInfo={selectedReservation}
             />
         </div>
     );
