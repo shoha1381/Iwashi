@@ -79,13 +79,13 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Edit - Deep Blue (Correct Order) */}
+                        {/* Edit - Blue - New icon from reference */}
                         <button className={iconButtonClass}>
-                            <img src="/img/vector-11.svg" className="w-5 h-5" alt="Edit" style={{ filter: blueFilter }} />
+                            <img src="/img/edit-icon.svg" className="w-5 h-5" alt="Edit" />
                         </button>
-                        {/* Trash - Deep Red (Correct Order) */}
+                        {/* Trash - Red - New icon from reference */}
                         <button className={iconButtonClass}>
-                            <img src="/img/vector-13.svg" className="w-5 h-5" alt="Delete" style={{ filter: redFilter }} />
+                            <img src="/img/trash-icon.svg" className="w-5 h-5" alt="Delete" />
                         </button>
                         {/* Close - Standard SVG X Icon */}
                         <button
@@ -208,8 +208,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                     {/* Remarks Section */}
                     <div className={`bg-white rounded-xl overflow-hidden mb-4 mx-1 ${softShadow}`}>
                         <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
-                            {/* Fixed Remarks Icon - Clear and visible */}
-                            <img src="/img/icon-park-solid-notes.svg" className="w-4 h-4" alt="Notes" style={{ filter: "brightness(0) saturate(100%) invert(45%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(90%)" }} />
+                            {/* Notes Icon - New icon from reference */}
+                            <img src="/img/notes-icon.png" className="w-4 h-4" alt="Notes" />
                             <h3 className="font-medium text-xs text-neutral-700 tracking-wide">備考</h3>
                         </div>
                         <div className="h-16 bg-white p-3">
