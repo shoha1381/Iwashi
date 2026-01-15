@@ -217,8 +217,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* History Table - Proper spacing */}
-                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-4 mx-1 ${softShadow}`}>
+                    {/* History Table - Removed mb-4 to reduce gap above footer */}
+                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mx-1 ${softShadow}`}>
                         <div className="overflow-x-auto">
                             <table className="w-full text-center border-collapse">
                                 <thead>
@@ -249,8 +249,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
                 </div>
 
-                {/* Footer Actions (Sticky Bottom) - px-8 pb-8 pt-2 to reduce top gap but keep rich footer look */}
-                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 px-8 pb-8 pt-2 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-8">
+                {/* Footer Actions (Sticky Bottom) - Restored p-8 as requested */}
+                <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur border-t border-neutral-100 p-8 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] pr-8">
                     <button className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
                         問診票入力
                     </button>
