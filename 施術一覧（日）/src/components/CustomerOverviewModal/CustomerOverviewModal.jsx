@@ -30,11 +30,10 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
         "短い間隔で通っていただくと、定着が良くなることを伝えましょう。",
     ];
 
-    // Table Logic
+    // Table Logic: Removed duplicate '15'
     const historyColumns = [
         { label: "項目", width: "w-12" },
         ...Array.from({ length: 14 }, (_, i) => ({ label: `${i + 2}`, width: "w-7" })),
-        { label: "15", width: "w-7" },
         { label: "①\n頻度", width: "w-8" },
         { label: "①\n効果", width: "w-8" },
         { label: "③\n継続", width: "w-8" },
@@ -63,8 +62,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-8 pb-24">
 
-                    {/* Header Action Icons - Larger Size */}
-                    <div className="flex justify-end gap-3 mb-8">
+                    {/* Header Action Icons */}
+                    <div className="flex justify-end gap-3 mb-6">
                         {/* Info (Green) */}
                         <button className={`w-11 h-11 rounded-full bg-white flex items-center justify-center hover:bg-neutral-50 transition-all ${buttonShadow}`}>
                             <img src="/img/vector-17.svg" className="w-5 h-5" alt="Info" />
@@ -90,56 +89,51 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </button>
                     </div>
 
-                    {/* Profile Section */}
-                    <div className="flex gap-8 mb-8 px-2">
+                    {/* Profile Section - Optimized space */}
+                    <div className="flex gap-6 mb-8 px-2">
                         {/* Photo */}
                         <div className="flex-shrink-0">
-                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-32 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
+                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-28 h-32 object-cover rounded-lg shadow-sm border border-neutral-100" />
                         </div>
 
-                        {/* Name & Basic Info - Adjusted Layout */}
-                        <div className="flex flex-col justify-center gap-6 flex-1 min-w-0">
+                        {/* Name & Basic Info - Expanded */}
+                        <div className="flex flex-col justify-center gap-4 flex-1 min-w-0">
                             <div className="flex flex-col gap-1">
                                 <h2 className="text-2xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
                                 <span className="text-xs text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
                             </div>
 
-                            <div className="flex items-start gap-4">
-                                <div className={`bg-white px-5 py-3 min-w-[80px] text-center rounded-lg ${softShadow}`}>
-                                    <span className="text-xs font-medium text-neutral-600">施術</span>
-                                </div>
-                                <div className="text-xs min-w-0 flex-1">
-                                    {/* Table-like Layout for Course Info */}
-                                    <div className="border border-neutral-200/60 rounded overflow-hidden">
-                                        <div className="flex border-b border-neutral-200/60">
-                                            <div className="w-[80px] px-3 py-2 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">コース内容</div>
-                                            <div className="px-4 py-2 text-neutral-800 font-medium tracking-wide bg-white flex-1">{patientInfo.courseInfo}</div>
-                                        </div>
-                                        <div className="flex">
-                                            <div className="w-[80px] px-3 py-2 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">前回来店</div>
-                                            <div className="px-4 py-2 text-neutral-800 font-medium tracking-wide bg-white flex-1 min-h-[32px]"></div>
-                                        </div>
+                            <div className="text-xs min-w-0 w-full max-w-[320px]">
+                                {/* Table-like Layout for Course Info */}
+                                <div className="border border-neutral-200/60 rounded overflow-hidden">
+                                    <div className="flex border-b border-neutral-200/60">
+                                        <div className="w-[80px] px-3 py-2 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">コース内容</div>
+                                        <div className="px-4 py-2 text-neutral-800 font-medium tracking-wide bg-white flex-1">{patientInfo.courseInfo}</div>
+                                    </div>
+                                    <div className="flex">
+                                        <div className="w-[80px] px-3 py-2 bg-neutral-50 text-neutral-500 border-r border-neutral-200/60 font-normal">前回来店</div>
+                                        <div className="px-4 py-2 text-neutral-800 font-medium tracking-wide bg-white flex-1 min-h-[32px]"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Goals & Cautions */}
+                        {/* Goals & Cautions - Unified Headers & Width Fix */}
                         <div className="flex gap-4 flex-shrink-0">
                             {/* Goal */}
-                            <div className={`w-[220px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
-                                <div className="bg-neutral-50 px-4 py-2 text-center border-b border-neutral-100">
-                                    <span className="text-[11px] font-medium text-neutral-600 tracking-wider">目標</span>
+                            <div className={`w-[200px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
+                                <div className="px-4 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
+                                    <h3 className="font-medium text-xs text-neutral-700 tracking-wide">目標</h3>
                                 </div>
-                                <div className="p-4 text-xs font-medium text-neutral-800 leading-relaxed flex-1 flex items-center justify-center text-center">
+                                <div className="p-4 text-xs font-medium text-neutral-800 leading-relaxed flex-1 flex text-left items-start">
                                     {patientInfo.goal}
                                 </div>
                             </div>
 
                             {/* Caution */}
-                            <div className={`w-[240px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
-                                <div className="bg-neutral-50 px-4 py-2 text-center border-b border-neutral-100">
-                                    <span className="text-[11px] font-medium text-neutral-600 tracking-wider">注意</span>
+                            <div className={`w-[220px] bg-white rounded-lg overflow-hidden flex flex-col ${softShadow}`}>
+                                <div className="px-4 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
+                                    <h3 className="font-medium text-xs text-neutral-700 tracking-wide">注意</h3>
                                 </div>
                                 <div className="flex flex-col h-full">
                                     <div className="p-3 border-b border-dashed border-neutral-200">
@@ -159,24 +153,24 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    <div className="border-t border-neutral-100 my-8 mx-2"></div>
+                    <div className="border-t border-neutral-100 my-6 mx-2"></div>
 
                     {/* Middle Section: ToDo & Advice - Widen Advice (35% / 65%) */}
-                    <div className="grid grid-cols-[1fr_1.6fr] gap-8 mb-8 px-2">
-                        {/* ToDo - Narrower */}
-                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col ${softShadow}`}>
+                    <div className="grid grid-cols-[1fr_1.8fr] gap-6 mb-6 px-2">
+                        {/* ToDo - Narrower & Optimized Spacing */}
+                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-fit ${softShadow}`}>
                             <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-3">
                                 <img src="/img/vector-18.svg" className="w-5 h-5" alt="Todo" />
                                 <h3 className="font-medium text-sm text-neutral-700 tracking-wide">ToDo</h3>
                             </div>
-                            <div className="p-4 flex flex-col gap-3">
+                            <div className="p-4 flex flex-col gap-2">
                                 {todoItems.map((item, i) => (
                                     <div
                                         key={i}
-                                        className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-blue-50/50 active:scale-[0.99] transition-all cursor-pointer group"
+                                        className="flex items-center gap-3 p-2 rounded-lg hover:bg-blue-50/50 active:scale-[0.99] transition-all cursor-pointer group"
                                     >
-                                        <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center bg-blue-100 text-blue-500 rounded-full group-hover:bg-blue-200 transition-colors">
-                                            <img src="/img/check.svg" className="w-3 h-3" alt="check" />
+                                        <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center bg-white border border-neutral-300 rounded-full group-hover:border-blue-400 transition-colors">
+                                            {/* Unchecked by default */}
                                         </div>
                                         <span className="text-xs font-medium text-neutral-700 group-hover:text-blue-600 transition-colors">{item}</span>
                                     </div>
@@ -185,7 +179,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
 
                         {/* Advice - Wider */}
-                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col ${softShadow}`}>
+                        <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-fit ${softShadow}`}>
                             <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-3">
                                 <img src="/img/vector-19.svg" className="w-5 h-5" alt="Advice" />
                                 <h3 className="font-medium text-sm text-neutral-700 tracking-wide">アドバイス</h3>
@@ -202,7 +196,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* Remarks Section - Fixed Icon & Spacing */}
+                    {/* Remarks Section */}
                     <div className={`bg-white rounded-xl overflow-hidden mb-8 mx-2 ${softShadow}`}>
                         <div className="px-5 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-3">
                             <img src="/img/icon-park-solid-notes.svg" className="w-5 h-5 text-neutral-600" alt="Notes" />
