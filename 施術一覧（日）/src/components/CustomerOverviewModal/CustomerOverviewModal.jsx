@@ -77,13 +77,13 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
+                        {/* Edit - Deep Blue (Moved before Trash) */}
+                        <button className={iconButtonClass}>
+                            <img src="/img/vector-11.svg" className="w-5 h-5" alt="Edit" style={{ filter: blueFilter }} />
+                        </button>
                         {/* Trash - Deep Red */}
                         <button className={iconButtonClass}>
                             <img src="/img/vector-13.svg" className="w-5 h-5" alt="Delete" style={{ filter: redFilter }} />
-                        </button>
-                        {/* Edit - Deep Blue */}
-                        <button className={iconButtonClass}>
-                            <img src="/img/vector-11.svg" className="w-5 h-5" alt="Edit" style={{ filter: blueFilter }} />
                         </button>
                         {/* Close - Standard SVG X Icon */}
                         <button
