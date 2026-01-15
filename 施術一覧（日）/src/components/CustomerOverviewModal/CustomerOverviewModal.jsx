@@ -79,11 +79,11 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Trash - Single icon from 捨てる folder */}
+                        {/* Delete - Trash Icon (Red) */}
                         <button className={iconButtonClass}>
                             <img src="/img/trash-icon.svg" className="w-5 h-5" alt="Delete" />
                         </button>
-                        {/* Edit - Blue */}
+                        {/* Edit - Pen Icon (Blue) */}
                         <button className={iconButtonClass}>
                             <img src="/img/edit-icon.svg" className="w-5 h-5" alt="Edit" />
                         </button>
@@ -105,8 +105,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                             <img src={patientInfo.photo} alt={patientInfo.name} className="w-28 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
                         </div>
 
-                        {/* Name & Basic Info - Reverted sizing */}
-                        <div className="flex flex-col justify-center gap-3 flex-1 min-w-0">
+                        {/* Name & Basic Info - Shifted right for balance */}
+                        <div className="flex flex-col justify-center gap-3 flex-1 min-w-0 pl-3">
                             <div className="flex flex-col gap-0.5">
                                 <h2 className="text-xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
                                 <span className="text-[10px] text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
