@@ -69,7 +69,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto p-5 pb-28 no-scrollbar">
 
-                    {/* Header Action Icons */}
+                    {/* Header Action Icons - Order from right: Close, Edit, Trash */}
                     <div className="flex justify-end gap-3 mb-4">
                         {/* Info (Green) */}
                         <button className={iconButtonClass}>
@@ -79,13 +79,16 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         <button className={iconButtonClass}>
                             <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                         </button>
-                        {/* Edit - Blue - New icon from reference */}
+                        {/* Trash - New icon from 捨てる folder */}
+                        <button className={iconButtonClass}>
+                            <div className="w-5 h-5 relative">
+                                <img src="/img/trash-icon.svg" className="absolute w-full h-full" alt="Delete" />
+                                <img src="/img/trash-icon-lid.svg" className="absolute w-[80%] h-[20%] top-0 left-[10%]" alt="" />
+                            </div>
+                        </button>
+                        {/* Edit - Blue */}
                         <button className={iconButtonClass}>
                             <img src="/img/edit-icon.svg" className="w-5 h-5" alt="Edit" />
-                        </button>
-                        {/* Trash - Red - New icon from reference */}
-                        <button className={iconButtonClass}>
-                            <img src="/img/trash-icon.svg" className="w-5 h-5" alt="Delete" />
                         </button>
                         {/* Close - Standard SVG X Icon */}
                         <button
@@ -100,28 +103,28 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
 
                     {/* Profile Section */}
                     <div className="flex gap-4 mb-2 px-1">
-                        {/* Photo */}
+                        {/* Photo - Enlarged to match Caution height */}
                         <div className="flex-shrink-0">
-                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-24 h-28 object-cover rounded-lg shadow-sm border border-neutral-100" />
+                            <img src={patientInfo.photo} alt={patientInfo.name} className="w-28 h-36 object-cover rounded-lg shadow-sm border border-neutral-100" />
                         </div>
 
-                        {/* Name & Basic Info - Standardized Font */}
+                        {/* Name & Basic Info - Narrower table */}
                         <div className="flex flex-col justify-center gap-3 flex-1 min-w-0">
                             <div className="flex flex-col gap-0.5">
                                 <h2 className="text-xl font-medium text-neutral-800 tracking-wider whitespace-nowrap">{patientInfo.name}</h2>
                                 <span className="text-[10px] text-neutral-500 whitespace-nowrap">{patientInfo.reading}</span>
                             </div>
 
-                            <div className="min-w-0 w-full max-w-[300px]">
-                                {/* Compact Table - Font matching Goal/Caution sections */}
+                            <div className="min-w-0 w-full max-w-[200px]">
+                                {/* Compact Table - Narrower width */}
                                 <div className="border border-neutral-200/60 rounded overflow-hidden">
                                     <div className="flex border-b border-neutral-200/60">
-                                        <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">コース内容</div>
-                                        <div className="px-3 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
+                                        <div className="w-[70px] flex-shrink-0 px-2 py-1 bg-neutral-50 text-[10px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">コース内容</div>
+                                        <div className="px-2 py-1 text-[10px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.courseInfo}</div>
                                     </div>
                                     <div className="flex">
-                                        <div className="w-[80px] flex-shrink-0 px-2 py-1.5 bg-neutral-50 text-[11px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">媒体</div>
-                                        <div className="px-3 py-1.5 text-[11px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
+                                        <div className="w-[70px] flex-shrink-0 px-2 py-1 bg-neutral-50 text-[10px] font-medium text-neutral-700 border-r border-neutral-200/60 whitespace-nowrap">媒体</div>
+                                        <div className="px-2 py-1 text-[10px] font-medium text-neutral-800 tracking-wide bg-white flex-1 whitespace-nowrap">{patientInfo.media}</div>
                                     </div>
                                 </div>
                             </div>
@@ -217,8 +220,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    {/* History Table - Reduced bottom margin to 2 for tighter gap */}
-                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mb-2 mx-1 ${softShadow}`}>
+                    {/* History Table - No bottom margin */}
+                    <div className={`bg-white rounded-xl overflow-hidden shadow-sm mx-1 ${softShadow}`}>
                         <div className="overflow-x-auto">
                             <table className="w-full text-center border-collapse">
                                 <thead>
