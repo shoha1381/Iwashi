@@ -99,7 +99,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                     </div>
 
                     {/* Profile Section */}
-                    <div className="flex gap-4 mb-4 px-1">
+                    <div className="flex gap-4 mb-2 px-1">
                         {/* Photo */}
                         <div className="flex-shrink-0">
                             <img src={patientInfo.photo} alt={patientInfo.name} className="w-24 h-28 object-cover rounded-lg shadow-sm border border-neutral-100" />
@@ -162,10 +162,10 @@ export const CustomerOverviewModal = ({ isOpen, onClose, slotInfo }) => {
                         </div>
                     </div>
 
-                    <div className="border-t border-neutral-100 my-4 mx-1"></div>
+                    <div className="border-t border-neutral-100 my-2 mx-1"></div>
 
                     {/* Middle Section: ToDo & Advice - Equal Height */}
-                    <div className="grid grid-cols-[1fr_2fr] gap-4 mb-4 px-1 items-stretch">
+                    <div className="grid grid-cols-[1fr_2fr] gap-4 mb-2 px-1 items-stretch">
                         {/* ToDo */}
                         <div className={`bg-white rounded-xl overflow-hidden flex flex-col h-full ${softShadow}`}>
                             <div className="px-4 py-2 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2">
