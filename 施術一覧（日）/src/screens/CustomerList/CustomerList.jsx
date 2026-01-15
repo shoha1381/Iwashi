@@ -45,88 +45,91 @@ export const CustomerList = () => {
     });
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-neutral-50 to-blue-100 flex font-sans overflow-x-hidden">
+        <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
             <NavigationSection />
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen overflow-hidden">
+            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
                 {/* Unified Header */}
                 <HeaderSection selectedStore="銀座店" />
 
-                {/* Search and Filter Bar */}
-                <div className="bg-white/60 backdrop-blur-sm border-b border-neutral-200/50 px-6 py-4 flex flex-wrap items-center gap-4">
-                    {/* Name Search */}
-                    <div className="relative flex-1 min-w-[200px] max-w-[300px]">
-                        <input
-                            type="text"
-                            placeholder="顧客名で検索"
-                            value={searchName}
-                            onChange={(e) => setSearchName(e.target.value)}
-                            className="w-full h-10 pl-4 pr-12 border border-neutral-200 rounded-xl text-sm bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all shadow-sm"
-                        />
-                        <button className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-blue-500 hover:bg-blue-600 rounded-lg text-white transition-colors shadow-sm">
-                            <SearchIcon />
-                        </button>
-                    </div>
+                {/* Content Area */}
+                <div className="flex-1 overflow-y-auto pt-16 w-full">
+                    <div className="bg-white min-h-full">
+                        {/* Search and Filter Bar */}
+                        <div className="border-b border-neutral-200 px-6 py-4 flex flex-wrap items-center gap-4">
+                            {/* Name Search */}
+                            <div className="relative flex-1 min-w-[200px] max-w-[300px]">
+                                <input
+                                    type="text"
+                                    placeholder="顧客名で検索"
+                                    value={searchName}
+                                    onChange={(e) => setSearchName(e.target.value)}
+                                    className="w-full h-10 pl-4 pr-12 border border-neutral-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+                                />
+                                <button className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-blue-500 hover:bg-blue-600 rounded-lg text-white transition-colors">
+                                    <SearchIcon />
+                                </button>
+                            </div>
 
-                    {/* Phone Search */}
-                    <div className="relative flex-1 min-w-[200px] max-w-[300px]">
-                        <input
-                            type="text"
-                            placeholder="電話番号で検索"
-                            value={searchPhone}
-                            onChange={(e) => setSearchPhone(e.target.value)}
-                            className="w-full h-10 pl-4 pr-12 border border-neutral-200 rounded-xl text-sm bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all shadow-sm"
-                        />
-                        <button className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-blue-500 hover:bg-blue-600 rounded-lg text-white transition-colors shadow-sm">
-                            <SearchIcon />
-                        </button>
-                    </div>
+                            {/* Phone Search */}
+                            <div className="relative flex-1 min-w-[200px] max-w-[300px]">
+                                <input
+                                    type="text"
+                                    placeholder="電話番号で検索"
+                                    value={searchPhone}
+                                    onChange={(e) => setSearchPhone(e.target.value)}
+                                    className="w-full h-10 pl-4 pr-12 border border-neutral-200 rounded-xl text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-400 transition-all"
+                                />
+                                <button className="absolute right-1 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center bg-blue-500 hover:bg-blue-600 rounded-lg text-white transition-colors">
+                                    <SearchIcon />
+                                </button>
+                            </div>
 
-                    {/* Store Filter */}
-                    <div className="ml-auto">
-                        <button className="flex items-center gap-2 h-10 px-4 bg-white border border-neutral-200 rounded-xl text-sm text-neutral-600 hover:bg-neutral-50 transition-colors shadow-sm">
-                            {selectedStore}
-                            <ChevronDownIcon />
-                        </button>
-                    </div>
-                </div>
+                            {/* Store Filter */}
+                            <div className="ml-auto">
+                                <button className="flex items-center gap-2 h-10 px-4 bg-white border border-neutral-200 rounded-xl text-sm text-neutral-600 hover:bg-neutral-50 transition-colors">
+                                    {selectedStore}
+                                    <ChevronDownIcon />
+                                </button>
+                            </div>
+                        </div>
 
-                {/* Customer Table */}
-                <div className="flex-1 overflow-auto p-6">
-                    <div className="bg-white rounded-2xl shadow-sm border border-neutral-200/50 overflow-hidden">
-                        <table className="w-full border-collapse">
-                            <thead>
-                                <tr className="bg-gradient-to-r from-[#3b5998] to-[#4a6db5] text-white text-left">
-                                    <th className="py-4 px-5 font-medium text-sm">顧客名</th>
-                                    <th className="py-4 px-5 font-medium text-sm">顧客名（カナ）</th>
-                                    <th className="py-4 px-5 font-medium text-sm">電話番号</th>
-                                    <th className="py-4 px-5 font-medium text-sm">店舗</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredCustomers.map((customer, index) => (
-                                    <tr
-                                        key={customer.id}
-                                        className={`border-b border-neutral-100 hover:bg-blue-50/50 transition-colors cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-neutral-50/30'
-                                            }`}
-                                    >
-                                        <td className="py-3.5 px-5">
-                                            <Link
-                                                to={`/customers/${customer.id}`}
-                                                className="text-sm text-neutral-800 hover:text-blue-600 transition-colors"
-                                            >
-                                                {customer.name}
-                                            </Link>
-                                        </td>
-                                        <td className="py-3.5 px-5 text-sm text-neutral-500">{customer.nameKana}</td>
-                                        <td className="py-3.5 px-5 text-sm text-neutral-500">{customer.phone || "-"}</td>
-                                        <td className="py-3.5 px-5 text-sm text-neutral-500">{customer.store}</td>
+                        {/* Customer Table */}
+                        <div className="overflow-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr className="bg-gradient-to-r from-[#3b5998] to-[#4a6db5] text-white text-left">
+                                        <th className="py-4 px-5 font-medium text-sm">顧客名</th>
+                                        <th className="py-4 px-5 font-medium text-sm">顧客名（カナ）</th>
+                                        <th className="py-4 px-5 font-medium text-sm">電話番号</th>
+                                        <th className="py-4 px-5 font-medium text-sm">店舗</th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    {filteredCustomers.map((customer, index) => (
+                                        <tr
+                                            key={customer.id}
+                                            className={`border-b border-neutral-100 hover:bg-neutral-50 transition-colors cursor-pointer ${index % 2 === 0 ? 'bg-white' : 'bg-neutral-50/50'
+                                                }`}
+                                        >
+                                            <td className="py-3.5 px-5">
+                                                <Link
+                                                    to={`/customers/${customer.id}`}
+                                                    className="text-sm text-neutral-800 hover:text-blue-600 transition-colors"
+                                                >
+                                                    {customer.name}
+                                                </Link>
+                                            </td>
+                                            <td className="py-3.5 px-5 text-sm text-neutral-500">{customer.nameKana}</td>
+                                            <td className="py-3.5 px-5 text-sm text-neutral-500">{customer.phone || "-"}</td>
+                                            <td className="py-3.5 px-5 text-sm text-neutral-500">{customer.store}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

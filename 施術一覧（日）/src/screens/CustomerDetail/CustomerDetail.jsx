@@ -62,122 +62,125 @@ export const CustomerDetail = () => {
     const { id } = useParams();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-neutral-50 to-blue-100 flex font-sans overflow-x-hidden">
+        <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
             <NavigationSection />
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen overflow-auto">
+            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
                 {/* Unified Header */}
                 <HeaderSection selectedStore="銀座店" />
 
-                {/* Customer Profile Card */}
-                <div className="p-6">
-                    <div className="bg-white rounded-2xl shadow-sm border border-neutral-200/50 overflow-hidden">
-                        {/* Close button */}
-                        <div className="flex justify-end p-3">
-                            <Link to="/customers" className="p-2 hover:bg-neutral-100 rounded-lg transition-colors text-neutral-400 hover:text-neutral-600">
-                                <CloseIcon />
-                            </Link>
-                        </div>
-
-                        {/* Profile Header */}
-                        <div className="px-6 pb-6 flex gap-6">
-                            {/* Photo */}
-                            <div className="w-32 h-40 bg-neutral-200 rounded-xl overflow-hidden flex-shrink-0 shadow-sm">
-                                <img
-                                    src={mockCustomerDetail.photo}
-                                    alt={mockCustomerDetail.name}
-                                    className="w-full h-full object-cover"
-                                    onError={(e) => { e.target.src = 'https://via.placeholder.com/128x160?text=No+Photo'; }}
-                                />
+                {/* Content Area */}
+                <div className="flex-1 overflow-y-auto pt-16 w-full">
+                    <div className="bg-white min-h-full p-6">
+                        {/* Customer Profile Card */}
+                        <div className="max-w-4xl mx-auto">
+                            {/* Close button */}
+                            <div className="flex justify-end mb-4">
+                                <Link to="/customers" className="p-2 hover:bg-neutral-100 rounded-lg transition-colors text-neutral-400 hover:text-neutral-600">
+                                    <CloseIcon />
+                                </Link>
                             </div>
 
-                            {/* Info */}
-                            <div className="flex-1">
-                                {/* Action Bar */}
-                                <div className="flex items-center gap-2 mb-4">
-                                    <button className="w-10 h-10 flex items-center justify-center bg-green-500 text-white rounded-xl shadow-sm hover:bg-green-600 transition-colors">
-                                        <DocumentIcon />
-                                    </button>
-                                    <button className="w-10 h-10 flex items-center justify-center bg-yellow-400 text-white rounded-xl shadow-sm hover:bg-yellow-500 transition-colors">
-                                        <AIIcon />
-                                    </button>
-                                    <button className="w-10 h-10 flex items-center justify-center bg-red-500 text-white rounded-xl shadow-sm hover:bg-red-600 transition-colors">
-                                        <TrashIcon />
-                                    </button>
-                                    <button className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-xl shadow-sm hover:bg-blue-600 transition-colors">
-                                        <EditIcon />
-                                    </button>
+                            {/* Profile Header */}
+                            <div className="flex gap-6 mb-6">
+                                {/* Photo */}
+                                <div className="w-32 h-40 bg-neutral-200 rounded-xl overflow-hidden flex-shrink-0">
+                                    <img
+                                        src={mockCustomerDetail.photo}
+                                        alt={mockCustomerDetail.name}
+                                        className="w-full h-full object-cover"
+                                        onError={(e) => { e.target.src = 'https://via.placeholder.com/128x160?text=No+Photo'; }}
+                                    />
                                 </div>
 
-                                {/* Name */}
-                                <div className="flex items-center gap-2 mb-3">
-                                    <span className={`px-2.5 py-1 ${mockCustomerDetail.labelColor} text-white text-xs font-medium rounded-md`}>
-                                        {mockCustomerDetail.label}
-                                    </span>
-                                    <h2 className="text-xl font-bold text-neutral-800">{mockCustomerDetail.name}</h2>
-                                    <span className="text-sm text-neutral-500">
-                                        {mockCustomerDetail.nameKana}・{mockCustomerDetail.gender}・{mockCustomerDetail.age}歳
-                                    </span>
-                                </div>
-
-                                {/* Target and Notes */}
-                                <div className="flex gap-4">
-                                    <div className="flex-1">
-                                        <h3 className="text-sm font-semibold text-neutral-600 mb-2">目標</h3>
-                                        <p className="text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl border border-neutral-100">
-                                            {mockCustomerDetail.target}
-                                        </p>
+                                {/* Info */}
+                                <div className="flex-1">
+                                    {/* Action Bar */}
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <button className="w-10 h-10 flex items-center justify-center bg-green-500 text-white rounded-xl hover:bg-green-600 transition-colors">
+                                            <DocumentIcon />
+                                        </button>
+                                        <button className="w-10 h-10 flex items-center justify-center bg-yellow-400 text-white rounded-xl hover:bg-yellow-500 transition-colors">
+                                            <AIIcon />
+                                        </button>
+                                        <button className="w-10 h-10 flex items-center justify-center bg-red-500 text-white rounded-xl hover:bg-red-600 transition-colors">
+                                            <TrashIcon />
+                                        </button>
+                                        <button className="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded-xl hover:bg-blue-600 transition-colors">
+                                            <EditIcon />
+                                        </button>
                                     </div>
-                                    <div className="w-52">
-                                        <h3 className="text-sm font-semibold text-neutral-600 mb-2">注意事項</h3>
-                                        <p className="text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl whitespace-pre-line border border-neutral-100">
-                                            {mockCustomerDetail.notes}
-                                        </p>
+
+                                    {/* Name */}
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <span className={`px-2.5 py-1 ${mockCustomerDetail.labelColor} text-white text-xs font-medium rounded-md`}>
+                                            {mockCustomerDetail.label}
+                                        </span>
+                                        <h2 className="text-xl font-bold text-neutral-800">{mockCustomerDetail.name}</h2>
+                                        <span className="text-sm text-neutral-500">
+                                            {mockCustomerDetail.nameKana}・{mockCustomerDetail.gender}・{mockCustomerDetail.age}歳
+                                        </span>
+                                    </div>
+
+                                    {/* Target and Notes */}
+                                    <div className="flex gap-4">
+                                        <div className="flex-1">
+                                            <h3 className="text-sm font-semibold text-neutral-600 mb-2">目標</h3>
+                                            <p className="text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl border border-neutral-100">
+                                                {mockCustomerDetail.target}
+                                            </p>
+                                        </div>
+                                        <div className="w-52">
+                                            <h3 className="text-sm font-semibold text-neutral-600 mb-2">注意事項</h3>
+                                            <p className="text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl whitespace-pre-line border border-neutral-100">
+                                                {mockCustomerDetail.notes}
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Advice Section */}
-                        <div className="px-6 pb-6">
-                            <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl">
-                                <p className="text-sm text-neutral-700 whitespace-pre-line leading-relaxed">
-                                    {mockCustomerDetail.advice}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Memo Section */}
-                        <div className="px-6 pb-6">
-                            <div className="bg-neutral-50 border border-neutral-100 p-4 rounded-xl">
-                                <p className="text-sm text-neutral-600 leading-relaxed">
-                                    {mockCustomerDetail.memo}
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Session Counters */}
-                        <div className="px-6 pb-6 flex flex-wrap gap-3">
-                            {mockCustomerDetail.sessions.map((session, index) => (
-                                <div key={index} className="flex items-center gap-2 bg-neutral-100 px-4 py-2 rounded-full border border-neutral-200/50">
-                                    <span className="text-sm text-neutral-600">{session.label}</span>
-                                    <span className="w-6 h-6 flex items-center justify-center bg-neutral-300 text-neutral-700 text-xs font-medium rounded-full">
-                                        {session.count}
-                                    </span>
+                            {/* Advice Section */}
+                            <div className="mb-6">
+                                <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl">
+                                    <p className="text-sm text-neutral-700 whitespace-pre-line leading-relaxed">
+                                        {mockCustomerDetail.advice}
+                                    </p>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
 
-                        {/* Action Buttons */}
-                        <div className="px-6 pb-6 flex justify-end gap-3">
-                            <Link to="/" className="px-6 py-2.5 bg-blue-500 text-white text-sm font-medium rounded-full hover:bg-blue-600 transition-colors shadow-sm">
-                                施術
-                            </Link>
-                            <button className="px-6 py-2.5 bg-neutral-200 text-neutral-700 text-sm font-medium rounded-full hover:bg-neutral-300 transition-colors">
-                                週
-                            </button>
+                            {/* Memo Section */}
+                            <div className="mb-6">
+                                <div className="bg-neutral-50 border border-neutral-100 p-4 rounded-xl">
+                                    <p className="text-sm text-neutral-600 leading-relaxed">
+                                        {mockCustomerDetail.memo}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Session Counters */}
+                            <div className="flex flex-wrap gap-3 mb-6">
+                                {mockCustomerDetail.sessions.map((session, index) => (
+                                    <div key={index} className="flex items-center gap-2 bg-neutral-100 px-4 py-2 rounded-full">
+                                        <span className="text-sm text-neutral-600">{session.label}</span>
+                                        <span className="w-6 h-6 flex items-center justify-center bg-neutral-300 text-neutral-700 text-xs font-medium rounded-full">
+                                            {session.count}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex justify-end gap-3">
+                                <Link to="/" className="px-6 py-2.5 bg-blue-500 text-white text-sm font-medium rounded-full hover:bg-blue-600 transition-colors">
+                                    施術
+                                </Link>
+                                <button className="px-6 py-2.5 bg-neutral-200 text-neutral-700 text-sm font-medium rounded-full hover:bg-neutral-300 transition-colors">
+                                    週
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
