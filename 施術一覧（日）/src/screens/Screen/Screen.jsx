@@ -50,7 +50,7 @@ const SHOHA_DATA = {
 };
 
 export const Screen = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date(2025, 9, 6));
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedView, setSelectedView] = useState("day");
     const [selectedStore, setSelectedStore] = useState("銀座店");
 

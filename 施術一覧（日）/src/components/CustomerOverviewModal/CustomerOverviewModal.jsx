@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { QuestionnaireModal } from "../QuestionnaireModal";
+import { LineRegistrationModal } from "../LineRegistrationModal";
+import { TreatmentModal } from "../TreatmentModal";
 
 // Default data for Rika Miura
 const RIKA_DATA = {
@@ -26,6 +29,11 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
 
     // Use provided customerData or fall back to Rika's data (though logic should ensure data is passed)
     const data = customerData || RIKA_DATA;
+
+    // State for sub-modals
+    const [showQuestionnaire, setShowQuestionnaire] = useState(false);
+    const [showLineRegistration, setShowLineRegistration] = useState(false);
+    const [showTreatment, setShowTreatment] = useState(false);
 
     // Labels/Badges rendering helper
     const renderLabels = () => {
@@ -318,16 +326,42 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
 
                 {/* Footer Actions (Sticky Bottom) - Shifted buttons higher (pt-4 pb-12) */}
                 <div className="bg-white border-t border-neutral-100 pt-4 pb-12 px-8 flex justify-end gap-5 z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-                    <button className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
+                    <button
+                        onClick={() => setShowQuestionnaire(true)}
+                        className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center"
+                    >
                         問診票入力
                     </button>
-                    <button className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
+                    <button
+                        onClick={() => setShowLineRegistration(true)}
+                        className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center"
+                    >
                         LINE登録
                     </button>
-                    <button className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center">
+                    <button
+                        onClick={() => setShowTreatment(true)}
+                        className="w-32 h-10 bg-[#54a0ff] hover:bg-[#4a8fe0] active:bg-[#3f84d4] text-white rounded-full text-xs font-bold tracking-wider shadow-[0_4px_10px_rgba(84,160,255,0.3)] hover:shadow-[0_6px_14px_rgba(84,160,255,0.4)] active:scale-95 transition-all flex items-center justify-center"
+                    >
                         施術
                     </button>
                 </div>
+
+                {/* Sub-Modals */}
+                <QuestionnaireModal
+                    isOpen={showQuestionnaire}
+                    onClose={() => setShowQuestionnaire(false)}
+                    customerName={data.name}
+                />
+                <LineRegistrationModal
+                    isOpen={showLineRegistration}
+                    onClose={() => setShowLineRegistration(false)}
+                    customerName={data.name}
+                />
+                <TreatmentModal
+                    isOpen={showTreatment}
+                    onClose={() => setShowTreatment(false)}
+                    customerData={data}
+                />
             </div>
 
             {/* Animation Style */}

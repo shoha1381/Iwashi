@@ -1,0 +1,1 @@
+export { TreatmentModal } from "./TreatmentModal";
