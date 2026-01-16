@@ -120,10 +120,11 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         </article>
     );
 
+    // Modified Header: text-[13px] (slightly smaller than original sm but larger than xs), restored padding (py-3)
     const Header = ({ icon, title, className = "" }) => (
-        <header className={`px-4 py-3 flex items-center gap-2.5 border-b border-neutral-100 ${className}`}>
-            {icon && <img src={icon} className="w-4 h-4 object-contain opacity-80" alt="" />}
-            <h2 className="text-sm font-medium text-neutral-800 tracking-wider">{title}</h2>
+        <header className={`px-4 py-3 bg-neutral-50 border-b border-neutral-100 flex items-center gap-2 ${className}`}>
+            {icon && <img src={icon} className="w-3.5 h-3.5 object-contain opacity-70" alt="" />}
+            <h2 className="text-[13px] font-medium text-neutral-700 tracking-wide">{title}</h2>
         </header>
     );
 
@@ -243,15 +244,15 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                     <div className="flex-1 grid grid-cols-2 gap-3 h-full overflow-hidden">
                         {/* Left Col */}
                         <div className="flex flex-col gap-3 h-full">
-                            {/* ToDo - Taller to fit 4 items comfortably */}
+                            {/* ToDo - Softer borders */}
                             <Card className="h-[240px] flex flex-col">
                                 <Header icon="/img/vector-18.svg" title="ToDo" />
                                 <div className="p-2 space-y-1.5 overflow-y-auto flex-1">
                                     {todos.map((todo) => (
-                                        <label key={todo.id} className={`flex items-center gap-2 w-full p-2 rounded-lg border transition-all cursor-pointer ${todo.checked ? 'bg-white border-neutral-200' : 'bg-white border-neutral-200 shadow-sm'}`}>
+                                        <label key={todo.id} className={`flex items-center gap-2 w-full p-2 rounded-lg border transition-all cursor-pointer ${todo.checked ? 'bg-white border-neutral-100' : 'bg-white border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.03)]'}`}>
                                             <div className="relative w-5 h-5 flex-shrink-0 flex items-center justify-center">
                                                 <input type="checkbox" checked={todo.checked} onChange={() => handleTodoToggle(todo.id)} className="peer sr-only" />
-                                                <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${todo.checked ? 'bg-[#4aa9fc] border-[#4aa9fc]' : 'bg-white border-neutral-300'}`}>
+                                                <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${todo.checked ? 'bg-[#4aa9fc] border-[#4aa9fc]' : 'bg-white border-neutral-200'}`}>
                                                     <svg className={`w-3.5 h-3.5 text-white ${todo.checked ? 'block' : 'hidden'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                                     </svg>
@@ -262,15 +263,14 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                     ))}
                                 </div>
                             </Card>
-                            {/* Advice - Bolder text, positioned more to the right */}
+                            {/* Advice - Updated bullet color/style */}
                             <Card className="flex-1 flex flex-col min-h-0">
                                 <Header icon="/img/vector-19.svg" title="アドバイス" />
-                                <div className="p-4 pl-6 overflow-y-auto flex-1">
-                                    <ul className="space-y-2.5">
+                                <div className="p-4 pl-10 overflow-y-auto flex-1">
+                                    <ul className="list-disc list-outside space-y-2.5 ml-1">
                                         {adviceItems.map((item, i) => (
-                                            <li key={i} className="flex gap-2.5">
-                                                <span className="text-neutral-700 mt-2 w-1 h-1 bg-neutral-700 rounded-full flex-shrink-0" />
-                                                <span className="text-[12px] font-medium leading-relaxed text-neutral-700">{item}</span>
+                                            <li key={i} className="text-[12px] font-medium leading-relaxed text-neutral-700 pl-1 marker:text-blue-300 max-w-[90%]">
+                                                {item}
                                             </li>
                                         ))}
                                     </ul>
@@ -280,7 +280,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
 
                         {/* Right Col */}
                         <div className="flex flex-col gap-3 h-full">
-                            {/* Continuity - Better element spacing, bolder labels */}
+                            {/* Continuity */}
                             <Card className="flex-shrink-0">
                                 <Header icon="/img/mask-group.png" title="継続の確認" />
                                 <div className="px-4 py-4 flex items-center justify-evenly">
@@ -311,7 +311,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                 </div>
                             </Card>
 
-                            {/* Previous Memo - Center aligned labels, 備考 vertically centered */}
+                            {/* Previous Memo */}
                             <Card className="flex-1 min-h-0 flex flex-col">
                                 <Header icon="/img/mask-group.png" title="前回メモ" />
                                 <div className="flex-1 relative min-h-0">
