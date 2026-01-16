@@ -58,6 +58,25 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         { label: "注意ワード", content: "太った/痩せた、肌の色、整形跡" },
     ];
 
+    const questionnaireData = [
+        { id: 1, question: "顔の整形手術（鼻・まぶた［切開または埋没法・アゴ・頬など］）を行ったことがある。", answer: "ある", answerColor: "text-[#ff0000]" },
+        { id: 2, question: "リフトアップ整形手術を行ったことがある。", answer: "ない", answerColor: "text-[#999999]" },
+        { id: 3, question: "行ったことがある顔の美容治療・美容施術", answer: "エラボトックス、ヒアルロン酸注入（フェイスライン補正）", answerColor: "text-[#ff0000]" },
+        { id: 4, question: "行ったことがある顔の美容治療・美容施術", answer: "", answerColor: "text-[#999999]" },
+        { id: 5, question: "上記以外で顔の美容治療・美容施術を行っている方は、具体的な内容と時期を教えてください。", answer: "", answerColor: "text-[#999999]" },
+        { id: 6, question: "近日中に顔の手術や美容治療を予定している方は、具体的な内容を教えてください。", answer: "", answerColor: "text-[#999999]" },
+        { id: 7, question: "ご本人の結婚式等のイベントを控えている。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 8, question: "皮膚（頭皮）が弱い／赤くなりやすい。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 9, question: "お顔の日焼けで赤み、炎症がある。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 10, question: "NOV（ノブ）オリゴマリンローションSで肌荒れ・かぶれを起こしたことがある。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 11, question: "妊娠中の方は、妊娠何ヶ月か教えてください。", answer: "", answerColor: "text-[#999999]" },
+        { id: 12, question: "熱がある／風邪を引いている。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 13, question: "現在、お酒を飲んでいる。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 14, question: "頭部疾患や頭部手術経験がある。", answer: "いいえ", answerColor: "text-[#999999]" },
+        { id: 15, question: "現在服用している薬", answer: "", answerColor: "text-[#999999]" },
+        { id: 16, question: "お顔やお体で現在治療中もしくは過去に患った病気や先天性の疾患", answer: "", answerColor: "text-[#999999]" },
+    ];
+
     const handleTodoToggle = (id) => {
         setTodos(todos.map(todo => todo.id === id ? { ...todo, checked: !todo.checked } : todo));
     };
@@ -158,187 +177,222 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             {/* Main Content */}
             <div className="flex-1 bg-white px-5 py-4 pb-28 overflow-hidden flex flex-col gap-4">
 
-                {/* --- Top Section: [Photo] [Name & Basic Info] [Framed Info Box] --- */}
-                <div className="flex gap-8 items-start">
-                    {/* Photo */}
-                    <div className="w-[100px] h-[100px] flex-shrink-0">
-                        <img className="w-full h-full object-cover rounded-lg shadow-sm border border-neutral-100" alt="profile" src={data.photo} />
-                    </div>
+                {activeTab === "overview" && (
+                    <>
+                        {/* --- Top Section: [Photo] [Name & Basic Info] [Framed Info Box] --- */}
+                        <div className="flex gap-8 items-start">
+                            {/* Photo */}
+                            <div className="w-[100px] h-[100px] flex-shrink-0">
+                                <img className="w-full h-full object-cover rounded-lg shadow-sm border border-neutral-100" alt="profile" src={data.photo} />
+                            </div>
 
-                    {/* Name & Basic Info Group */}
-                    <div className="flex flex-col justify-center h-[100px] flex-shrink-0 min-w-[180px]">
-                        {/* Name - Normal weight (thin) */}
-                        <h2 className="text-2xl font-normal text-neutral-800 mb-1.5 tracking-wide">{patientInfo.name}</h2>
-                        {/* Basic Info - Gender/Age/Birthdate */}
-                        <div className="text-sm text-neutral-500 font-normal tracking-wide">
-                            {patientInfo.gender}・{patientInfo.age}（{patientInfo.birthdate}）
-                        </div>
-                    </div>
-
-                    {/* Framed Info Box - Even wider label columns */}
-                    <div className="flex-1 min-w-0 h-[100px]">
-                        <div className={`h-full rounded-lg overflow-hidden bg-white flex flex-col justify-center ${softShadow}`}>
-                            {/* Compressed Table Layout - 4 Rows for 8 items */}
-                            <div className="flex h-full">
-                                {/* Left Col - wider label */}
-                                <div className="flex-1 border-r border-neutral-200/60 h-full">
-                                    {patientInfo.leftColumn.map((item, i) => (
-                                        <div key={i} className="flex border-b border-neutral-200/60 last:border-b-0 h-[25%] items-center px-2">
-                                            <div className="w-[110px] bg-neutral-50 text-[10px] text-neutral-600 font-medium h-full flex items-center -ml-2 pl-3 border-r border-neutral-200/60 mr-2 whitespace-nowrap">{item.label}</div>
-                                            <div className="text-[10px] text-neutral-700 font-medium truncate flex-1">{item.value}</div>
-                                        </div>
-                                    ))}
+                            {/* Name & Basic Info Group */}
+                            <div className="flex flex-col justify-center h-[100px] flex-shrink-0 min-w-[180px]">
+                                {/* Name - Normal weight (thin) */}
+                                <h2 className="text-2xl font-normal text-neutral-800 mb-1.5 tracking-wide">{patientInfo.name}</h2>
+                                {/* Basic Info - Gender/Age/Birthdate */}
+                                <div className="text-sm text-neutral-500 font-normal tracking-wide">
+                                    {patientInfo.gender}・{patientInfo.age}（{patientInfo.birthdate}）
                                 </div>
+                            </div>
+
+                            {/* Framed Info Box - Even wider label columns */}
+                            <div className="flex-1 min-w-0 h-[100px]">
+                                <div className={`h-full rounded-lg overflow-hidden bg-white flex flex-col justify-center ${softShadow}`}>
+                                    {/* Compressed Table Layout - 4 Rows for 8 items */}
+                                    <div className="flex h-full">
+                                        {/* Left Col - wider label */}
+                                        <div className="flex-1 border-r border-neutral-200/60 h-full">
+                                            {patientInfo.leftColumn.map((item, i) => (
+                                                <div key={i} className="flex border-b border-neutral-200/60 last:border-b-0 h-[25%] items-center px-2">
+                                                    <div className="w-[110px] bg-neutral-50 text-[10px] text-neutral-600 font-medium h-full flex items-center -ml-2 pl-3 border-r border-neutral-200/60 mr-2 whitespace-nowrap">{item.label}</div>
+                                                    <div className="text-[10px] text-neutral-700 font-medium truncate flex-1">{item.value}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        {/* Right Col */}
+                                        <div className="flex-1 h-full">
+                                            {patientInfo.rightColumn.map((item, i) => (
+                                                <div key={i} className="flex border-b border-neutral-200/60 last:border-b-0 h-[25%] items-center px-2">
+                                                    <div className="w-[60px] bg-neutral-50 text-[10px] text-neutral-600 font-medium truncate h-full flex items-center -ml-2 pl-3 border-r border-neutral-200/60 mr-2">{item.label}</div>
+                                                    <div className="text-[10px] text-neutral-700 font-medium truncate flex-1">{item.value}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* --- Middle Section: Goals/Notes as Connected Table --- */}
+                        <div className={`rounded-lg overflow-hidden bg-white ${softShadow}`}>
+                            {goalsRows.map((item, index) => (
+                                <div key={index} className="flex border-b border-neutral-200/60 last:border-b-0 h-[32px] items-center">
+                                    <div className="w-[100px] bg-neutral-50 text-[11px] text-neutral-600 font-medium h-full flex items-center pl-3 border-r border-neutral-200/60">{item.label}</div>
+                                    <div className="text-[11px] text-neutral-700 font-medium flex-1 px-3 truncate">{item.content}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="w-full h-px bg-neutral-100" />
+
+                        {/* --- Bottom Grid --- */}
+                        <div className="flex gap-4 flex-1 min-h-0">
+                            {/* Sidebar - Refined tone matching */}
+                            <div className="w-[70px] flex-shrink-0 pt-3 text-center relative">
+                                <div className="absolute top-0 right-0 h-full w-px bg-neutral-100" />
+                                <div className="space-y-4">
+                                    {/* Course & Visit */}
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-neutral-700 tracking-wide">SP</span>
+                                        <span className="text-[11px] text-neutral-500 font-normal">1回目</span>
+                                    </div>
+                                    <div className="w-full border-t border-neutral-100" />
+                                    {/* Date */}
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-sm font-medium text-neutral-700 tracking-wide">10/6</span>
+                                        <span className="text-[11px] text-neutral-500 font-normal">月</span>
+                                    </div>
+                                    <div className="w-full border-t border-neutral-100" />
+                                    {/* Time */}
+                                    <div>
+                                        <span className="text-[12px] font-medium text-neutral-700 tracking-wide">13:00〜</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Cards Grid */}
+                            <div className="flex-1 grid grid-cols-2 gap-3 h-full overflow-hidden">
+                                {/* Left Col */}
+                                <div className="flex flex-col gap-3 h-full">
+                                    {/* ToDo - Softer borders */}
+                                    <Card className="h-[240px] flex flex-col">
+                                        <Header icon="/img/vector-18.svg" title="ToDo" />
+                                        <div className="p-2 space-y-1.5 overflow-y-auto flex-1">
+                                            {todos.map((todo) => (
+                                                <label key={todo.id} className={`flex items-center gap-2 w-full p-2 rounded-lg border transition-all cursor-pointer ${todo.checked ? 'bg-white border-neutral-100' : 'bg-white border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.03)]'}`}>
+                                                    <div className="relative w-5 h-5 flex-shrink-0 flex items-center justify-center">
+                                                        <input type="checkbox" checked={todo.checked} onChange={() => handleTodoToggle(todo.id)} className="peer sr-only" />
+                                                        <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${todo.checked ? 'bg-[#4aa9fc] border-[#4aa9fc]' : 'bg-white border-neutral-200'}`}>
+                                                            <svg className={`w-3.5 h-3.5 text-white ${todo.checked ? 'block' : 'hidden'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <span className="text-[11px] font-medium text-neutral-800 line-clamp-1">{todo.text}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </Card>
+                                    {/* Advice - Updated bullet color/style */}
+                                    <Card className="flex-1 flex flex-col min-h-0">
+                                        <Header icon="/img/vector-19.svg" title="アドバイス" />
+                                        <div className="p-4 pl-10 overflow-y-auto flex-1">
+                                            <ul className="list-disc list-outside space-y-2.5 ml-1">
+                                                {adviceItems.map((item, i) => (
+                                                    <li key={i} className="text-[12px] font-medium leading-relaxed text-neutral-700 pl-1 marker:text-blue-300 max-w-[90%]">
+                                                        {item}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </Card>
+                                </div>
+
                                 {/* Right Col */}
-                                <div className="flex-1 h-full">
-                                    {patientInfo.rightColumn.map((item, i) => (
-                                        <div key={i} className="flex border-b border-neutral-200/60 last:border-b-0 h-[25%] items-center px-2">
-                                            <div className="w-[60px] bg-neutral-50 text-[10px] text-neutral-600 font-medium truncate h-full flex items-center -ml-2 pl-3 border-r border-neutral-200/60 mr-2">{item.label}</div>
-                                            <div className="text-[10px] text-neutral-700 font-medium truncate flex-1">{item.value}</div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* --- Middle Section: Goals/Notes as Connected Table --- */}
-                <div className={`rounded-lg overflow-hidden bg-white ${softShadow}`}>
-                    {goalsRows.map((item, index) => (
-                        <div key={index} className="flex border-b border-neutral-200/60 last:border-b-0 h-[32px] items-center">
-                            <div className="w-[100px] bg-neutral-50 text-[11px] text-neutral-600 font-medium h-full flex items-center pl-3 border-r border-neutral-200/60">{item.label}</div>
-                            <div className="text-[11px] text-neutral-700 font-medium flex-1 px-3 truncate">{item.content}</div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="w-full h-px bg-neutral-100" />
-
-                {/* --- Bottom Grid --- */}
-                <div className="flex gap-4 flex-1 min-h-0">
-                    {/* Sidebar - Refined tone matching */}
-                    <div className="w-[70px] flex-shrink-0 pt-3 text-center relative">
-                        <div className="absolute top-0 right-0 h-full w-px bg-neutral-100" />
-                        <div className="space-y-4">
-                            {/* Course & Visit */}
-                            <div className="flex flex-col gap-1">
-                                <span className="text-sm font-medium text-neutral-700 tracking-wide">SP</span>
-                                <span className="text-[11px] text-neutral-500 font-normal">1回目</span>
-                            </div>
-                            <div className="w-full border-t border-neutral-100" />
-                            {/* Date */}
-                            <div className="flex flex-col gap-1">
-                                <span className="text-sm font-medium text-neutral-700 tracking-wide">10/6</span>
-                                <span className="text-[11px] text-neutral-500 font-normal">月</span>
-                            </div>
-                            <div className="w-full border-t border-neutral-100" />
-                            {/* Time */}
-                            <div>
-                                <span className="text-[12px] font-medium text-neutral-700 tracking-wide">13:00〜</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Cards Grid */}
-                    <div className="flex-1 grid grid-cols-2 gap-3 h-full overflow-hidden">
-                        {/* Left Col */}
-                        <div className="flex flex-col gap-3 h-full">
-                            {/* ToDo - Softer borders */}
-                            <Card className="h-[240px] flex flex-col">
-                                <Header icon="/img/vector-18.svg" title="ToDo" />
-                                <div className="p-2 space-y-1.5 overflow-y-auto flex-1">
-                                    {todos.map((todo) => (
-                                        <label key={todo.id} className={`flex items-center gap-2 w-full p-2 rounded-lg border transition-all cursor-pointer ${todo.checked ? 'bg-white border-neutral-100' : 'bg-white border-neutral-100 shadow-[0_1px_3px_rgba(0,0,0,0.03)]'}`}>
-                                            <div className="relative w-5 h-5 flex-shrink-0 flex items-center justify-center">
-                                                <input type="checkbox" checked={todo.checked} onChange={() => handleTodoToggle(todo.id)} className="peer sr-only" />
-                                                <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${todo.checked ? 'bg-[#4aa9fc] border-[#4aa9fc]' : 'bg-white border-neutral-200'}`}>
-                                                    <svg className={`w-3.5 h-3.5 text-white ${todo.checked ? 'block' : 'hidden'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                                    </svg>
+                                <div className="flex flex-col gap-3 h-full">
+                                    {/* Continuity */}
+                                    <Card className="flex-shrink-0">
+                                        <Header icon="/img/mask-group.png" title="継続の確認" />
+                                        <div className="px-4 py-4 flex items-center justify-evenly">
+                                            {/* 3回目 */}
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[11px] font-medium text-neutral-700 tracking-wide whitespace-nowrap">3回目</span>
+                                                <div className={`rounded-lg px-3 py-1.5 min-w-[90px] relative flex items-center justify-center transition-colors border ${getSelectBgColor(session3)}`}>
+                                                    <select value={session3} onChange={(e) => setSession3(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-medium cursor-pointer appearance-none text-center z-10">
+                                                        <option value="選択">選択</option>
+                                                        <option value="継続">継続</option>
+                                                        <option value="終了">終了</option>
+                                                    </select>
+                                                    <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2.5 opacity-60" alt="" />
                                                 </div>
                                             </div>
-                                            <span className="text-[11px] font-medium text-neutral-800 line-clamp-1">{todo.text}</span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </Card>
-                            {/* Advice - Updated bullet color/style */}
-                            <Card className="flex-1 flex flex-col min-h-0">
-                                <Header icon="/img/vector-19.svg" title="アドバイス" />
-                                <div className="p-4 pl-10 overflow-y-auto flex-1">
-                                    <ul className="list-disc list-outside space-y-2.5 ml-1">
-                                        {adviceItems.map((item, i) => (
-                                            <li key={i} className="text-[12px] font-medium leading-relaxed text-neutral-700 pl-1 marker:text-blue-300 max-w-[90%]">
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </Card>
-                        </div>
+                                            {/* 4回目 */}
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[11px] font-medium text-neutral-700 tracking-wide whitespace-nowrap">4回目</span>
+                                                <div className={`rounded-lg px-3 py-1.5 min-w-[90px] relative flex items-center justify-center transition-colors border ${getSelectBgColor(session4)}`}>
+                                                    <select value={session4} onChange={(e) => setSession4(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-medium cursor-pointer appearance-none text-center z-10">
+                                                        <option value="選択">選択</option>
+                                                        <option value="継続">継続</option>
+                                                        <option value="終了">終了</option>
+                                                    </select>
+                                                    <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2.5 opacity-60" alt="" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Card>
 
-                        {/* Right Col */}
-                        <div className="flex flex-col gap-3 h-full">
-                            {/* Continuity */}
-                            <Card className="flex-shrink-0">
-                                <Header icon="/img/mask-group.png" title="継続の確認" />
-                                <div className="px-4 py-4 flex items-center justify-evenly">
-                                    {/* 3回目 */}
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[11px] font-medium text-neutral-700 tracking-wide whitespace-nowrap">3回目</span>
-                                        <div className={`rounded-lg px-3 py-1.5 min-w-[90px] relative flex items-center justify-center transition-colors border ${getSelectBgColor(session3)}`}>
-                                            <select value={session3} onChange={(e) => setSession3(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-medium cursor-pointer appearance-none text-center z-10">
-                                                <option value="選択">選択</option>
-                                                <option value="継続">継続</option>
-                                                <option value="終了">終了</option>
-                                            </select>
-                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2.5 opacity-60" alt="" />
+                                    {/* Previous Memo */}
+                                    <Card className="flex-1 min-h-0 flex flex-col">
+                                        <Header icon="/img/mask-group.png" title="前回メモ" />
+                                        <div className="flex-1 relative min-h-0">
+                                            <div className="absolute top-0 bottom-0 left-[80px] w-px bg-neutral-100" />
+                                            <div className="absolute top-[40px] left-0 right-0 h-px bg-neutral-100" />
+                                            {/* 施術部位 - centered */}
+                                            <div className="absolute top-0 left-0 w-[80px] h-[40px] flex items-center justify-center text-[11px] text-neutral-800 font-medium tracking-wide">施術部位</div>
+                                            {/* 備考 - vertically centered in remaining space */}
+                                            <div className="absolute top-[40px] left-0 w-[80px] bottom-0 flex items-center justify-center text-[11px] text-neutral-800 font-medium tracking-wide">備考</div>
+
+                                            <div className="absolute top-0 left-[81px] right-0 h-[40px] p-3 text-[11px] text-neutral-700 font-normal"></div>
+                                            <div className="absolute top-[41px] left-[81px] right-0 bottom-0 p-3 text-[11px] text-neutral-700 leading-relaxed overflow-y-auto font-normal"></div>
                                         </div>
-                                    </div>
-                                    {/* 4回目 */}
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[11px] font-medium text-neutral-700 tracking-wide whitespace-nowrap">4回目</span>
-                                        <div className={`rounded-lg px-3 py-1.5 min-w-[90px] relative flex items-center justify-center transition-colors border ${getSelectBgColor(session4)}`}>
-                                            <select value={session4} onChange={(e) => setSession4(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-medium cursor-pointer appearance-none text-center z-10">
-                                                <option value="選択">選択</option>
-                                                <option value="継続">継続</option>
-                                                <option value="終了">終了</option>
-                                            </select>
-                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2.5 opacity-60" alt="" />
-                                        </div>
+                                    </Card>
+
+                                    {/* Add Memo */}
+                                    <div className="flex justify-center flex-shrink-0">
+                                        <button className="h-[42px] w-[200px] bg-[#4aa9fc] hover:bg-[#3a99ec] active:scale-[0.99] transition-all rounded-full text-white flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg">
+                                            <img src="/img/icon-pen-white.svg" className="w-4 h-4 object-contain" alt="" />
+                                            <span className="text-[13px] font-medium tracking-wide">今日のメモを追加</span>
+                                        </button>
                                     </div>
                                 </div>
-                            </Card>
-
-                            {/* Previous Memo */}
-                            <Card className="flex-1 min-h-0 flex flex-col">
-                                <Header icon="/img/mask-group.png" title="前回メモ" />
-                                <div className="flex-1 relative min-h-0">
-                                    <div className="absolute top-0 bottom-0 left-[80px] w-px bg-neutral-100" />
-                                    <div className="absolute top-[40px] left-0 right-0 h-px bg-neutral-100" />
-                                    {/* 施術部位 - centered */}
-                                    <div className="absolute top-0 left-0 w-[80px] h-[40px] flex items-center justify-center text-[11px] text-neutral-800 font-medium tracking-wide">施術部位</div>
-                                    {/* 備考 - vertically centered in remaining space */}
-                                    <div className="absolute top-[40px] left-0 w-[80px] bottom-0 flex items-center justify-center text-[11px] text-neutral-800 font-medium tracking-wide">備考</div>
-
-                                    <div className="absolute top-0 left-[81px] right-0 h-[40px] p-3 text-[11px] text-neutral-700 font-normal"></div>
-                                    <div className="absolute top-[41px] left-[81px] right-0 bottom-0 p-3 text-[11px] text-neutral-700 leading-relaxed overflow-y-auto font-normal"></div>
-                                </div>
-                            </Card>
-
-                            {/* Add Memo */}
-                            <div className="flex justify-center flex-shrink-0">
-                                <button className="h-[42px] w-[200px] bg-[#4aa9fc] hover:bg-[#3a99ec] active:scale-[0.99] transition-all rounded-full text-white flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg">
-                                    <img src="/img/icon-pen-white.svg" className="w-4 h-4 object-contain" alt="" />
-                                    <span className="text-[13px] font-medium tracking-wide">今日のメモを追加</span>
-                                </button>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className="w-full h-px bg-neutral-100" />
+                        <div className="w-full h-px bg-neutral-100" />
+                    </>
+                )}
+
+                {activeTab === "questionnaire" && (
+                    <div className="flex-1 overflow-y-auto -mx-2 px-2">
+                        <div className={`rounded-xl overflow-hidden bg-white ${softShadow}`}>
+                            <table className="w-full text-left border-collapse">
+                                <thead className="bg-neutral-50 sticky top-0 z-10 border-b border-neutral-200">
+                                    <tr>
+                                        <th className="py-2.5 px-3 w-10 text-[11px] font-medium text-neutral-500 text-center border-r border-neutral-200">No.</th>
+                                        <th className="py-2.5 px-4 text-[11px] font-medium text-neutral-500 border-r border-neutral-200">質問事項</th>
+                                        <th className="py-2.5 px-4 text-[11px] font-medium text-neutral-500">回答</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {questionnaireData.map((row, index) => (
+                                        <tr key={row.id} className="border-b border-neutral-100 last:border-b-0 even:bg-neutral-50/30 hover:bg-neutral-50 transition-colors">
+                                            <td className="py-3 px-3 text-center text-[11px] text-neutral-600 border-r border-neutral-100 font-medium bg-neutral-50/50">
+                                                {row.id}
+                                            </td>
+                                            <td className="py-3 px-4 text-[12px] font-medium text-neutral-800 leading-relaxed border-r border-neutral-100">
+                                                {row.question}
+                                            </td>
+                                            <td className={`py-3 px-4 text-[12px] font-medium whitespace-pre-wrap ${row.answerColor === 'text-[#ff0000]' ? 'text-red-500' : 'text-neutral-400'}`}>
+                                                {row.answer || <span className="opacity-30">-</span>}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Footer */}
