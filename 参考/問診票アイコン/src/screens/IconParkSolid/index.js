@@ -1,0 +1,1 @@
+export { IconParkSolid } from "./IconParkSolid";

@@ -1,0 +1,1 @@
+export { BodyDiagramSection } from "./BodyDiagramSection";

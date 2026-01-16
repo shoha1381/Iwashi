@@ -23,7 +23,7 @@ export const NavigationSection = () => {
     const activeItem = getActiveItem();
 
     // Order: 施術, 分析, 売上, 集計, 顧客, 設定
-    // Icons restored from reference folder: 参考/フッダー切り替え/src/screens/Frame/Frame.jsx
+    // Icons from reference folder: 参考/フッダー切り替え/src/screens/Frame/Frame.jsx
     const navigationItems = [
         {
             id: "treatment",
@@ -34,13 +34,13 @@ export const NavigationSection = () => {
                     <img
                         className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
                         alt="Treatment body"
-                        src="/img/vector.svg"
+                        src="/img/footer-treatment.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                     <img
                         className="absolute w-[83%] h-[25%] top-[17%] left-[8%]"
                         alt="Treatment header"
-                        src="/img/vector-1.svg"
+                        src="/img/footer-treatment-header.svg"
                         style={{ filter: isActive ? BLUE_DARK : GRAY_DARK }}
                     />
                 </div>
@@ -52,11 +52,10 @@ export const NavigationSection = () => {
             path: "/analytics",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Reference uses frame-517.svg for Analysis */}
                     <img
                         className="w-full h-full"
                         alt="Analysis"
-                        src="/img/frame-517.svg"
+                        src="/img/footer-analysis.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>
@@ -68,12 +67,11 @@ export const NavigationSection = () => {
             path: "/sales",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center overflow-hidden">
-                    {/* Reference uses vector-2.svg with rounded background for Sales */}
                     <div className={`w-[60%] h-[55%] top-[35%] left-[20%] rounded-[8px] absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />
                     <img
                         className="absolute w-[92%] h-full top-0 left-[4%]"
                         alt="Sales"
-                        src="/img/vector-2.svg"
+                        src="/img/footer-sales.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>
@@ -85,17 +83,16 @@ export const NavigationSection = () => {
             path: "/summary",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Reference uses vector-3.svg + vector-4.svg for Summary */}
                     <img
                         className="absolute w-[75%] h-[75%] top-[12%] left-[12%]"
                         alt="Summary 1"
-                        src="/img/vector-3.svg"
+                        src="/img/footer-summary-1.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                     <img
                         className="absolute w-[75%] h-[25%] top-[12%] left-[12%]"
                         alt="Summary 2"
-                        src="/img/vector-4.svg"
+                        src="/img/footer-summary-2.svg"
                         style={{ filter: isActive ? BLUE_DARK : GRAY_DARK }}
                     />
                 </div>
@@ -107,17 +104,16 @@ export const NavigationSection = () => {
             path: "/customers",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Reference uses vector-5.svg + vector-6.svg for Customers */}
                     <img
                         className="absolute w-[94%] h-[69%] top-[15%] left-[3%]"
                         alt="Customers 1"
-                        src="/img/vector-5.svg"
+                        src="/img/footer-customers-1.svg"
                         style={{ filter: isActive ? BLUE_DARK : GRAY_DARK }}
                     />
                     <img
                         className="absolute w-[62%] h-[69%] top-[15%] left-[34%]"
                         alt="Customers 2"
-                        src="/img/vector-6.svg"
+                        src="/img/footer-customers-2.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>
@@ -129,12 +125,11 @@ export const NavigationSection = () => {
             path: "/settings",
             icon: (isActive) => (
                 <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Reference uses vector-7.svg with rounded background for Settings */}
                     <div className={`w-[46%] h-[46%] top-[25%] left-[29%] rounded-[8px] absolute ${isActive ? 'bg-[#0088ff]' : 'bg-[#999999]'}`} />
                     <img
                         className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
                         alt="Settings"
-                        src="/img/vector-7.svg"
+                        src="/img/footer-settings.svg"
                         style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
                     />
                 </div>

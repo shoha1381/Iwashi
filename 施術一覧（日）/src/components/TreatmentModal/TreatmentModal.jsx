@@ -393,6 +393,10 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                         </div>
                     </div>
                 )}
+
+                {activeTab === "concerns" && (
+                    <ConcernsTabContent softShadow={softShadow} />
+                )}
             </div>
 
             {/* Footer */}
@@ -436,5 +440,402 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             </div>
         </div>,
         document.body
+    );
+};
+
+const INITIAL_UPPER_COLUMNS = [
+    // Col 1: 顔全体 + 頭
+    [
+        {
+            title: "顔全体",
+            items: [
+                { text: "小さくしたい" },
+                { text: "丸顔を改善したい", disabled: true },
+                { text: "面長を改善したい", highlighted: true },
+                { text: "左右差を取りたい" },
+                { text: "むくみを取りたい" },
+                { text: "たるみを取りたい\n（リフトUP）" },
+                { text: "くすみをとりたい", disabled: true },
+                { text: "アンチエイジング" },
+                { text: "立体的な顔にしたい" },
+            ]
+        },
+        {
+            title: "頭",
+            items: [
+                { text: "小さくしたい" },
+                { text: "左右差を取りたい" },
+                { text: "ハチの張りをなくしたい", disabled: true },
+            ]
+        }
+    ],
+    // Col 2: 額 + 眉 + 目
+    [
+        {
+            title: "額",
+            items: [
+                { text: "形を整えたい" },
+                { text: "しわを消したい", disabled: true },
+            ]
+        },
+        {
+            title: "眉",
+            items: [
+                { text: "左右差を取りたい" },
+                { text: "眉間のしわを消したい" },
+            ]
+        },
+        {
+            title: "目",
+            items: [
+                { text: "大きくしたい" },
+                { text: "むくみを取りたい" },
+                { text: "クマを消したい" },
+                { text: "左右均等にしたい" },
+                { text: "たるみを取りたい" },
+                { text: "しわを消したい", disabled: true },
+            ]
+        }
+    ],
+    // Col 3: 鼻 + 頬
+    [
+        {
+            title: "鼻",
+            items: [
+                { text: "高くしたい" },
+                { text: "小さくしたい" },
+                { text: "鼻すじを通したい" },
+                { text: "歪みを取りたい" },
+            ]
+        },
+        {
+            title: "頬",
+            items: [
+                { text: "頬骨を凹ませたい" },
+                { text: "厚みを取りたい" },
+                { text: "ほうれい線を消したい" },
+                { text: "頬こけをなくしたい", disabled: true },
+            ]
+        }
+    ],
+    // Col 4: 口 + 顎
+    [
+        {
+            title: "口",
+            items: [
+                { text: "口角を上げたい" },
+                { text: "左右差を取りたい" },
+                { text: "しわを消したい", disabled: true },
+            ]
+        },
+        {
+            title: "顎",
+            items: [
+                { text: "エラの張りを取りたい▶", highlighted: true },
+                { text: "二重あごをなくしたい" },
+                { text: "フェイスラインを\nすっきりさせたい" },
+                { text: "左右差を取りたい", disabled: true },
+                { text: "たるみを取りたい", disabled: true },
+                { text: "あご先の肉を取りたい" },
+            ]
+        }
+    ],
+    // Col 5: 首 + 肩
+    [
+        {
+            title: "首",
+            items: [
+                { text: "細くしたい" },
+                { text: "長くしたい", disabled: true },
+                { text: "コリを取りたい" },
+            ]
+        },
+        {
+            title: "肩",
+            items: [
+                { text: "巻き肩を改善したい" },
+                { text: "鎖骨を出したい" },
+                { text: "コリを取りたい", disabled: true },
+                { text: "肩幅を小さく見せたい" },
+                { text: "二の腕を細くしたい" },
+                { text: "デコルテを綺麗にしたい", disabled: true },
+            ]
+        }
+    ],
+];
+
+const INITIAL_LOWER_COLUMNS = [
+    // Col 1
+    [
+        {
+            title: "骨盤",
+            items: [
+                { text: "下半身を細くしたい" },
+                { text: "歪みを整えたい", highlighted: true },
+                { text: "産後の骨盤を矯正したい" },
+                { text: "反り腰を治したい" },
+            ]
+        },
+        {
+            title: "お尻",
+            items: [
+                { text: "ヒップUPしたい" },
+                { text: "小尻にしたい" },
+            ]
+        }
+    ],
+    // Col 2
+    [
+        {
+            title: "お腹",
+            items: [
+                { text: "くびれを作りたい", highlighted: true },
+                { text: "お腹を凹ませたい" },
+                { text: "便秘を解消したい" },
+            ]
+        },
+        {
+            title: "上半身",
+            items: [
+                { text: "上半身を細くしたい" },
+                { text: "姿勢をきれいにしたい" },
+            ]
+        }
+    ],
+    // Col 3
+    [
+        {
+            title: "全体",
+            items: [
+                { text: "スタイルUPしたい" },
+                { text: "歩行姿勢をきれいにしたい" },
+                { text: "自分の状態を知りたい" },
+            ]
+        }
+    ],
+    // Col 4
+    [
+        {
+            title: "美脚",
+            items: [
+                { text: "O脚を治したい" },
+                { text: "美脚にしたい" },
+                { text: "太ももを細くしたい" },
+                { text: "むくみを取りたい" },
+                { text: "ふくらはぎを細くしたい" },
+                { text: "足首を細くしたい" },
+            ]
+        }
+    ],
+    // Col 5
+    [
+        {
+            title: "その他",
+            items: [
+                { text: "特になし" },
+            ]
+        }
+    ]
+];
+
+const ConcernsTabContent = ({ softShadow }) => {
+    const [concernTab, setConcernTab] = useState("upper");
+    const [isEditing, setIsEditing] = useState(false);
+
+    // State for modifying items
+    const [upperData, setUpperData] = useState(INITIAL_UPPER_COLUMNS);
+    const [lowerData, setLowerData] = useState(INITIAL_LOWER_COLUMNS);
+
+    // Handle cycling states: Disabled (Gray) -> Normal (Black) -> Highlighted (Red) -> Disabled
+    const handleItemClick = (colIndex, sectionIndex, itemIndex) => {
+        if (!isEditing) return;
+
+        const updateData = (prevData) => {
+            const newData = [...prevData]; // Shallow copy of columns
+            const newColumn = [...newData[colIndex]]; // Shallow copy of column array
+            const newSection = { ...newColumn[sectionIndex] }; // Shallow copy of section object
+            const newItems = [...newSection.items]; // Shallow copy of items array
+            const item = { ...newItems[itemIndex] }; // Shallow copy of item object
+
+            // Cycle Logic
+            if (item.disabled) {
+                // Gray -> Black
+                item.disabled = false;
+                item.highlighted = false;
+            } else if (!item.highlighted) {
+                // Black -> Red
+                item.highlighted = true;
+            } else {
+                // Red -> Gray
+                item.highlighted = false;
+                item.disabled = true;
+            }
+
+            newItems[itemIndex] = item;
+            newSection.items = newItems;
+            newColumn[sectionIndex] = newSection;
+            newData[colIndex] = newColumn;
+            return newData;
+        };
+
+        if (concernTab === "upper") {
+            setUpperData(updateData(upperData));
+        } else {
+            setLowerData(updateData(lowerData));
+        }
+    };
+
+    // Card Component - Now Interactive
+    const ConcernCard = ({ title, items, onCardClick }) => (
+        <article className={`w-full bg-white rounded-xl overflow-hidden ${softShadow} flex flex-col`}>
+            <div className="bg-neutral-50/80 backdrop-blur-sm border-b border-neutral-100 py-3 flex justify-center items-center">
+                <h3 className="text-[12px] font-semibold text-neutral-800 tracking-wider">
+                    {title}
+                </h3>
+            </div>
+            <ul className="flex flex-col items-center gap-2.5 p-4">
+                {items.map((item, idx) => (
+                    <li
+                        key={idx}
+                        onClick={() => onCardClick(idx)}
+                        className={`text-[12px] leading-[1.6] text-center whitespace-pre-wrap font-medium transition-colors duration-200 ${isEditing ? "cursor-pointer select-none hover:opacity-70 active:scale-95 transform" : ""
+                            } ${item.highlighted
+                                ? "bg-red-50 text-red-600 border border-red-200 px-3 py-1.5 rounded-lg font-semibold"
+                                : item.disabled
+                                    ? "text-neutral-300"
+                                    : "text-neutral-700"
+                            }`}
+                    >
+                        {item.text}
+                    </li>
+                ))}
+            </ul>
+        </article>
+    );
+
+    return (
+        <div className="flex flex-col h-full overflow-hidden">
+            {/* Top Section: Diagrams + Edit Toggle - Slightly smaller */}
+            <div className="flex-shrink-0 px-8 pt-4 pb-2 relative min-h-[220px]">
+
+                {/* Edit/Lock Toggle */}
+                <div className="absolute top-2 right-4 z-10">
+                    <div className="bg-white/80 backdrop-blur-xl rounded-full p-1 border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.10)] flex">
+                        <button
+                            onClick={() => setIsEditing(false)}
+                            className={`px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all flex items-center gap-2 ${!isEditing
+                                ? "bg-neutral-600 text-white shadow-lg"
+                                : "text-neutral-500 hover:bg-white/60"
+                                }`}
+                        >
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            ロック
+                        </button>
+                        <button
+                            onClick={() => setIsEditing(true)}
+                            className={`px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all flex items-center gap-2 ${isEditing
+                                ? "bg-[#4aa9fc] text-white shadow-lg"
+                                : "text-neutral-500 hover:bg-white/60"
+                                }`}
+                        >
+                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                            編集
+                        </button>
+                    </div>
+                </div>
+
+                {/* Diagrams Container - Shifted Right */}
+                <div className="flex items-center gap-12 justify-start pl-12">
+                    {/* Face Diagram (Left) - Smaller (160px) */}
+                    <div className="relative w-[160px] h-[160px] flex items-center justify-center">
+                        <span className="absolute top-0 left-4 text-[12px] font-semibold text-neutral-700">R</span>
+                        <span className="absolute top-0 right-4 text-[12px] font-semibold text-neutral-700">L</span>
+                        <img src="/img/group.png" className="w-[130px] h-auto object-contain" alt="Face Diagram" />
+                        {/* Face Labels - Adjusted position for smaller size */}
+                        <div className="absolute top-[28%] left-[-8px] flex flex-col items-center">
+                            <svg className="w-4 h-4 text-[#4aa9fc]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <path d="M12 19V5M5 12l7-7 7 7" />
+                            </svg>
+                            <span className="text-[10px] text-[#4aa9fc] font-semibold whitespace-nowrap">面長の改善</span>
+                            <svg className="w-4 h-4 text-[#4aa9fc]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <path d="M12 5v14M19 12l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[45px] h-[25px] bg-[#4aa9fc]/30 rounded-full" />
+                        <span className="absolute bottom-[8%] left-1/2 -translate-x-1/2 text-[10px] text-[#4aa9fc] font-semibold whitespace-nowrap">エラ張りの解消</span>
+                    </div>
+
+                    {/* Body Diagrams (Right) - Smaller (75px) */}
+                    <div className="flex gap-8 items-start">
+                        {/* Front */}
+                        <div className="flex flex-col items-center">
+                            <span className="text-[12px] font-semibold text-neutral-500 mb-2">前</span>
+                            <div className="relative">
+                                <img src="/img/group-1.png" className="w-[75px] opacity-90" alt="Body Front" />
+                                <div className="absolute top-[42%] left-[18%] w-[14px] h-[11px] bg-[#4aa9fc]/40 rounded-full" />
+                                <div className="absolute top-[42%] right-[18%] w-[14px] h-[11px] bg-[#4aa9fc]/40 rounded-full" />
+                            </div>
+                            <span className="text-[10px] text-[#4aa9fc] font-semibold mt-2 whitespace-nowrap">歪みを整えたい</span>
+                        </div>
+                        {/* Back */}
+                        <div className="flex flex-col items-center">
+                            <span className="text-[12px] font-semibold text-neutral-500 mb-2">後</span>
+                            <div className="relative">
+                                <img src="/img/group-2.png" className="w-[75px] opacity-90" alt="Body Back" />
+                                <div className="absolute top-[42%] left-[18%] w-[14px] h-[11px] bg-[#4aa9fc]/40 rounded-full" />
+                                <div className="absolute top-[42%] right-[18%] w-[14px] h-[11px] bg-[#4aa9fc]/40 rounded-full" />
+                            </div>
+                            <span className="text-[10px] text-[#4aa9fc] font-semibold mt-2 whitespace-nowrap">くびれを作りたい</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Cards Section - Moved Down */}
+            <div className="flex-1 overflow-y-auto px-6 pb-24 mt-4">
+                <div className="grid grid-cols-5 gap-4 items-start">
+                    {(concernTab === "upper" ? upperData : lowerData).map((colItems, colIndex) => (
+                        <div key={colIndex} className="flex flex-col gap-4">
+                            {colItems.map((part, sectionIndex) => (
+                                <ConcernCard
+                                    key={sectionIndex}
+                                    title={part.title}
+                                    items={part.items}
+                                    onCardClick={(itemIndex) => handleItemClick(colIndex, sectionIndex, itemIndex)}
+                                />
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Upper/Lower Toggle - Positioned */}
+            <div className="fixed bottom-[130px] right-12 z-[115]">
+                <div className="bg-white/80 backdrop-blur-xl rounded-full p-1.5 border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.12)] flex">
+                    <button
+                        onClick={() => setConcernTab("upper")}
+                        className={`px-8 py-3 rounded-full text-[15px] font-semibold transition-all ${concernTab === "upper"
+                            ? "bg-[#4aa9fc] text-white shadow-lg"
+                            : "text-neutral-500 hover:bg-white/60"
+                            }`}
+                    >
+                        上部
+                    </button>
+                    <button
+                        onClick={() => setConcernTab("lower")}
+                        className={`px-8 py-3 rounded-full text-[15px] font-semibold transition-all ${concernTab === "lower"
+                            ? "bg-[#4aa9fc] text-white shadow-lg"
+                            : "text-neutral-500 hover:bg-white/60"
+                            }`}
+                    >
+                        下部
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 };
