@@ -3,9 +3,9 @@ import ReactDOM from "react-dom";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
-const BLUE_LIGHT = 'brightness(0) saturate(100%) invert(65%) sepia(50%) saturate(500%) hue-rotate(187deg) brightness(110%) contrast(95%)';
 const GRAY_DARK = 'brightness(0) saturate(100%) invert(60%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)';
 const GRAY_LIGHT = 'brightness(0) saturate(100%) invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)';
+const WHITE = 'brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%)';
 
 export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     const [todos, setTodos] = useState([
@@ -28,6 +28,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         photo: "/img/image-2.png",
     };
 
+    // Patient Info - Layout matches new image (clean columns)
     const patientInfo = {
         name: data.name,
         gender: data.gender || "女",
@@ -50,7 +51,8 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         ],
     };
 
-    const appointmentData = [
+    // Appointment Data - Array for row mapping
+    const appointmentRows = [
         { label: "目標", content: "1月の結婚式に向けて、右のエラはりを改善する" },
         { label: "注意事項", content: "顎・フェイスライン整形あり" },
         { label: "注意ワード", content: "太った/痩せた、肌の色、整形跡" },
@@ -67,25 +69,17 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         "今の時期は短い間隔で通っていただくと、定着が良くなることを伝えましょう。",
     ];
 
-    // Tab icons using same structure as NavigationSection
     const tabs = [
         {
             id: "overview",
             label: "概要",
             icon: (isActive) => (
-                <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Clipboard/Document icon - similar to NavigationSection treatment icon */}
+                <div className="w-6 h-6 relative flex items-center justify-center">
                     <img
                         className="absolute w-[83%] h-[83%] top-[8%] left-[8%]"
                         alt=""
-                        src="/img/vector.svg"
-                        style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
-                    />
-                    <img
-                        className="absolute w-[83%] h-[25%] top-[17%] left-[8%]"
-                        alt=""
-                        src="/img/vector-1.svg"
-                        style={{ filter: isActive ? BLUE_DARK : GRAY_DARK }}
+                        src="/img/icon-treatment-overview.svg"
+                        style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
                     />
                 </div>
             ),
@@ -94,13 +88,12 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             id: "concerns",
             label: "お悩み",
             icon: (isActive) => (
-                <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Chat/Bubble icon - using frame-517 like analysis */}
+                <div className="w-6 h-6 relative flex items-center justify-center">
                     <img
                         className="w-full h-full"
                         alt=""
-                        src="/img/frame-517.svg"
-                        style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
+                        src="/img/icon-treatment-concerns.svg"
+                        style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
                     />
                 </div>
             ),
@@ -109,20 +102,18 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             id: "questionnaire",
             label: "問診票",
             icon: (isActive) => (
-                <div className="w-7 h-7 relative flex items-center justify-center">
-                    {/* Check/Checkmark icon */}
+                <div className="w-6 h-6 relative flex items-center justify-center">
                     <img
                         className="w-full h-full"
                         alt=""
                         src="/img/icon-park-solid-check-one.svg"
-                        style={{ filter: isActive ? BLUE_LIGHT : GRAY_LIGHT }}
+                        style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
                     />
                 </div>
             ),
         },
     ];
 
-    // Card Component
     const Card = ({ children, className = "" }) => (
         <article className={`bg-white rounded-xl overflow-hidden border border-neutral-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] ${className}`}>
             {children}
@@ -130,108 +121,131 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     );
 
     const Header = ({ icon, title, className = "" }) => (
-        <header className={`px-5 py-4 flex items-center gap-3 border-b border-neutral-100 ${className}`}>
-            {icon && <img src={icon} className="w-5 h-5 object-contain" alt="" />}
-            <h2 className="text-sm font-medium text-neutral-800 tracking-wide">{title}</h2>
+        <header className={`px-4 py-3 flex items-center gap-2.5 border-b border-neutral-100 ${className}`}>
+            {icon && <img src={icon} className="w-4 h-4 object-contain opacity-80" alt="" />}
+            <h2 className="text-sm font-medium text-neutral-800 tracking-wider">{title}</h2>
         </header>
     );
 
+    const getSelectBgColor = (value) => {
+        if (value === "継続") return "bg-green-50 text-green-700";
+        if (value === "終了") return "bg-red-50 text-red-700";
+        return "bg-neutral-100 text-neutral-600";
+    };
+
     return ReactDOM.createPortal(
-        <div className="fixed inset-0 z-[100] bg-neutral-50/50 flex justify-center items-start overflow-y-auto font-['Noto_Sans_JP']">
-            {/* Close Button */}
-            <button
-                onClick={onClose}
-                className="fixed top-6 right-6 z-[110] w-12 h-12 rounded-full bg-white shadow-lg border border-neutral-100 flex items-center justify-center text-neutral-400 hover:text-neutral-600 transition-colors"
-                aria-label="閉じる"
-            >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
+        <div className="fixed inset-0 z-[100] bg-white flex flex-col font-['Noto_Sans_JP']">
+            {/* Header - Preserved */}
+            <header className="flex-shrink-0 h-16 bg-white shadow-[0px_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-between px-4 z-20">
+                <h1 className="text-lg font-normal text-neutral-700 tracking-wide ml-2">
+                    {data.name}
+                    <span className="text-neutral-500 text-sm font-normal ml-4">
+                        ミウラリカ 様
+                    </span>
+                </h1>
+                <button
+                    onClick={onClose}
+                    className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-all"
+                    aria-label="閉じる"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </header>
 
-            {/* Main Content Container */}
-            <div className="w-[834px] min-h-[1194px] bg-white relative shadow-2xl pb-40">
+            {/* Main Content */}
+            <div className="flex-1 bg-white px-5 py-4 pb-28 overflow-hidden flex flex-col">
 
-                {/* --- PatientInfoHeaderSection --- */}
-                <div className="pt-10 px-10 pb-6">
-                    <div className="flex items-start gap-8">
-                        <img className="w-[88px] h-[88px] object-cover rounded-lg shadow-sm flex-shrink-0" alt="profile" src={patientInfo.profileImage} />
+                {/* --- Top Section: Matches Reference Image Step 4566 --- */}
+                <div className="flex flex-col gap-5 mb-5 border-b border-neutral-100 pb-5">
 
-                        <div className="flex-1">
-                            <div className="flex items-baseline gap-4 mb-2">
-                                <h1 className="text-2xl font-bold text-neutral-800 tracking-wider text-[26px]">{patientInfo.name}</h1>
-                            </div>
-                            <div className="text-sm text-neutral-500 font-medium tracking-wide mb-1">
-                                {patientInfo.gender}・{patientInfo.age}（{patientInfo.birthdate}）
-                            </div>
+                    {/* 1. Patient Info Row (Image | Name | Info Cols) */}
+                    <div className="flex items-start gap-8 px-2">
+                        {/* Image */}
+                        <div className="w-[100px] h-[100px] flex-shrink-0">
+                            <img className="w-full h-full object-cover rounded shadow-sm" alt="profile" src={data.photo} />
                         </div>
 
-                        {/* Details Columns */}
-                        <div className="flex gap-10 mt-1">
-                            <div className="space-y-1">
-                                {patientInfo.leftColumn.map((item, i) => (
-                                    <div key={i} className="flex text-[11px] leading-relaxed">
-                                        <span className="w-[70px] font-medium text-neutral-800">{item.label}</span>
-                                        <span className="text-neutral-600 font-medium">： {item.value}</span>
-                                    </div>
-                                ))}
+                        {/* Info Container */}
+                        <div className="flex-1 flex gap-10 pt-1">
+                            {/* Name Block */}
+                            <div className="w-[180px] flex-shrink-0">
+                                <h1 className="text-2xl font-medium text-neutral-900 mb-3 tracking-wide">{patientInfo.name}</h1>
+                                <div className="text-[13px] text-neutral-400 font-normal tracking-wide">
+                                    {patientInfo.gender}・{patientInfo.age} <span className="ml-1">（{patientInfo.birthdate}）</span>
+                                </div>
                             </div>
-                            <div className="space-y-1">
-                                {patientInfo.rightColumn.map((item, i) => (
-                                    <div key={i} className="flex text-[11px] leading-relaxed">
-                                        <span className="w-[50px] font-medium text-neutral-800">{item.label}</span>
-                                        <span className="text-neutral-600 font-medium">： {item.value || ""}</span>
-                                    </div>
-                                ))}
+
+                            {/* Details Cols */}
+                            <div className="flex-1 flex gap-12">
+                                <div className="space-y-1">
+                                    {patientInfo.leftColumn.map((item, i) => (
+                                        <div key={i} className="flex text-[11px] leading-relaxed">
+                                            <span className="w-[90px] text-neutral-800 font-medium">{item.label}</span>
+                                            <span className="w-3 text-neutral-800 font-medium text-center">:</span>
+                                            <span className="text-neutral-800 font-medium">{item.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="space-y-1">
+                                    {patientInfo.rightColumn.map((item, i) => (
+                                        <div key={i} className="flex text-[11px] leading-relaxed">
+                                            <span className="w-[70px] text-neutral-800 font-medium">{item.label}</span>
+                                            <span className="w-3 text-neutral-800 font-medium text-center">:</span>
+                                            <span className="text-neutral-800 font-medium">{item.value || ""}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                {/* --- AppointmentScheduleSection --- */}
-                <div className="px-10 pb-6">
-                    <div className="space-y-2">
-                        {appointmentData.map((item, index) => (
-                            <div key={index} className="flex text-[13px] font-medium leading-relaxed">
-                                <span className="w-24 flex-shrink-0 text-neutral-800">{item.label}</span>
-                                <span className="text-neutral-800 flex-1">{item.content}</span>
+                    {/* Divider */}
+                    <div className="w-full h-px bg-neutral-100" />
+
+                    {/* 2. Goals / Notes Row (Clean Text) */}
+                    <div className="px-2 space-y-3">
+                        {appointmentRows.map((row, index) => (
+                            <div key={index} className="flex text-[12px] leading-relaxed items-start">
+                                <span className="w-[120px] flex-shrink-0 font-medium text-neutral-900 tracking-wide">{row.label}</span>
+                                <span className="flex-1 font-medium text-neutral-800 tracking-wide">{row.content}</span>
                             </div>
                         ))}
                     </div>
+
                 </div>
 
-                {/* Divider */}
-                <div className="w-full h-px bg-neutral-100 mb-8" />
-
-                {/* --- Main Content Area --- */}
-                <div className="flex px-8 gap-6">
+                {/* --- Bottom Grid (ToDo, Advice, etc.) - Preserved Exactly --- */}
+                <div className="flex gap-4 flex-1 min-h-0">
                     {/* Sidebar */}
-                    <div className="w-[80px] flex-shrink-0 pt-24 text-center relative">
+                    <div className="w-[60px] flex-shrink-0 pt-2 text-center relative">
                         <div className="absolute top-0 right-0 h-full w-px bg-neutral-100" />
-                        <div className="space-y-8">
+                        <div className="space-y-6">
                             <div className="relative">
                                 <span className="block text-xl text-neutral-900 font-medium tracking-wide">SP</span>
-                                <span className="text-[11px] text-neutral-400 font-medium">1回目</span>
+                                <span className="text-[10px] text-neutral-400 font-medium">1回目</span>
                             </div>
-                            <div className="h-12 w-px bg-neutral-200 mx-auto" />
+                            <div className="w-full border-t border-neutral-100" />
                             <div>
                                 <span className="block text-xl text-neutral-900 font-medium tracking-wide">10/6</span>
-                                <span className="text-[11px] text-neutral-400 font-medium">月</span>
+                                <span className="text-[10px] text-neutral-400 font-medium">月</span>
                             </div>
-                            <div className="h-12 w-px bg-neutral-200 mx-auto" />
-                            <div className="text-lg text-neutral-900 font-medium tracking-wide">13:00〜</div>
+                            <div className="w-full border-t border-neutral-100" />
+                            <div className="text-sm text-neutral-900 font-medium tracking-wide">13:00〜</div>
                         </div>
                     </div>
 
                     {/* Cards Grid */}
-                    <div className="flex-1 grid grid-cols-2 gap-5">
-                        {/* ToDo Card */}
-                        <Card className="min-h-[250px]">
-                            <Header icon="/img/vector-1.svg" title="ToDo" />
-                            <div className="p-5 space-y-3">
-                                {todos.map((todo) => (
-                                    <div key={todo.id} className="relative">
-                                        <label className={`flex items-center gap-3 w-full p-3 rounded-lg border transition-all cursor-pointer ${todo.checked ? 'bg-white border-neutral-200' : 'bg-white border-neutral-200 shadow-sm'}`}>
+                    <div className="flex-1 grid grid-cols-2 gap-3 h-full overflow-hidden">
+                        {/* Left Col */}
+                        <div className="flex flex-col gap-3 h-full">
+                            {/* ToDo */}
+                            <Card className="flex-[0.8] flex flex-col min-h-0">
+                                <Header icon="/img/vector-18.svg" title="ToDo" />
+                                <div className="p-2 space-y-1.5 overflow-y-auto flex-1">
+                                    {todos.map((todo) => (
+                                        <label key={todo.id} className={`flex items-center gap-2 w-full p-2 rounded-lg border transition-all cursor-pointer ${todo.checked ? 'bg-white border-neutral-200' : 'bg-white border-neutral-200 shadow-sm'}`}>
                                             <div className="relative w-5 h-5 flex-shrink-0 flex items-center justify-center">
                                                 <input type="checkbox" checked={todo.checked} onChange={() => handleTodoToggle(todo.id)} className="peer sr-only" />
                                                 <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${todo.checked ? 'bg-[#4aa9fc] border-[#4aa9fc]' : 'bg-white border-neutral-300'}`}>
@@ -240,125 +254,123 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <span className="text-[13px] font-medium text-neutral-700">{todo.text}</span>
+                                            <span className="text-[11px] font-medium text-neutral-800 line-clamp-1">{todo.text}</span>
                                         </label>
-                                    </div>
-                                ))}
-                            </div>
-                        </Card>
-
-                        {/* Right Column */}
-                        <div className="space-y-5">
-                            <Card className="h-[120px]">
-                                <Header icon="/img/icon-park-solid-notes-1.svg" title="継続の確認" />
-                                <div className="p-5 flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[13px] font-bold text-neutral-700">3回目</span>
-                                        <div className="bg-neutral-100 rounded-md px-3 py-1.5 w-24">
-                                            <select value={session3} onChange={(e) => setSession3(e.target.value)} className="bg-transparent text-[11px] w-full outline-none text-neutral-600 font-medium cursor-pointer">
-                                                <option>選択</option>
-                                                <option>確定</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="w-px h-8 bg-neutral-200" />
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-[13px] font-bold text-neutral-700">4回目</span>
-                                        <div className="bg-neutral-100 rounded-md px-3 py-1.5 w-24">
-                                            <select value={session4} onChange={(e) => setSession4(e.target.value)} className="bg-transparent text-[11px] w-full outline-none text-neutral-600 font-medium cursor-pointer">
-                                                <option>選択</option>
-                                                <option>確定</option>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
                             </Card>
-
-                            <Card className="flex-1 min-h-[350px]">
-                                <Header icon="/img/icon-park-solid-notes.svg" title="前回メモ" />
-                                <div className="flex h-[300px]">
-                                    <div className="w-[80px] flex-shrink-0 bg-neutral-50/50 border-r border-neutral-100 flex flex-col items-center py-6 gap-32">
-                                        <span className="text-[12px] text-neutral-400 font-medium">施術部位</span>
-                                        <span className="text-[12px] text-neutral-400 font-medium">備考</span>
-                                    </div>
-                                    <div className="flex-1 py-6 px-4 flex flex-col gap-32">
-                                        <div className="h-[20px] text-[13px] text-neutral-700"></div>
-                                        <div className="h-[60px] text-[13px] text-neutral-700 leading-relaxed"></div>
-                                    </div>
+                            {/* Advice */}
+                            <Card className="flex-1 flex flex-col min-h-0">
+                                <Header icon="/img/vector-19.svg" title="アドバイス" />
+                                <div className="p-3 overflow-y-auto flex-1">
+                                    <ul className="space-y-1.5">
+                                        {adviceItems.map((item, i) => (
+                                            <li key={i} className="flex gap-2">
+                                                <span className="text-neutral-800 mt-1.5 w-1 h-1 bg-neutral-800 rounded-full flex-shrink-0" />
+                                                <span className="text-[11px] font-medium leading-5 text-neutral-800">{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </Card>
                         </div>
 
-                        {/* Advice Card */}
-                        <Card className="min-h-[300px]">
-                            <Header icon="/img/vector-2.svg" title="アドバイス" />
-                            <div className="p-6">
-                                <ul className="space-y-4">
-                                    {adviceItems.map((item, i) => (
-                                        <li key={i} className="flex gap-2">
-                                            <span className="text-neutral-800 mt-1.5 w-1 h-1 bg-neutral-800 rounded-full flex-shrink-0" />
-                                            <span className="text-[13px] font-medium leading-7 text-neutral-800">{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </Card>
+                        {/* Right Col */}
+                        <div className="flex flex-col gap-3 h-full">
+                            {/* Continuity */}
+                            <Card className="h-[90px] flex-shrink-0">
+                                <Header icon="/img/mask-group.png" title="継続の確認" />
+                                <div className="px-2 h-[45px] flex items-center">
+                                    <div className="flex-1 flex items-center justify-center gap-2">
+                                        <span className="text-[11px] font-bold text-neutral-700">3回目</span>
+                                        <div className={`rounded-md px-2 py-1 w-[80px] relative flex items-center transition-colors ${getSelectBgColor(session3)}`}>
+                                            <select value={session3} onChange={(e) => setSession3(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-bold cursor-pointer appearance-none pl-1 z-10">
+                                                <option value="選択">選択</option>
+                                                <option value="継続">継続</option>
+                                                <option value="終了">終了</option>
+                                            </select>
+                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2 opacity-50" alt="" />
+                                        </div>
+                                    </div>
+                                    <div className="w-px h-6 bg-neutral-100" />
+                                    <div className="flex-1 flex items-center justify-center gap-2">
+                                        <span className="text-[11px] font-bold text-neutral-700">4回目</span>
+                                        <div className={`rounded-md px-2 py-1 w-[80px] relative flex items-center transition-colors ${getSelectBgColor(session4)}`}>
+                                            <select value={session4} onChange={(e) => setSession4(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-bold cursor-pointer appearance-none pl-1 z-10">
+                                                <option value="選択">選択</option>
+                                                <option value="継続">継続</option>
+                                                <option value="終了">終了</option>
+                                            </select>
+                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2 opacity-50" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </Card>
 
-                        {/* Add Memo Button */}
-                        <button className="h-[55px] bg-[#4aa9fc] hover:bg-[#3a99ec] active:scale-[0.99] transition-all rounded-[12px] text-white flex items-center justify-center gap-3 shadow-md hover:shadow-lg w-full">
-                            <span className="text-[20px] font-light mb-0.5">✏️</span>
-                            <span className="text-[14px] font-bold tracking-wide">今日のメモを追加</span>
-                        </button>
+                            {/* Previous Memo */}
+                            <Card className="flex-1 min-h-0 flex flex-col">
+                                <Header icon="/img/mask-group.png" title="前回メモ" />
+                                <div className="flex-1 relative min-h-0">
+                                    <div className="absolute top-0 bottom-0 left-[70px] w-px bg-neutral-100" />
+                                    <div className="absolute top-[40px] left-0 right-0 h-px bg-neutral-100" />
+                                    <div className="absolute top-0 left-0 w-[70px] h-[40px] flex items-center justify-center text-[10px] text-neutral-400 font-medium">施術部位</div>
+                                    <div className="absolute top-[40px] left-0 w-[70px] h-full flex pt-4 justify-center text-[10px] text-neutral-400 font-medium">備考</div>
+
+                                    <div className="absolute top-0 left-[71px] right-0 h-[40px] p-2 text-[11px] text-neutral-700 font-medium"></div>
+                                    <div className="absolute top-[41px] left-[71px] right-0 bottom-0 p-2 text-[11px] text-neutral-700 leading-relaxed overflow-y-auto font-medium"></div>
+                                </div>
+                            </Card>
+
+                            {/* Add Memo */}
+                            <div className="flex justify-center flex-shrink-0">
+                                <button className="h-[45px] w-[260px] bg-[#4aa9fc] hover:bg-[#3a99ec] active:scale-[0.99] transition-all rounded-full text-white flex items-center justify-center gap-3 shadow-md hover:shadow-lg">
+                                    <img src="/img/icon-pen-white.svg" className="w-5 h-5 object-contain" alt="" />
+                                    <span className="text-[14px] font-bold tracking-wide">今日のメモを追加</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* --- Bottom Navigation (Matching NavigationSection style) --- */}
-                <div className="fixed bottom-0 left-0 w-full z-[120]">
-                    <div className="bg-white border-t border-neutral-100 px-safe py-3 flex justify-center items-center h-[80px]">
+                <div className="w-full h-px bg-neutral-100" />
+            </div>
 
-                        {/* Tabs - Centered */}
-                        <div className="flex gap-12">
-                            {tabs.map((tab) => {
-                                const isActive = activeTab === tab.id;
-                                return (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => setActiveTab(tab.id)}
-                                        className="flex flex-col items-center gap-1.5 w-16"
+            {/* Footer - Preserved */}
+            <div className="fixed bottom-8 left-0 w-full z-[120] pointer-events-none">
+                <div className="relative w-full flex justify-center items-center h-[72px]">
+                    <div className="bg-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-2 py-1.5 flex items-center gap-1 pointer-events-auto">
+                        {tabs.map((tab) => {
+                            const isActive = activeTab === tab.id;
+                            return (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`flex flex-col items-center justify-center rounded-full transition-colors duration-200 w-[90px] h-[60px] ${isActive ? "bg-[#4aa9fc] shadow-md" : "hover:bg-neutral-50"
+                                        }`}
+                                >
+                                    {tab.icon(isActive)}
+                                    <span
+                                        className={`text-[10px] font-bold tracking-wide mt-1 ${isActive ? "text-white" : "text-[#999999]"
+                                            }`}
                                     >
-                                        {tab.icon(isActive)}
-                                        <span
-                                            className={`text-[10px] font-bold tracking-wide ${isActive ? "text-[#54a0ff]" : "text-[#999999]"
-                                                }`}
-                                        >
-                                            {tab.label}
-                                        </span>
-                                    </button>
-                                );
-                            })}
-                        </div>
-
-                        {/* Function Button (Right side, independent) */}
-                        <div className="absolute right-8 top-1/2 -translate-y-1/2">
-                            <button className="flex flex-col items-center gap-1.5 w-16">
-                                <div className="w-7 h-7 relative flex items-center justify-center">
-                                    {/* Three dots - using vector-4 similar to Summary icon in NavSection */}
-                                    <img
-                                        className="absolute w-[75%] h-[75%] top-[12%] left-[12%]"
-                                        alt=""
-                                        src="/img/vector-3.svg"
-                                        style={{ filter: GRAY_LIGHT }}
-                                    />
-                                    <img
-                                        className="absolute w-[75%] h-[25%] top-[12%] left-[12%]"
-                                        alt=""
-                                        src="/img/vector-4.svg"
-                                        style={{ filter: GRAY_DARK }}
-                                    />
-                                </div>
-                                <span className="text-[10px] font-bold text-[#999999] tracking-wide">機能</span>
-                            </button>
-                        </div>
+                                        {tab.label}
+                                    </span>
+                                </button>
+                            );
+                        })}
+                    </div>
+                    <div className="absolute right-12 top-1/2 -translate-y-1/2 pointer-events-auto">
+                        <button className="w-[80px] h-[60px] bg-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col items-center justify-center gap-0.5 hover:bg-neutral-50 transition-all">
+                            <div className="w-5 h-5 relative flex items-center justify-center">
+                                <img
+                                    className="w-full h-full object-contain"
+                                    alt=""
+                                    src="/img/icon-three-dots.svg"
+                                    style={{ filter: GRAY_DARK }}
+                                />
+                            </div>
+                            <span className="text-[9px] font-bold text-[#999999] tracking-wide">機能</span>
+                        </button>
                     </div>
                 </div>
             </div>
