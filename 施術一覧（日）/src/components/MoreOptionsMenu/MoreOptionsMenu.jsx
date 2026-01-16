@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const MoreOptionsMenu = ({ isOpen, onClose, anchorPosition }) => {
+export const MoreOptionsMenu = ({ isOpen, onClose, anchorPosition, onAction }) => {
     const menuRef = useRef(null);
 
     const menuItems = [
@@ -8,16 +8,19 @@ export const MoreOptionsMenu = ({ isOpen, onClose, anchorPosition }) => {
             id: 1,
             label: "類似症例",
             icon: "/static/schedule/vector.svg",
+            action: "similar_cases"
         },
         {
             id: 2,
             label: "写真 AI 生成",
             icon: "/static/schedule/vector-1.svg",
+            action: "ai_generation"
         },
         {
             id: 3,
             label: "写真比較",
             icon: "/static/schedule/vector-2.svg",
+            action: "photo_comparison"
         },
     ];
 
@@ -62,7 +65,11 @@ export const MoreOptionsMenu = ({ isOpen, onClose, anchorPosition }) => {
                             <button
                                 className="w-full h-11 px-4 flex items-center gap-3 hover:bg-neutral-100/80 transition-colors text-left"
                                 onClick={() => {
-                                    alert(`${item.label} は開発中です`);
+                                    if (onAction) {
+                                        onAction(item.action);
+                                    } else {
+                                        alert(`${item.label} は開発中です`);
+                                    }
                                     onClose();
                                 }}
                             >

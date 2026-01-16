@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { QuestionnaireModal } from "../QuestionnaireModal";
 import { LineRegistrationModal } from "../LineRegistrationModal";
 import { TreatmentModal } from "../TreatmentModal";
+// FrequencyGraphModal と MoreOptionsMenu は TreatmentModal に移動しました
+// import { FrequencyGraphModal } from "../FrequencyGraphModal";
+// import { MoreOptionsMenu } from "../MoreOptionsMenu";
 
 // Default data for Rika Miura
 const RIKA_DATA = {
@@ -34,6 +37,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
     const [showQuestionnaire, setShowQuestionnaire] = useState(false);
     const [showLineRegistration, setShowLineRegistration] = useState(false);
     const [showTreatment, setShowTreatment] = useState(false);
+    // FrequencyGraphModal state removed - now in TreatmentModal
+    // MoreOptionsMenu state removed - was only for Frequency Graph test
 
     // Labels/Badges rendering helper
     const renderLabels = () => {
@@ -362,6 +367,7 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
                     onClose={() => setShowTreatment(false)}
                     customerData={data}
                 />
+                {/* FrequencyGraphModal moved to TreatmentModal */}
             </div>
 
             {/* Animation Style */}

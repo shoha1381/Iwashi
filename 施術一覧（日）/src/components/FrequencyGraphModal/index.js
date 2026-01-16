@@ -1,0 +1,1 @@
+export { FrequencyGraphModal } from "./FrequencyGraphModal";
