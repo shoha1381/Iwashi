@@ -28,6 +28,9 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         photo: "/img/image-2.png",
     };
 
+    // Style from CustomerOverviewModal
+    const softShadow = "shadow-[0px_4px_12px_rgba(0,0,0,0.03)] border border-neutral-100";
+
     const patientInfo = {
         name: data.name,
         gender: data.gender || "女",
@@ -112,7 +115,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     ];
 
     const Card = ({ children, className = "" }) => (
-        <article className={`bg-white rounded-xl overflow-hidden border border-neutral-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] ${className}`}>
+        <article className={`bg-white rounded-xl overflow-hidden ${softShadow} ${className}`}>
             {children}
         </article>
     );
@@ -173,7 +176,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
 
                     {/* Framed Info Box - Even wider label columns */}
                     <div className="flex-1 min-w-0 h-[100px]">
-                        <div className="h-full border border-neutral-200/60 rounded overflow-hidden bg-white shadow-sm flex flex-col justify-center">
+                        <div className={`h-full rounded-lg overflow-hidden bg-white flex flex-col justify-center ${softShadow}`}>
                             {/* Compressed Table Layout - 4 Rows for 8 items */}
                             <div className="flex h-full">
                                 {/* Left Col - wider label */}
@@ -200,7 +203,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                 </div>
 
                 {/* --- Middle Section: Goals/Notes as Connected Table --- */}
-                <div className="border border-neutral-200/60 rounded overflow-hidden bg-white shadow-sm">
+                <div className={`rounded-lg overflow-hidden bg-white ${softShadow}`}>
                     {goalsRows.map((item, index) => (
                         <div key={index} className="flex border-b border-neutral-200/60 last:border-b-0 h-[32px] items-center">
                             <div className="w-[100px] bg-neutral-50 text-[11px] text-neutral-600 font-medium h-full flex items-center pl-3 border-r border-neutral-200/60">{item.label}</div>
