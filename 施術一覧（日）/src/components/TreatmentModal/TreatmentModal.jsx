@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { CheckoutScreen } from "../CheckoutScreen";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
@@ -18,6 +19,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     const [session3, setSession3] = useState("選択");
     const [session4, setSession4] = useState("選択");
     const [isFunctionMenuOpen, setIsFunctionMenuOpen] = useState(false);
+    const [activeFunctionScreen, setActiveFunctionScreen] = useState(null); // null, 'checkout', 'camera', etc.
 
     // Function menu items from reference - using copied icons
     const functionMenuItems = [
@@ -472,9 +474,14 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                     <button
                                         className="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-neutral-50 transition-colors"
                                         onClick={() => {
-                                            // Handle menu item click
-                                            console.log(`Clicked: ${item.label}`);
                                             setIsFunctionMenuOpen(false);
+                                            // Handle menu item click based on id
+                                            if (item.id === 7) {
+                                                // お会計
+                                                setActiveFunctionScreen('checkout');
+                                            } else {
+                                                console.log(`Clicked: ${item.label}`);
+                                            }
                                         }}
                                     >
                                         <div className="w-6 h-6 flex items-center justify-center">
@@ -493,6 +500,13 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                     </nav>
                 </div>
             )}
+
+            {/* Checkout Screen */}
+            <CheckoutScreen
+                isOpen={activeFunctionScreen === 'checkout'}
+                onClose={() => setActiveFunctionScreen(null)}
+                customerName={data.name}
+            />
         </div>,
         document.body
     );
