@@ -28,7 +28,6 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         photo: "/img/image-2.png",
     };
 
-    // Patient Info - Layout matches new image (clean columns)
     const patientInfo = {
         name: data.name,
         gender: data.gender || "女",
@@ -40,19 +39,17 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             { label: "最寄り駅", value: "上野駅" },
             { label: "通いやすい時間帯", value: "日,月 15:00~" },
             { label: "仕事", value: "会社員" },
-            { label: "休み", value: "家でまったり" },
         ],
         rightColumn: [
-            { label: "習慣", value: "" },
+            { label: "休み", value: "家でまったり" },
             { label: "出身", value: "栃木" },
-            { label: "きっかけ", value: "Instagram" },
             { label: "趣味", value: "映画" },
             { label: "習い事", value: "なし" },
         ],
     };
 
-    // Appointment Data - Array for row mapping
-    const appointmentRows = [
+    // Goals/Notes as table rows
+    const goalsRows = [
         { label: "目標", content: "1月の結婚式に向けて、右のエラはりを改善する" },
         { label: "注意事項", content: "顎・フェイスライン整形あり" },
         { label: "注意ワード", content: "太った/痩せた、肌の色、整形跡" },
@@ -104,9 +101,9 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             icon: (isActive) => (
                 <div className="w-6 h-6 relative flex items-center justify-center">
                     <img
-                        className="w-full h-full"
+                        className="w-5 h-5"
                         alt=""
-                        src="/img/icon-park-solid-check-one.svg"
+                        src="/img/questionnaire-icon.png"
                         style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
                     />
                 </div>
@@ -128,14 +125,14 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     );
 
     const getSelectBgColor = (value) => {
-        if (value === "継続") return "bg-green-50 text-green-700";
-        if (value === "終了") return "bg-red-50 text-red-700";
-        return "bg-neutral-100 text-neutral-600";
+        if (value === "継続") return "bg-green-50 text-green-700 border-green-200";
+        if (value === "終了") return "bg-red-50 text-red-700 border-red-200";
+        return "bg-neutral-50 text-neutral-600 border-neutral-200";
     };
 
     return ReactDOM.createPortal(
         <div className="fixed inset-0 z-[100] bg-white flex flex-col font-['Noto_Sans_JP']">
-            {/* Header - Preserved */}
+            {/* Header */}
             <header className="flex-shrink-0 h-16 bg-white shadow-[0px_2px_8px_rgba(0,0,0,0.06)] flex items-center justify-between px-4 z-20">
                 <h1 className="text-lg font-normal text-neutral-700 tracking-wide ml-2">
                     {data.name}
@@ -155,84 +152,87 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             </header>
 
             {/* Main Content */}
-            <div className="flex-1 bg-white px-5 py-4 pb-28 overflow-hidden flex flex-col">
+            <div className="flex-1 bg-white px-5 py-4 pb-28 overflow-hidden flex flex-col gap-4">
 
-                {/* --- Top Section: Matches Reference Image Step 4566 --- */}
-                <div className="flex flex-col gap-5 mb-5 border-b border-neutral-100 pb-5">
+                {/* --- Top Section: [Photo] [Name & Basic Info] [Framed Info Box] --- */}
+                <div className="flex gap-8 items-start">
+                    {/* Photo */}
+                    <div className="w-[100px] h-[100px] flex-shrink-0">
+                        <img className="w-full h-full object-cover rounded-lg shadow-sm border border-neutral-100" alt="profile" src={data.photo} />
+                    </div>
 
-                    {/* 1. Patient Info Row (Image | Name | Info Cols) */}
-                    <div className="flex items-start gap-8 px-2">
-                        {/* Image */}
-                        <div className="w-[100px] h-[100px] flex-shrink-0">
-                            <img className="w-full h-full object-cover rounded shadow-sm" alt="profile" src={data.photo} />
+                    {/* Name & Basic Info Group */}
+                    <div className="flex flex-col justify-center h-[100px] flex-shrink-0 min-w-[180px]">
+                        {/* Name - Normal weight (thin) */}
+                        <h2 className="text-2xl font-normal text-neutral-800 mb-1.5 tracking-wide">{patientInfo.name}</h2>
+                        {/* Basic Info - Gender/Age/Birthdate */}
+                        <div className="text-sm text-neutral-500 font-normal tracking-wide">
+                            {patientInfo.gender}・{patientInfo.age}（{patientInfo.birthdate}）
                         </div>
+                    </div>
 
-                        {/* Info Container */}
-                        <div className="flex-1 flex gap-10 pt-1">
-                            {/* Name Block */}
-                            <div className="w-[180px] flex-shrink-0">
-                                <h1 className="text-2xl font-medium text-neutral-900 mb-3 tracking-wide">{patientInfo.name}</h1>
-                                <div className="text-[13px] text-neutral-400 font-normal tracking-wide">
-                                    {patientInfo.gender}・{patientInfo.age} <span className="ml-1">（{patientInfo.birthdate}）</span>
-                                </div>
-                            </div>
-
-                            {/* Details Cols */}
-                            <div className="flex-1 flex gap-12">
-                                <div className="space-y-1">
+                    {/* Framed Info Box - Even wider label columns */}
+                    <div className="flex-1 min-w-0 h-[100px]">
+                        <div className="h-full border border-neutral-200/60 rounded overflow-hidden bg-white shadow-sm flex flex-col justify-center">
+                            {/* Compressed Table Layout - 4 Rows for 8 items */}
+                            <div className="flex h-full">
+                                {/* Left Col - wider label */}
+                                <div className="flex-1 border-r border-neutral-200/60 h-full">
                                     {patientInfo.leftColumn.map((item, i) => (
-                                        <div key={i} className="flex text-[11px] leading-relaxed">
-                                            <span className="w-[90px] text-neutral-800 font-medium">{item.label}</span>
-                                            <span className="w-3 text-neutral-800 font-medium text-center">:</span>
-                                            <span className="text-neutral-800 font-medium">{item.value}</span>
+                                        <div key={i} className="flex border-b border-neutral-200/60 last:border-b-0 h-[25%] items-center px-2">
+                                            <div className="w-[110px] bg-neutral-50 text-[10px] text-neutral-600 font-medium h-full flex items-center -ml-2 pl-3 border-r border-neutral-200/60 mr-2 whitespace-nowrap">{item.label}</div>
+                                            <div className="text-[10px] text-neutral-700 font-medium truncate flex-1">{item.value}</div>
                                         </div>
                                     ))}
                                 </div>
-                                <div className="space-y-1">
+                                {/* Right Col */}
+                                <div className="flex-1 h-full">
                                     {patientInfo.rightColumn.map((item, i) => (
-                                        <div key={i} className="flex text-[11px] leading-relaxed">
-                                            <span className="w-[70px] text-neutral-800 font-medium">{item.label}</span>
-                                            <span className="w-3 text-neutral-800 font-medium text-center">:</span>
-                                            <span className="text-neutral-800 font-medium">{item.value || ""}</span>
+                                        <div key={i} className="flex border-b border-neutral-200/60 last:border-b-0 h-[25%] items-center px-2">
+                                            <div className="w-[60px] bg-neutral-50 text-[10px] text-neutral-600 font-medium truncate h-full flex items-center -ml-2 pl-3 border-r border-neutral-200/60 mr-2">{item.label}</div>
+                                            <div className="text-[10px] text-neutral-700 font-medium truncate flex-1">{item.value}</div>
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    {/* Divider */}
-                    <div className="w-full h-px bg-neutral-100" />
-
-                    {/* 2. Goals / Notes Row (Clean Text) */}
-                    <div className="px-2 space-y-3">
-                        {appointmentRows.map((row, index) => (
-                            <div key={index} className="flex text-[12px] leading-relaxed items-start">
-                                <span className="w-[120px] flex-shrink-0 font-medium text-neutral-900 tracking-wide">{row.label}</span>
-                                <span className="flex-1 font-medium text-neutral-800 tracking-wide">{row.content}</span>
-                            </div>
-                        ))}
-                    </div>
-
                 </div>
 
-                {/* --- Bottom Grid (ToDo, Advice, etc.) - Preserved Exactly --- */}
+                {/* --- Middle Section: Goals/Notes as Connected Table --- */}
+                <div className="border border-neutral-200/60 rounded overflow-hidden bg-white shadow-sm">
+                    {goalsRows.map((item, index) => (
+                        <div key={index} className="flex border-b border-neutral-200/60 last:border-b-0 h-[32px] items-center">
+                            <div className="w-[100px] bg-neutral-50 text-[11px] text-neutral-600 font-medium h-full flex items-center pl-3 border-r border-neutral-200/60">{item.label}</div>
+                            <div className="text-[11px] text-neutral-700 font-medium flex-1 px-3 truncate">{item.content}</div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="w-full h-px bg-neutral-100" />
+
+                {/* --- Bottom Grid --- */}
                 <div className="flex gap-4 flex-1 min-h-0">
-                    {/* Sidebar */}
-                    <div className="w-[60px] flex-shrink-0 pt-2 text-center relative">
+                    {/* Sidebar - Refined tone matching */}
+                    <div className="w-[70px] flex-shrink-0 pt-3 text-center relative">
                         <div className="absolute top-0 right-0 h-full w-px bg-neutral-100" />
-                        <div className="space-y-6">
-                            <div className="relative">
-                                <span className="block text-xl text-neutral-900 font-medium tracking-wide">SP</span>
-                                <span className="text-[10px] text-neutral-400 font-medium">1回目</span>
+                        <div className="space-y-4">
+                            {/* Course & Visit */}
+                            <div className="flex flex-col gap-1">
+                                <span className="text-sm font-medium text-neutral-700 tracking-wide">SP</span>
+                                <span className="text-[11px] text-neutral-500 font-normal">1回目</span>
                             </div>
                             <div className="w-full border-t border-neutral-100" />
+                            {/* Date */}
+                            <div className="flex flex-col gap-1">
+                                <span className="text-sm font-medium text-neutral-700 tracking-wide">10/6</span>
+                                <span className="text-[11px] text-neutral-500 font-normal">月</span>
+                            </div>
+                            <div className="w-full border-t border-neutral-100" />
+                            {/* Time */}
                             <div>
-                                <span className="block text-xl text-neutral-900 font-medium tracking-wide">10/6</span>
-                                <span className="text-[10px] text-neutral-400 font-medium">月</span>
+                                <span className="text-[12px] font-medium text-neutral-700 tracking-wide">13:00〜</span>
                             </div>
-                            <div className="w-full border-t border-neutral-100" />
-                            <div className="text-sm text-neutral-900 font-medium tracking-wide">13:00〜</div>
                         </div>
                     </div>
 
@@ -240,8 +240,8 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                     <div className="flex-1 grid grid-cols-2 gap-3 h-full overflow-hidden">
                         {/* Left Col */}
                         <div className="flex flex-col gap-3 h-full">
-                            {/* ToDo */}
-                            <Card className="flex-[0.8] flex flex-col min-h-0">
+                            {/* ToDo - Taller to fit 4 items comfortably */}
+                            <Card className="h-[240px] flex flex-col">
                                 <Header icon="/img/vector-18.svg" title="ToDo" />
                                 <div className="p-2 space-y-1.5 overflow-y-auto flex-1">
                                     {todos.map((todo) => (
@@ -259,15 +259,15 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                     ))}
                                 </div>
                             </Card>
-                            {/* Advice */}
+                            {/* Advice - Bolder text, positioned more to the right */}
                             <Card className="flex-1 flex flex-col min-h-0">
                                 <Header icon="/img/vector-19.svg" title="アドバイス" />
-                                <div className="p-3 overflow-y-auto flex-1">
-                                    <ul className="space-y-1.5">
+                                <div className="p-4 pl-6 overflow-y-auto flex-1">
+                                    <ul className="space-y-2.5">
                                         {adviceItems.map((item, i) => (
-                                            <li key={i} className="flex gap-2">
-                                                <span className="text-neutral-800 mt-1.5 w-1 h-1 bg-neutral-800 rounded-full flex-shrink-0" />
-                                                <span className="text-[11px] font-medium leading-5 text-neutral-800">{item}</span>
+                                            <li key={i} className="flex gap-2.5">
+                                                <span className="text-neutral-700 mt-2 w-1 h-1 bg-neutral-700 rounded-full flex-shrink-0" />
+                                                <span className="text-[12px] font-medium leading-relaxed text-neutral-700">{item}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -277,55 +277,58 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
 
                         {/* Right Col */}
                         <div className="flex flex-col gap-3 h-full">
-                            {/* Continuity */}
-                            <Card className="h-[90px] flex-shrink-0">
+                            {/* Continuity - Better element spacing, bolder labels */}
+                            <Card className="flex-shrink-0">
                                 <Header icon="/img/mask-group.png" title="継続の確認" />
-                                <div className="px-2 h-[45px] flex items-center">
-                                    <div className="flex-1 flex items-center justify-center gap-2">
-                                        <span className="text-[11px] font-bold text-neutral-700">3回目</span>
-                                        <div className={`rounded-md px-2 py-1 w-[80px] relative flex items-center transition-colors ${getSelectBgColor(session3)}`}>
-                                            <select value={session3} onChange={(e) => setSession3(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-bold cursor-pointer appearance-none pl-1 z-10">
+                                <div className="px-4 py-4 flex items-center justify-evenly">
+                                    {/* 3回目 */}
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[11px] font-medium text-neutral-700 tracking-wide whitespace-nowrap">3回目</span>
+                                        <div className={`rounded-lg px-3 py-1.5 min-w-[90px] relative flex items-center justify-center transition-colors border ${getSelectBgColor(session3)}`}>
+                                            <select value={session3} onChange={(e) => setSession3(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-medium cursor-pointer appearance-none text-center z-10">
                                                 <option value="選択">選択</option>
                                                 <option value="継続">継続</option>
                                                 <option value="終了">終了</option>
                                             </select>
-                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2 opacity-50" alt="" />
+                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2.5 opacity-60" alt="" />
                                         </div>
                                     </div>
-                                    <div className="w-px h-6 bg-neutral-100" />
-                                    <div className="flex-1 flex items-center justify-center gap-2">
-                                        <span className="text-[11px] font-bold text-neutral-700">4回目</span>
-                                        <div className={`rounded-md px-2 py-1 w-[80px] relative flex items-center transition-colors ${getSelectBgColor(session4)}`}>
-                                            <select value={session4} onChange={(e) => setSession4(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-bold cursor-pointer appearance-none pl-1 z-10">
+                                    {/* 4回目 */}
+                                    <div className="flex items-center gap-3">
+                                        <span className="text-[11px] font-medium text-neutral-700 tracking-wide whitespace-nowrap">4回目</span>
+                                        <div className={`rounded-lg px-3 py-1.5 min-w-[90px] relative flex items-center justify-center transition-colors border ${getSelectBgColor(session4)}`}>
+                                            <select value={session4} onChange={(e) => setSession4(e.target.value)} className="bg-transparent text-[11px] w-full outline-none font-medium cursor-pointer appearance-none text-center z-10">
                                                 <option value="選択">選択</option>
                                                 <option value="継続">継続</option>
                                                 <option value="終了">終了</option>
                                             </select>
-                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2 opacity-50" alt="" />
+                                            <img src="/img/chevron-down-1.svg" className="w-2.5 h-2.5 absolute right-2.5 opacity-60" alt="" />
                                         </div>
                                     </div>
                                 </div>
                             </Card>
 
-                            {/* Previous Memo */}
+                            {/* Previous Memo - Center aligned labels, 備考 vertically centered */}
                             <Card className="flex-1 min-h-0 flex flex-col">
                                 <Header icon="/img/mask-group.png" title="前回メモ" />
                                 <div className="flex-1 relative min-h-0">
-                                    <div className="absolute top-0 bottom-0 left-[70px] w-px bg-neutral-100" />
+                                    <div className="absolute top-0 bottom-0 left-[80px] w-px bg-neutral-100" />
                                     <div className="absolute top-[40px] left-0 right-0 h-px bg-neutral-100" />
-                                    <div className="absolute top-0 left-0 w-[70px] h-[40px] flex items-center justify-center text-[10px] text-neutral-400 font-medium">施術部位</div>
-                                    <div className="absolute top-[40px] left-0 w-[70px] h-full flex pt-4 justify-center text-[10px] text-neutral-400 font-medium">備考</div>
+                                    {/* 施術部位 - centered */}
+                                    <div className="absolute top-0 left-0 w-[80px] h-[40px] flex items-center justify-center text-[11px] text-neutral-800 font-medium tracking-wide">施術部位</div>
+                                    {/* 備考 - vertically centered in remaining space */}
+                                    <div className="absolute top-[40px] left-0 w-[80px] bottom-0 flex items-center justify-center text-[11px] text-neutral-800 font-medium tracking-wide">備考</div>
 
-                                    <div className="absolute top-0 left-[71px] right-0 h-[40px] p-2 text-[11px] text-neutral-700 font-medium"></div>
-                                    <div className="absolute top-[41px] left-[71px] right-0 bottom-0 p-2 text-[11px] text-neutral-700 leading-relaxed overflow-y-auto font-medium"></div>
+                                    <div className="absolute top-0 left-[81px] right-0 h-[40px] p-3 text-[11px] text-neutral-700 font-normal"></div>
+                                    <div className="absolute top-[41px] left-[81px] right-0 bottom-0 p-3 text-[11px] text-neutral-700 leading-relaxed overflow-y-auto font-normal"></div>
                                 </div>
                             </Card>
 
                             {/* Add Memo */}
                             <div className="flex justify-center flex-shrink-0">
-                                <button className="h-[45px] w-[260px] bg-[#4aa9fc] hover:bg-[#3a99ec] active:scale-[0.99] transition-all rounded-full text-white flex items-center justify-center gap-3 shadow-md hover:shadow-lg">
-                                    <img src="/img/icon-pen-white.svg" className="w-5 h-5 object-contain" alt="" />
-                                    <span className="text-[14px] font-bold tracking-wide">今日のメモを追加</span>
+                                <button className="h-[42px] w-[200px] bg-[#4aa9fc] hover:bg-[#3a99ec] active:scale-[0.99] transition-all rounded-full text-white flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg">
+                                    <img src="/img/icon-pen-white.svg" className="w-4 h-4 object-contain" alt="" />
+                                    <span className="text-[13px] font-medium tracking-wide">今日のメモを追加</span>
                                 </button>
                             </div>
                         </div>
@@ -335,7 +338,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                 <div className="w-full h-px bg-neutral-100" />
             </div>
 
-            {/* Footer - Preserved */}
+            {/* Footer */}
             <div className="fixed bottom-8 left-0 w-full z-[120] pointer-events-none">
                 <div className="relative w-full flex justify-center items-center h-[72px]">
                     <div className="bg-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-2 py-1.5 flex items-center gap-1 pointer-events-auto">
