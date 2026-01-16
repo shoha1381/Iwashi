@@ -17,6 +17,18 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     const [activeTab, setActiveTab] = useState("overview");
     const [session3, setSession3] = useState("選択");
     const [session4, setSession4] = useState("選択");
+    const [isFunctionMenuOpen, setIsFunctionMenuOpen] = useState(false);
+
+    // Function menu items from reference - using copied icons
+    const functionMenuItems = [
+        { id: 1, label: "類似症例", icon: "/img/func-similar-cases.svg" },
+        { id: 2, label: "頻度のグラフ", icon: "/img/func-frequency-graph.svg" },
+        { id: 3, label: "効果のイメージ", icon: "/img/func-effect-image.svg" },
+        { id: 4, label: "写真撮影", icon: "/img/func-camera.svg" },
+        { id: 5, label: "写真 AI 生成", icon: "/img/func-ai-generate.svg" },
+        { id: 6, label: "写真比較", icon: "/img/func-photo-compare.svg" },
+        { id: 7, label: "お会計", icon: "/img/func-checkout.svg" },
+    ];
 
     if (!isOpen) return null;
 
@@ -402,7 +414,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             {/* Footer */}
             <div className="fixed bottom-8 left-0 w-full z-[120] pointer-events-none">
                 <div className="relative w-full flex justify-center items-center h-[72px]">
-                    <div className="bg-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-2 py-1.5 flex items-center gap-1 pointer-events-auto">
+                    <div className={`bg-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] px-2 py-1.5 flex items-center gap-1 pointer-events-auto transition-opacity duration-200 ${isFunctionMenuOpen ? 'opacity-20 pointer-events-none' : ''}`}>
                         {tabs.map((tab) => {
                             const isActive = activeTab === tab.id;
                             return (
@@ -424,20 +436,63 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                         })}
                     </div>
                     <div className="absolute right-12 top-1/2 -translate-y-1/2 pointer-events-auto">
-                        <button className="w-[80px] h-[60px] bg-white rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col items-center justify-center gap-0.5 hover:bg-neutral-50 transition-all">
+                        <button
+                            onClick={() => setIsFunctionMenuOpen(!isFunctionMenuOpen)}
+                            className={`w-[80px] h-[60px] rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.08)] flex flex-col items-center justify-center gap-0.5 transition-all ${isFunctionMenuOpen ? 'bg-[#4aa9fc]' : 'bg-white hover:bg-neutral-50'}`}
+                        >
                             <div className="w-5 h-5 relative flex items-center justify-center">
                                 <img
                                     className="w-full h-full object-contain"
                                     alt=""
                                     src="/img/icon-three-dots.svg"
-                                    style={{ filter: GRAY_DARK }}
+                                    style={{ filter: isFunctionMenuOpen ? WHITE : GRAY_DARK }}
                                 />
                             </div>
-                            <span className="text-[9px] font-bold text-[#999999] tracking-wide">機能</span>
+                            <span className={`text-[9px] font-bold tracking-wide ${isFunctionMenuOpen ? 'text-white' : 'text-[#999999]'}`}>機能</span>
                         </button>
                     </div>
                 </div>
             </div>
+
+            {/* Dark Overlay - shown when function menu is open */}
+            {isFunctionMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-[119] pointer-events-auto"
+                    onClick={() => setIsFunctionMenuOpen(false)}
+                />
+            )}
+
+            {/* Function Menu Panel */}
+            {isFunctionMenuOpen && (
+                <div className="fixed bottom-[120px] right-12 z-[125] pointer-events-auto animate-in fade-in slide-in-from-bottom-4 duration-200">
+                    <nav className="w-[250px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden border border-white/50">
+                        <ul className="flex flex-col py-2">
+                            {functionMenuItems.map((item) => (
+                                <li key={item.id}>
+                                    <button
+                                        className="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-neutral-50 transition-colors"
+                                        onClick={() => {
+                                            // Handle menu item click
+                                            console.log(`Clicked: ${item.label}`);
+                                            setIsFunctionMenuOpen(false);
+                                        }}
+                                    >
+                                        <div className="w-6 h-6 flex items-center justify-center">
+                                            <img
+                                                src={item.icon}
+                                                alt=""
+                                                className="w-5 h-5 object-contain"
+                                                style={{ filter: GRAY_DARK }}
+                                            />
+                                        </div>
+                                        <span className="text-[14px] font-medium text-neutral-800">{item.label}</span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                </div>
+            )}
         </div>,
         document.body
     );
