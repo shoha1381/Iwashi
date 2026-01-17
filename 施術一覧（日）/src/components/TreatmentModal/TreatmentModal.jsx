@@ -6,6 +6,7 @@ import { EffectImageModal } from "../EffectImageModal";
 import { SimilarCasesModal } from "../SimilarCasesModal";
 import { PhotoComparisonModal } from "../PhotoComparisonModal";
 import { PhotoAIGenerationModal } from "../PhotoAIGenerationModal";
+import { PhotoCaptureModal } from "../PhotoCaptureModal";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
@@ -499,6 +500,9 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                             } else if (item.id === 5) {
                                                 // 写真 AI 生成
                                                 setActiveFunctionScreen('photo_ai_gen');
+                                            } else if (item.id === 4) {
+                                                // 写真撮影
+                                                setActiveFunctionScreen('photo_capture');
                                             } else {
                                                 console.log(`Clicked: ${item.label}`);
                                             }
@@ -555,6 +559,12 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             {/* Photo AI Generation Modal */}
             <PhotoAIGenerationModal
                 isOpen={activeFunctionScreen === 'photo_ai_gen'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+
+            {/* Photo Capture Modal */}
+            <PhotoCaptureModal
+                isOpen={activeFunctionScreen === 'photo_capture'}
                 onClose={() => setActiveFunctionScreen(null)}
             />
         </div>,

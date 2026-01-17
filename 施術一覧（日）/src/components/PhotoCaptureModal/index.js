@@ -1,0 +1,1 @@
+export { PhotoCaptureModal } from "./PhotoCaptureModal";
