@@ -7,6 +7,9 @@ import { MoreOptionsMenu } from "../../components/MoreOptionsMenu";
 import { ReservationBookingModal } from "../../components/ReservationBookingModal";
 import { CustomerDetailPopup } from "../../components/CustomerDetailPopup";
 import { CustomerOverviewModal } from "../../components/CustomerOverviewModal";
+import { SimilarCasesModal } from "../../components/SimilarCasesModal";
+import { PhotoAIGenerationModal } from "../../components/PhotoAIGenerationModal";
+import { PhotoComparisonModal } from "../../components/PhotoComparisonModal";
 
 // Mock Data for Customers
 const RIKA_DATA = {
@@ -62,6 +65,8 @@ export const Screen = () => {
     const [selectedSlot, setSelectedSlot] = useState(null);
     const [selectedReservation, setSelectedReservation] = useState(null);
     const [selectedCustomerData, setSelectedCustomerData] = useState(null);
+    const [activeFunctionScreen, setActiveFunctionScreen] = useState(null);
+    console.log("Screen rendered. Active Function:", activeFunctionScreen);
 
     const formatDate = (date) => {
         const days = ["日", "月", "火", "水", "木", "金", "土"];
@@ -413,6 +418,7 @@ export const Screen = () => {
                 isOpen={showMoreMenu}
                 onClose={() => setShowMoreMenu(false)}
                 anchorPosition={{ top: "64px", right: "24px" }}
+                onAction={(action) => setActiveFunctionScreen(action)}
             />
             <ReservationBookingModal
                 isOpen={showBookingModal}
@@ -429,6 +435,20 @@ export const Screen = () => {
                 isOpen={showCustomerOverview}
                 onClose={() => setShowCustomerOverview(false)}
                 customerData={selectedCustomerData}
+            />
+
+            {/* Other Function Modals */}
+            <SimilarCasesModal
+                isOpen={activeFunctionScreen === 'similar_cases'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+            <PhotoAIGenerationModal
+                isOpen={activeFunctionScreen === 'ai_generation'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+            <PhotoComparisonModal
+                isOpen={activeFunctionScreen === 'photo_comparison'}
+                onClose={() => setActiveFunctionScreen(null)}
             />
         </div>
     );

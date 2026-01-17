@@ -26,6 +26,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
     const [session4, setSession4] = useState("選択");
     const [isFunctionMenuOpen, setIsFunctionMenuOpen] = useState(false);
     const [activeFunctionScreen, setActiveFunctionScreen] = useState(null); // null, 'checkout', 'camera', etc.
+    const [isHeaderMenuOpen, setIsHeaderMenuOpen] = useState(false);
 
     // Function menu items from reference - using copied icons
     const functionMenuItems = [
@@ -183,15 +184,19 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                         ミウラリカ 様
                     </span>
                 </h1>
-                <button
-                    onClick={onClose}
-                    className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-all"
-                    aria-label="閉じる"
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+                <div className="flex items-center gap-3">
+
+
+                    <button
+                        onClick={onClose}
+                        className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 transition-all"
+                        aria-label="閉じる"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </header>
 
             {/* Main Content */}

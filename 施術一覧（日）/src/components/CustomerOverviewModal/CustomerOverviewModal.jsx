@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { QuestionnaireModal } from "../QuestionnaireModal";
 import { LineRegistrationModal } from "../LineRegistrationModal";
 import { TreatmentModal } from "../TreatmentModal";
+import { CustomerInfoModal } from "../CustomerInfoModal";
 // FrequencyGraphModal と MoreOptionsMenu は TreatmentModal に移動しました
 // import { FrequencyGraphModal } from "../FrequencyGraphModal";
 // import { MoreOptionsMenu } from "../MoreOptionsMenu";
@@ -37,6 +38,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
     const [showQuestionnaire, setShowQuestionnaire] = useState(false);
     const [showLineRegistration, setShowLineRegistration] = useState(false);
     const [showTreatment, setShowTreatment] = useState(false);
+    const [showCustomerInfo, setShowCustomerInfo] = useState(false);
+    const [customerInfoTab, setCustomerInfoTab] = useState("overview");
     // FrequencyGraphModal state removed - now in TreatmentModal
     // MoreOptionsMenu state removed - was only for Frequency Graph test
 
@@ -141,11 +144,23 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
                         {/* Right Side Actions */}
                         <div className="flex gap-3 ml-auto">
                             {/* Info (Green) */}
-                            <button className={iconButtonClass}>
+                            <button
+                                className={iconButtonClass}
+                                onClick={() => {
+                                    setCustomerInfoTab("overview");
+                                    setShowCustomerInfo(true);
+                                }}
+                            >
                                 <img src="/img/vector-17.svg" className="w-5 h-5" alt="Info" />
                             </button>
                             {/* Payment (Orange) */}
-                            <button className={iconButtonClass}>
+                            <button
+                                className={iconButtonClass}
+                                onClick={() => {
+                                    setCustomerInfoTab("payment");
+                                    setShowCustomerInfo(true);
+                                }}
+                            >
                                 <img src="/img/vector-15.svg" className="w-5 h-5" alt="Payment" />
                             </button>
                             {/* Delete - Trash Icon (Red) */}
@@ -366,6 +381,12 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
                     isOpen={showTreatment}
                     onClose={() => setShowTreatment(false)}
                     customerData={data}
+                />
+                <CustomerInfoModal
+                    isOpen={showCustomerInfo}
+                    onClose={() => setShowCustomerInfo(false)}
+                    customerData={data}
+                    initialTab={customerInfoTab}
                 />
                 {/* FrequencyGraphModal moved to TreatmentModal */}
             </div>

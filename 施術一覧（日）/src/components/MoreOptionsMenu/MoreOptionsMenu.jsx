@@ -68,7 +68,7 @@ export const MoreOptionsMenu = ({ isOpen, onClose, anchorPosition, onAction }) =
                                     if (onAction) {
                                         onAction(item.action);
                                     } else {
-                                        alert(`${item.label} は開発中です`);
+                                        console.warn(`onAction missing for ${item.label}`);
                                     }
                                     onClose();
                                 }}
