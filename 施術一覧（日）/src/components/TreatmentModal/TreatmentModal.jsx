@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { CheckoutScreen } from "../CheckoutScreen";
 import { FrequencyGraphModal } from "../FrequencyGraphModal";
+import { EffectImageModal } from "../EffectImageModal";
+import { SimilarCasesModal } from "../SimilarCasesModal";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
@@ -480,9 +482,15 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                             if (item.id === 7) {
                                                 // お会計
                                                 setActiveFunctionScreen('checkout');
+                                            } else if (item.id === 1) {
+                                                // 類似症例
+                                                setActiveFunctionScreen('similar_cases');
                                             } else if (item.id === 2) {
                                                 // 頻度のグラフ
                                                 setActiveFunctionScreen('frequency_graph');
+                                            } else if (item.id === 3) {
+                                                // 効果のイメージ
+                                                setActiveFunctionScreen('effect_image');
                                             } else {
                                                 console.log(`Clicked: ${item.label}`);
                                             }
@@ -515,6 +523,18 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             {/* Frequency Graph Modal */}
             <FrequencyGraphModal
                 isOpen={activeFunctionScreen === 'frequency_graph'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+
+            {/* Similar Cases Modal */}
+            <SimilarCasesModal
+                isOpen={activeFunctionScreen === 'similar_cases'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+
+            {/* Effect Image Modal */}
+            <EffectImageModal
+                isOpen={activeFunctionScreen === 'effect_image'}
                 onClose={() => setActiveFunctionScreen(null)}
             />
         </div>,

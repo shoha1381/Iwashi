@@ -101,6 +101,129 @@ export const Screen = () => {
     const isLoadingRef = useRef(false);
     const dateRefs = useRef([]);
 
+    // Schedule Data State (Lifted from ScheduleMainSection)
+    const [scheduleData, setScheduleData] = useState([
+        {
+            time: "10", slots: [
+                { name: "沖中 彩 オ", service: "SP 2 (7)", bgColor: "bg-[#ffd5dd]" },
+                { name: "山崎 弘美 タ ❤ H20", service: "SP 3 (6)" },
+                { name: "安里 修一 カ 口コミGH", service: "首 3 (8)" },
+                {}, {}, {}, {}
+            ]
+        },
+        {
+            time: "11", slots: [
+                { name: "沖中 彩 オ", service: "SP 3 (0)", bgColor: "bg-[#ffd5dd]" },
+                { name: "前田 梓那 タ ×", service: "頭 1 (42)" },
+                { name: "成田 みのり ❤ カ 口コミHHGH", service: "SP 34 (21)" },
+                { name: "加藤 真奈美 リ", service: "SP 8 (5)" },
+                { name: "藤澤 枝利子 ペ", service: "首 2 (4)" },
+                { name: "業務", badge: "G" },
+                { name: "大久保 ワタル", service: "SP初 ネSP", icon: "/img/15-1.png", badge: "！" }
+            ]
+        },
+        {
+            time: "12", slots: [
+                { name: "三浦 梨花", service: "SP初 ネSP", icon: "/img/15-1.png" },
+                { name: "川村 梨絵 タ 口コミH", service: "SS 9 (9)" },
+                { name: "山岸 美由紀 カ 口コミHG", service: "SP初 ネSP", icon: "/img/15-1.png", badge: "P" },
+                { name: "神頭 彩智リ 口コミ", service: "腹初 CAM", icon: "/img/15-1.png" },
+                { name: "田湯 亜蓮 ペ 口コミHG", service: "首 13 (21)" },
+                { name: "業務", badge: "G" },
+                {}
+            ]
+        },
+        {
+            time: "13", slots: [
+                { name: "佐藤 祥羽 ❤", service: "SP 16 (7)" },
+                { name: "佐藤 照美 タ ❤ × 口コミH", service: "SP 40 (11)", bgColor: "bg-[#e5d2ec]" },
+                { name: "小野 梨帆 カ 口コミHGH", service: "SP 14 (13)", bgColor: "bg-[#e5f2e5]" },
+                { name: "奥山 陸生 ❤ リ 口コミH × ×", service: "SP 86 (3)" },
+                { name: "藤澤 枝利子 ペ", service: "首 2 (4)" },
+                { name: "業務", badge: "G" },
+                { name: "大久保 ワタル", service: "SP初 ネSP", icon: "/img/15-1.png", badge: "！" }
+            ]
+        },
+        {
+            time: "14", slots: [
+                {},
+                { name: "佐藤 照美 タ ❤ × 口コミH", service: "SP 40 (0)", bgColor: "bg-[#e5d2ec]" },
+                { name: "小野 梨帆 カ 口コミHGH", service: "SP 15 (0)", bgColor: "bg-[#e5f2e5]" },
+                { name: "長野 天音 リ", service: "首 7 (16)", bgColor: "bg-[#fde5cc]" },
+                {}, {},
+                { name: "廣田 みか メ", service: "首初 CAM", icon: "/img/15-1.png" }
+            ]
+        },
+        {
+            time: "15", slots: [
+                { name: "工藤 みほ オ", service: "SP 4 (5)" },
+                { name: "小坂 穂果", service: "首初 ネ", icon: "/img/15-1.png" },
+                { name: "徳光 真奈巳 ❤ カ オ 口コミHG", service: "SB 14 (6)" },
+                { name: "長野 天音 リ", service: "首 8 (0)", bgColor: "bg-[#fde5cc]" },
+                { name: "北川 孝一", service: "首初 CAM", icon: "/img/15-1.png" },
+                { name: "業務", badge: "G" },
+                {}
+            ]
+        },
+        {
+            time: "16", slots: [
+                { name: "徳光 真奈巳 ❤ カ オ 口コミ HG", service: "SP初 ネSP" },
+                { name: "田辺 広志 タ", service: "SS 9 (9)" },
+                { name: "佐久間 美華 ❤ カ 口コミ HGHH", service: "首 13 (21)" },
+                { name: "佐々木 愛", service: "腹初 CAM", icon: "/img/15-1.png" },
+                { name: "業務", badge: "G" },
+                {}, {}
+            ]
+        },
+        { time: "17", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "18", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "19", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "20", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "21", slots: [{}, {}, {}, {}, {}, {}, {}] },
+        { time: "22", slots: [{}, {}, {}, {}, {}, {}, {}] },
+    ]);
+
+    const handleSaveBooking = (bookingData) => {
+        // bookingData: { mode: 'treatment'|'business'|'vacation', date, startTime, ...details }
+        // For this task, we assume the user only books for "Noake Miyu" (Index 0)
+        // and using the startTime to find the row.
+
+        const hour = bookingData.startTime.split(':')[0];
+
+        setScheduleData(prevData => {
+            return prevData.map(row => {
+                if (row.time === hour) {
+                    const newSlots = [...row.slots];
+                    // Update index 0
+                    if (bookingData.mode === 'treatment') {
+                        newSlots[0] = {
+                            name: bookingData.customerName || "三浦 梨花",
+                            service: bookingData.service || "SP初 ネSP",
+                            icon: "/img/15-1.png" // Default icon for successfully added booking
+                        };
+                    } else if (bookingData.mode === 'business') {
+                        newSlots[0] = {
+                            name: "業務",
+                            badge: "G",
+                            service: bookingData.content // Optional: store content somewhere
+                        };
+                    } else if (bookingData.mode === 'vacation') {
+                        newSlots[0] = {
+                            name: "有給",
+                            badge: "休",
+                            service: bookingData.vacationType
+                        };
+                    }
+                    return { ...row, slots: newSlots };
+                }
+                return row;
+            });
+        });
+
+        // Close modal
+        setShowBookingModal(false);
+    };
+
     useEffect(() => {
         setDateList([selectedDate]);
         setViewingDate(selectedDate);
@@ -248,7 +371,11 @@ export const Screen = () => {
                                 <ScheduleMainSection
                                     date={date}
                                     view={selectedView}
+                                    scheduleData={scheduleData} // Pass dynamic data
                                     onSlotClick={(time, staffIndex) => {
+                                        // Restrict to Noake Miyu (Index 0)
+                                        if (staffIndex !== 0) return;
+
                                         setSelectedSlot({ startTime: `${time}:00`, endTime: `${parseInt(time) + 1}:00`, date: formatDate(date).full });
                                         setShowBookingModal(true);
                                     }}
@@ -291,6 +418,7 @@ export const Screen = () => {
                 isOpen={showBookingModal}
                 onClose={() => setShowBookingModal(false)}
                 slotInfo={selectedSlot}
+                onSave={handleSaveBooking}
             />
             <CustomerDetailPopup
                 isOpen={showCustomerPopup}

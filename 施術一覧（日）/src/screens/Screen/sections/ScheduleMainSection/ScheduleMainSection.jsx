@@ -86,94 +86,13 @@ const TimeRow = ({ row, isEven, view, onSlotClick, onReservationClick }) => {
     );
 };
 
-export const ScheduleMainSection = ({ date, view, onSlotClick, onReservationClick }) => {
+export const ScheduleMainSection = ({ date, view, onSlotClick, onReservationClick, scheduleData = [] }) => {
     const [now, setNow] = useState(new Date());
 
     useEffect(() => {
         const interval = setInterval(() => setNow(new Date()), 60000); // Update every minute
         return () => clearInterval(interval);
     }, []);
-
-    // Initial dummy data
-    const scheduleData = [
-        {
-            time: "10", slots: [
-                { name: "沖中 彩 オ", service: "SP 2 (7)", bgColor: "bg-[#ffd5dd]" },
-                { name: "山崎 弘美 タ ❤ H20", service: "SP 3 (6)" },
-                { name: "安里 修一 カ 口コミGH", service: "首 3 (8)" },
-                {}, {}, {}, {}
-            ]
-        },
-        {
-            time: "11", slots: [
-                { name: "沖中 彩 オ", service: "SP 3 (0)", bgColor: "bg-[#ffd5dd]" },
-                { name: "前田 梓那 タ ×", service: "頭 1 (42)" },
-                { name: "成田 みのり ❤ カ 口コミHHGH", service: "SP 34 (21)" },
-                { name: "加藤 真奈美 リ", service: "SP 8 (5)" },
-                { name: "藤澤 枝利子 ペ", service: "首 2 (4)" },
-                { name: "業務", badge: "G" },
-                { name: "大久保 ワタル", service: "SP初 ネSP", icon: "/img/15-1.png", badge: "！" }
-            ]
-        },
-        {
-            time: "12", slots: [
-                { name: "三浦 梨花", service: "SP初 ネSP", icon: "/img/15-1.png" },
-                { name: "川村 梨絵 タ 口コミH", service: "SS 9 (9)" },
-                { name: "山岸 美由紀 カ 口コミHG", service: "SP初 ネSP", icon: "/img/15-1.png", badge: "P" },
-                { name: "神頭 彩智リ 口コミ", service: "腹初 CAM", icon: "/img/15-1.png" },
-                { name: "田湯 亜蓮 ペ 口コミHG", service: "首 13 (21)" },
-                { name: "業務", badge: "G" },
-                {}
-            ]
-        },
-        {
-            time: "13", slots: [
-                { name: "佐藤 祥羽 ❤", service: "SP 16 (7)" },
-                { name: "佐藤 照美 タ ❤ × 口コミH", service: "SP 40 (11)", bgColor: "bg-[#e5d2ec]" },
-                { name: "小野 梨帆 カ 口コミHGH", service: "SP 14 (13)", bgColor: "bg-[#e5f2e5]" },
-                { name: "奥山 陸生 ❤ リ 口コミH × ×", service: "SP 86 (3)" },
-                { name: "藤澤 枝利子 ペ", service: "首 2 (4)" },
-                { name: "業務", badge: "G" },
-                { name: "大久保 ワタル", service: "SP初 ネSP", icon: "/img/15-1.png", badge: "！" }
-            ]
-        },
-        {
-            time: "14", slots: [
-                {},
-                { name: "佐藤 照美 タ ❤ × 口コミH", service: "SP 40 (0)", bgColor: "bg-[#e5d2ec]" },
-                { name: "小野 梨帆 カ 口コミHGH", service: "SP 15 (0)", bgColor: "bg-[#e5f2e5]" },
-                { name: "長野 天音 リ", service: "首 7 (16)", bgColor: "bg-[#fde5cc]" },
-                {}, {},
-                { name: "廣田 みか メ", service: "首初 CAM", icon: "/img/15-1.png" }
-            ]
-        },
-        {
-            time: "15", slots: [
-                { name: "工藤 みほ オ", service: "SP 4 (5)" },
-                { name: "小坂 穂果", service: "首初 ネ", icon: "/img/15-1.png" },
-                { name: "徳光 真奈巳 ❤ カ オ 口コミHG", service: "SB 14 (6)" },
-                { name: "長野 天音 リ", service: "首 8 (0)", bgColor: "bg-[#fde5cc]" },
-                { name: "北川 孝一", service: "首初 CAM", icon: "/img/15-1.png" },
-                {}, {}
-            ]
-        },
-        {
-            time: "16", slots: [
-                { name: "徳光 真奈巳 ❤ カ オ 口コミ HG", service: "SP初 ネSP" },
-                { name: "田辺 広志 タ", service: "SS 9 (9)" },
-                { name: "佐久間 美華 ❤ カ 口コミ HGHH", service: "首 13 (21)" },
-                { name: "佐々木 愛", service: "腹初 CAM", icon: "/img/15-1.png" },
-                { name: "業務", badge: "G" },
-                {}, {}
-            ]
-        },
-        { time: "17", slots: [{}, {}, {}, {}, {}, {}, {}] },
-        { time: "18", slots: [{}, {}, {}, {}, {}, {}, {}] },
-        { time: "19", slots: [{}, {}, {}, {}, {}, {}, {}] },
-        { time: "20", slots: [{}, {}, {}, {}, {}, {}, {}] },
-        { time: "21", slots: [{}, {}, {}, {}, {}, {}, {}] },
-        { time: "22", slots: [{}, {}, {}, {}, {}, {}, {}] },
-    ];
 
     // Current Time Line Position Logic
     // Grid starts at 10:00
