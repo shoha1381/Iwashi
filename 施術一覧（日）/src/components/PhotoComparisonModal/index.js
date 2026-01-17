@@ -1,0 +1,1 @@
+export { PhotoComparisonModal } from './PhotoComparisonModal';

@@ -4,6 +4,7 @@ import { CheckoutScreen } from "../CheckoutScreen";
 import { FrequencyGraphModal } from "../FrequencyGraphModal";
 import { EffectImageModal } from "../EffectImageModal";
 import { SimilarCasesModal } from "../SimilarCasesModal";
+import { PhotoComparisonModal } from "../PhotoComparisonModal";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
@@ -491,6 +492,9 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                             } else if (item.id === 3) {
                                                 // 効果のイメージ
                                                 setActiveFunctionScreen('effect_image');
+                                            } else if (item.id === 6) {
+                                                // 写真比較
+                                                setActiveFunctionScreen('photo_compare');
                                             } else {
                                                 console.log(`Clicked: ${item.label}`);
                                             }
@@ -535,6 +539,12 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             {/* Effect Image Modal */}
             <EffectImageModal
                 isOpen={activeFunctionScreen === 'effect_image'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+
+            {/* Photo Comparison Modal */}
+            <PhotoComparisonModal
+                isOpen={activeFunctionScreen === 'photo_compare'}
                 onClose={() => setActiveFunctionScreen(null)}
             />
         </div>,

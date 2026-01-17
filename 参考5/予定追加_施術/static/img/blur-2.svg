@@ -1,0 +1,21 @@
+<svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.67">
+<mask id="mask0_196_153" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-49" y="-49" width="196" height="196">
+<rect width="195.917" height="195.917" transform="translate(-48.9584 -48.9583)" fill="white"/>
+<rect x="25.4583" y="25.4583" width="47.1667" height="47.1667" rx="23.5833" fill="black"/>
+</mask>
+<g mask="url(#mask0_196_153)">
+<foreignObject x="-13.7083" y="-11.75" width="125.417" height="125.417"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(19.58px);clip-path:url(#bgblur_0_196_153_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_f_196_153)" data-figma-bg-blur-radius="39.1667">
+<path d="M25.4584 50.9583C25.4584 37.9566 35.9983 27.4167 49 27.4167C62.0017 27.4167 72.5417 37.9566 72.5417 50.9583C72.5417 63.96 62.0017 74.5 49 74.5C35.9983 74.5 25.4584 63.96 25.4584 50.9583Z" fill="black" fill-opacity="0.04" style="mix-blend-mode:hard-light"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_196_153" x="-13.7083" y="-11.75" width="125.417" height="125.417" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="9.79167" result="effect1_foregroundBlur_196_153"/>
+</filter>
+<clipPath id="bgblur_0_196_153_clip_path" transform="translate(13.7083 11.75)"><path d="M25.4584 50.9583C25.4584 37.9566 35.9983 27.4167 49 27.4167C62.0017 27.4167 72.5417 37.9566 72.5417 50.9583C72.5417 63.96 62.0017 74.5 49 74.5C35.9983 74.5 25.4584 63.96 25.4584 50.9583Z"/>
+</clipPath></defs>
+</svg>
