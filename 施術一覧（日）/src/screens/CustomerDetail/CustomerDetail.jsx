@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { NavigationSection } from "../../components/NavigationSection";
 import { HeaderSection } from "../../components/HeaderSection";
+import { TreatmentModal } from "../../components/TreatmentModal";
 
 // Icons
 const DocumentIcon = () => (
@@ -60,6 +62,16 @@ const mockCustomerDetail = {
 
 export const CustomerDetail = () => {
     const { id } = useParams();
+    const [showTreatmentModal, setShowTreatmentModal] = useState(false);
+
+    // Customer data for TreatmentModal
+    const customerDataForModal = {
+        name: mockCustomerDetail.name,
+        gender: mockCustomerDetail.gender,
+        age: `${mockCustomerDetail.age}歳`,
+        birthdate: "2004/05/15",
+        photo: mockCustomerDetail.photo,
+    };
 
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
@@ -174,9 +186,12 @@ export const CustomerDetail = () => {
 
                             {/* Action Buttons */}
                             <div className="flex justify-end gap-3">
-                                <Link to="/" className="px-6 py-2.5 bg-blue-500 text-white text-sm font-medium rounded-full hover:bg-blue-600 transition-colors">
-                                    施術
-                                </Link>
+                                <button
+                                    onClick={() => setShowTreatmentModal(true)}
+                                    className="px-6 py-2.5 bg-blue-500 text-white text-sm font-medium rounded-full hover:bg-blue-600 transition-colors"
+                                >
+                                    詳細
+                                </button>
                                 <button className="px-6 py-2.5 bg-neutral-200 text-neutral-700 text-sm font-medium rounded-full hover:bg-neutral-300 transition-colors">
                                     週
                                 </button>
@@ -185,6 +200,13 @@ export const CustomerDetail = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Treatment Modal */}
+            <TreatmentModal
+                isOpen={showTreatmentModal}
+                onClose={() => setShowTreatmentModal(false)}
+                customerData={customerDataForModal}
+            />
         </div>
     );
 };

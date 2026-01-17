@@ -11,6 +11,17 @@ export const Settings = () => {
         { field: "名前", value: "野明みゆ" },
     ];
 
+    // Treatment summary data (matching Summary screen format)
+    const treatmentHeaders = ["#", "O", "骨", "顔", "頭", "首", "P", "SS", "SP", "ST", "リ", "上リ", "顔リ", "リP", "SB", "BT", "旧", "旧旧", "初回", "スタート"];
+    const treatmentRows = [
+        { date: "27日(月)", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+        { date: "28日(火)", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3] },
+        { date: "29日(水)", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+        { date: "30日(木)", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+        { date: "31日(金)", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+        { date: "現在日の合計", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
+    ];
+
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
             {/* Side Navigation */}
@@ -107,21 +118,42 @@ export const Settings = () => {
                                                     placeholder="新しいパスワードを再入力"
                                                 />
                                             </div>
-                                            <button className="mt-4 px-6 py-3 bg-[#4a9fef] text-white rounded-xl font-medium text-sm hover:bg-[#3b8de0] transition-colors shadow-[0_4px_12px_rgba(74,159,239,0.3)]">
-                                                パスワードを変更
-                                            </button>
+                                            <div className="flex justify-end mt-8">
+                                                <button className="px-6 py-3 bg-[#4a9fef] text-white rounded-xl font-medium text-sm hover:bg-[#3b8de0] transition-colors shadow-[0_4px_12px_rgba(74,159,239,0.3)]">
+                                                    パスワードを変更
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 ) : (
-                                    <div className="space-y-6">
-                                        <h2 className="text-lg font-medium text-neutral-700 mb-4">施術集計</h2>
-                                        <div className="text-center py-12">
-                                            <div className="w-16 h-16 bg-neutral-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                                                <svg className="w-8 h-8 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                                </svg>
+                                    <div className="space-y-4">
+                                        <h2 className="text-lg font-medium text-neutral-700">施術集計</h2>
+
+                                        {/* Treatment Report Table - matching Summary screen */}
+                                        <div className="rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-neutral-100 bg-white">
+                                            <div className="overflow-x-auto">
+                                                <table className="w-full border-collapse text-xs whitespace-nowrap">
+                                                    <thead className="bg-[#55a5e8] text-white">
+                                                        <tr>
+                                                            {treatmentHeaders.map((h, i) => (
+                                                                <th key={i} className={`py-2 px-2 text-center min-w-[30px] ${i < treatmentHeaders.length - 1 ? 'border-r border-blue-400/30' : ''}`}>{h}</th>
+                                                            ))}
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {treatmentRows.map((row, i) => (
+                                                            <tr key={i} className={`border-b border-neutral-100 hover:bg-blue-50/30 transition-colors ${i % 2 === 0 ? 'bg-white' : 'bg-neutral-50/50'}`}>
+                                                                <td className="py-2 px-2 border-r border-neutral-100 font-medium bg-neutral-50/50 sticky left-0 z-10">{row.date}</td>
+                                                                {row.values.map((v, j) => (
+                                                                    <td key={j} className={`py-2 px-2 text-center text-neutral-600 ${j < row.values.length - 1 ? 'border-r border-neutral-100' : ''}`}>
+                                                                        {v}
+                                                                    </td>
+                                                                ))}
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            <p className="text-sm text-neutral-500">施術集計データが表示されます</p>
                                         </div>
                                     </div>
                                 )}

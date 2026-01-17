@@ -5,6 +5,7 @@ import { FrequencyGraphModal } from "../FrequencyGraphModal";
 import { EffectImageModal } from "../EffectImageModal";
 import { SimilarCasesModal } from "../SimilarCasesModal";
 import { PhotoComparisonModal } from "../PhotoComparisonModal";
+import { PhotoAIGenerationModal } from "../PhotoAIGenerationModal";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
@@ -495,6 +496,9 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                                             } else if (item.id === 6) {
                                                 // 写真比較
                                                 setActiveFunctionScreen('photo_compare');
+                                            } else if (item.id === 5) {
+                                                // 写真 AI 生成
+                                                setActiveFunctionScreen('photo_ai_gen');
                                             } else {
                                                 console.log(`Clicked: ${item.label}`);
                                             }
@@ -545,6 +549,12 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
             {/* Photo Comparison Modal */}
             <PhotoComparisonModal
                 isOpen={activeFunctionScreen === 'photo_compare'}
+                onClose={() => setActiveFunctionScreen(null)}
+            />
+
+            {/* Photo AI Generation Modal */}
+            <PhotoAIGenerationModal
+                isOpen={activeFunctionScreen === 'photo_ai_gen'}
                 onClose={() => setActiveFunctionScreen(null)}
             />
         </div>,
