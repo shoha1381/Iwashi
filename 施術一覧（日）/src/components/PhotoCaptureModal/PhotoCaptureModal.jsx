@@ -282,7 +282,7 @@ export const PhotoCaptureModal = ({ isOpen, onClose }) => {
             </div>
 
             {/* Bottom Controls - moved higher */}
-            <div className="flex-shrink-0 bg-black/80 backdrop-blur-sm py-4 px-6">
+            <div className="flex-shrink-0 bg-black/80 backdrop-blur-sm py-6 pb-10 px-6">
                 <div className="flex items-center justify-between max-w-sm mx-auto">
                     {/* Grid Toggle - Stylish red grid icon (larger, with top line) */}
                     <button
@@ -298,7 +298,6 @@ export const PhotoCaptureModal = ({ isOpen, onClose }) => {
                             <line x1="9" y1="3" x2="9" y2="21" stroke={showGrid ? "#ff4444" : "#666"} strokeWidth="1" />
                             <line x1="15" y1="3" x2="15" y2="21" stroke={showGrid ? "#ff4444" : "#666"} strokeWidth="1" />
                         </svg>
-                        <span className="text-[10px] text-white/50 mt-0.5">ガイド</span>
                     </button>
 
                     {/* Capture Button - larger inner circle */}
