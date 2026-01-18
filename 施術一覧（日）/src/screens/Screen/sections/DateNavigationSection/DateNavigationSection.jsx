@@ -56,80 +56,107 @@ export const DateNavigationSection = ({
 
     return (
         <header className="header-nav">
-            <div className="px-4 md:px-6 py-3 md:py-4">
-                <div className="flex items-center justify-between gap-2 md:gap-4 flex-wrap">
-                    {/* Left: Date Navigation */}
-                    <div className="flex items-center gap-2 md:gap-4">
-                        <button onClick={() => navigateDate(-1)} className="nav-arrow" aria-label="前の日">
-                            <ChevronLeftIcon />
-                        </button>
+            <div className="px-2 md:px-6 py-2 md:py-4">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 md:gap-4">
+                    {/* Row 1: Date Navigation & View Toggle (Mobile) / Left Side (Desktop) */}
+                    <div className="flex items-center justify-between md:justify-start w-full md:w-auto gap-2">
+                        {/* Date Nav */}
+                        <div className="flex items-center gap-1 md:gap-4 flex-shrink-0">
+                            <button onClick={() => navigateDate(-1)} className="nav-arrow" aria-label="前の日">
+                                <ChevronLeftIcon />
+                            </button>
 
-                        <div className="flex items-baseline gap-1 md:gap-2">
-                            {selectedView === "week" ? (
-                                <>
-                                    <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
-                                        {dateInfo.full}
-                                    </span>
-                                    <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
-                                    <span className="text-xs md:text-sm font-normal text-neutral-400 mx-1">〜</span>
-                                    <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">
-                                        {dateInfo.weekEnd}
-                                    </span>
-                                    <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.weekEndDay}</span>
-                                </>
-                            ) : (
-                                <>
-                                    <span className="text-base md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo.full}</span>
-                                    <span className="text-xs md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
-                                </>
-                            )}
+                            <div className="flex items-baseline gap-1 md:gap-2 whitespace-nowrap">
+                                {selectedView === "week" ? (
+                                    <>
+                                        <span className="text-sm md:text-lg font-normal text-neutral-700 tracking-wide">
+                                            {dateInfo.full}
+                                        </span>
+                                        <span className="text-[10px] md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
+                                        <span className="text-[10px] md:text-sm font-normal text-neutral-400 mx-0.5 md:mx-1">〜</span>
+                                        <span className="text-sm md:text-lg font-normal text-neutral-700 tracking-wide">
+                                            {dateInfo.weekEnd}
+                                        </span>
+                                        <span className="text-[10px] md:text-sm font-normal text-neutral-400">{dateInfo.weekEndDay}</span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="text-sm md:text-lg font-normal text-neutral-700 tracking-wide">{dateInfo.full}</span>
+                                        <span className="text-[10px] md:text-sm font-normal text-neutral-400">{dateInfo.dayOfWeek}</span>
+                                    </>
+                                )}
+                            </div>
+
+                            <button onClick={() => navigateDate(1)} className="nav-arrow" aria-label="次の日">
+                                <ChevronRightIcon />
+                            </button>
                         </div>
 
-                        <button onClick={() => navigateDate(1)} className="nav-arrow" aria-label="次の日">
-                            <ChevronRightIcon />
-                        </button>
+                        {/* View Toggle - Visible here on Mobile */}
+                        <div className="md:hidden">
+                            <div
+                                className="relative h-7 p-0.5 bg-white/90 rounded-full flex items-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                                role="tablist"
+                            >
+                                {viewOptions.map((option) => (
+                                    <button
+                                        key={option.id}
+                                        role="tab"
+                                        aria-selected={selectedView === option.id}
+                                        onClick={() => setSelectedView(option.id)}
+                                        className={`relative px-3 h-6 flex items-center justify-center rounded-full text-[10px] font-medium tracking-[0.5px] transition-all duration-200 ${selectedView === option.id
+                                            ? "bg-[#0088ffb2] text-white shadow-[0_2px_6px_rgba(0,136,255,0.25)]"
+                                            : "text-[#888] hover:text-[#666]"
+                                            }`}
+                                    >
+                                        {option.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
-                    {/* Right: Controls grouped together */}
-                    <div className="flex items-center gap-1 md:gap-2">
-                        {/* Store Selector - Compact with soft shadow */}
+                    {/* Row 2: Store/Actions (Mobile) / Right Side (Desktop) */}
+                    <div className="flex items-center justify-end w-full md:w-auto gap-2">
+                        {/* View Toggle - Desktop Only */}
+                        <div className="hidden md:block">
+                            <div
+                                className="relative h-9 p-1 bg-white/90 rounded-full flex items-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
+                                role="tablist"
+                            >
+                                {viewOptions.map((option) => (
+                                    <button
+                                        key={option.id}
+                                        role="tab"
+                                        aria-selected={selectedView === option.id}
+                                        onClick={() => setSelectedView(option.id)}
+                                        className={`relative px-5 h-7 flex items-center justify-center rounded-full text-[13px] font-medium tracking-[0.5px] transition-all duration-200 ${selectedView === option.id
+                                            ? "bg-[#0088ffb2] text-white shadow-[0_2px_6px_rgba(0,136,255,0.25)]"
+                                            : "text-[#888] hover:text-[#666]"
+                                            }`}
+                                    >
+                                        {option.label}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Store Selector - positioned near icons */}
                         <button
-                            className="relative h-9 px-4 bg-white/90 rounded-full overflow-hidden flex items-center gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow duration-200"
+                            className="relative h-7 md:h-9 px-3 md:px-4 bg-white/90 rounded-full overflow-hidden flex items-center gap-1 md:gap-2 shadow-[0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] transition-shadow duration-200"
                             type="button"
                             aria-label="店舗を選択"
                         >
-                            <span className="font-medium text-[#5e6367] text-[13px] tracking-[0.5px] whitespace-nowrap">
+                            <span className="font-medium text-[#5e6367] text-[10px] md:text-[13px] tracking-[0.5px] whitespace-nowrap">
                                 {selectedStore}
                             </span>
-                            <svg className="w-2 h-2 text-[#999]" viewBox="0 0 8 5" fill="currentColor">
+                            <svg className="w-1.5 h-1.5 md:w-2 md:h-2 text-[#999]" viewBox="0 0 8 5" fill="currentColor">
                                 <path d="M4 5L0 0h8L4 5z" />
                             </svg>
                         </button>
 
-                        {/* View Toggle - Clean segmented control with soft shadow */}
-                        <div
-                            className="relative h-9 p-1 bg-white/90 rounded-full flex items-center shadow-[0_2px_8px_rgba(0,0,0,0.08)]"
-                            role="tablist"
-                            aria-label="表示期間選択"
-                        >
-                            {viewOptions.map((option) => (
-                                <button
-                                    key={option.id}
-                                    role="tab"
-                                    aria-selected={selectedView === option.id}
-                                    onClick={() => setSelectedView(option.id)}
-                                    className={`relative px-5 h-7 flex items-center justify-center rounded-full text-[13px] font-medium tracking-[0.5px] transition-all duration-200 ${selectedView === option.id
-                                        ? "bg-[#0088ffb2] text-white shadow-[0_2px_6px_rgba(0,136,255,0.25)]"
-                                        : "text-[#888] hover:text-[#666]"
-                                        }`}
-                                >
-                                    {option.label}
-                                </button>
-                            ))}
-                        </div>
-
-                        {/* Action Buttons - hide some on mobile */}
-                        <button className="icon-button hidden sm:flex" aria-label="検索" onClick={onSearchClick}><SearchIcon /></button>
+                        {/* Action Buttons - search now visible on mobile */}
+                        <button className="icon-button" aria-label="検索" onClick={onSearchClick}><SearchIcon /></button>
                         <button className="icon-button" aria-label="今日に戻る" onClick={onTodayClick}><CalendarIcon /></button>
                         <button className="icon-button" aria-label="メニュー" onClick={onMoreClick}><MoreIcon /></button>
                     </div>

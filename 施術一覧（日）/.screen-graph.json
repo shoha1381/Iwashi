@@ -61,31 +61,15 @@
   ],
   "edges": [
     {
-      "id": "src/screens/CustomerDetail/CustomerDetail.jsx:81:32-to-src/screens/CustomerList/CustomerList.jsx",
+      "id": "src/screens/CustomerDetail/CustomerDetail.jsx:93:32-to-src/screens/CustomerList/CustomerList.jsx",
       "source": "src/screens/CustomerDetail/CustomerDetail.jsx",
       "target": "src/screens/CustomerList/CustomerList.jsx",
       "data": {
         "viaRoute": "/customers",
         "trigger": {
           "element": "<Link to=\"/customers\" className=\"p-2 hover:bg-neutral-100 rounded-lg transition-colors text-neutral-400 hover:text-neutral-600\">\n                                    <CloseIcon />\n                                </Link>",
-          "line": 81,
-          "endLine": 83,
-          "column": 32,
-          "endColumn": 39,
-          "sourceFile": "src/screens/CustomerDetail/CustomerDetail.jsx"
-        }
-      }
-    },
-    {
-      "id": "src/screens/CustomerDetail/CustomerDetail.jsx:177:32-to-src/screens/Screen/Screen.jsx",
-      "source": "src/screens/CustomerDetail/CustomerDetail.jsx",
-      "target": "src/screens/Screen/Screen.jsx",
-      "data": {
-        "viaRoute": "/",
-        "trigger": {
-          "element": "<Link to=\"/\" className=\"px-6 py-2.5 bg-blue-500 text-white text-sm font-medium rounded-full hover:bg-blue-600 transition-colors\">\n                                    施術\n                                </Link>",
-          "line": 177,
-          "endLine": 179,
+          "line": 93,
+          "endLine": 95,
           "column": 32,
           "endColumn": 39,
           "sourceFile": "src/screens/CustomerDetail/CustomerDetail.jsx"

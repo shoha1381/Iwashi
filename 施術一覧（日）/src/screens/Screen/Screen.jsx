@@ -66,7 +66,16 @@ export const Screen = () => {
     const [selectedReservation, setSelectedReservation] = useState(null);
     const [selectedCustomerData, setSelectedCustomerData] = useState(null);
     const [activeFunctionScreen, setActiveFunctionScreen] = useState(null);
+    const [isMobile, setIsMobile] = useState(false);
     console.log("Screen rendered. Active Function:", activeFunctionScreen);
+
+    // Mobile Detection
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // Initial check
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const formatDate = (date) => {
         const days = ["日", "月", "火", "水", "木", "金", "土"];
@@ -329,11 +338,13 @@ export const Screen = () => {
 
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
-            {/* Side Navigation */}
-            <NavigationSection />
+            {/* Side Navigation - Hidden on mobile */}
+            <div className="hidden md:block">
+                <NavigationSection />
+            </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
+            <div className="flex-1 flex flex-col lg:mr-16 md:pb-20 lg:pb-0 w-full h-screen">
                 {/* Header - Fixed at top */}
                 <DateNavigationSection
                     selectedDate={viewingDate}
@@ -348,9 +359,8 @@ export const Screen = () => {
                     onMoreClick={() => setShowMoreMenu(true)}
                 />
 
-                {/* Schedule Area - Scrollable with sticky staff row */}
                 <div
-                    className="flex-1 overflow-y-auto overflow-x-hidden pt-16 w-full"
+                    className="flex-1 overflow-y-auto overflow-x-hidden pt-20 md:pt-16 w-full"
                     onTouchStart={onTouchStart}
                     onTouchMove={onTouchMove}
                     onTouchEnd={onTouchEnd}
@@ -359,11 +369,11 @@ export const Screen = () => {
                 >
                     {/* Staff Row - Sticky at top of scroll area */}
                     <div className="sticky top-0 z-30 bg-white shadow-sm">
-                        <BottomNavigationSection selectedDate={viewingDate} formatDate={formatDate} />
+                        <BottomNavigationSection selectedDate={viewingDate} formatDate={formatDate} isMobile={isMobile} />
                     </div>
 
                     {/* Schedule Grid - Infinite List */}
-                    <div className="w-full bg-white pb-20">
+                    <div className="w-full bg-white md:pb-20">
                         {dateList.map((date, index) => (
                             <div key={index} ref={el => dateRefs.current[index] = el}>
                                 {index > 0 && (
@@ -377,7 +387,11 @@ export const Screen = () => {
                                     date={date}
                                     view={selectedView}
                                     scheduleData={scheduleData} // Pass dynamic data
+                                    isMobile={isMobile}
                                     onSlotClick={(time, staffIndex) => {
+                                        // Mobile Restriction: Read-only
+                                        if (isMobile) return;
+
                                         // Restrict to Noake Miyu (Index 0)
                                         if (staffIndex !== 0) return;
 
@@ -385,6 +399,9 @@ export const Screen = () => {
                                         setShowBookingModal(true);
                                     }}
                                     onReservationClick={(slot, time) => {
+                                        // Mobile Restriction: Read-only
+                                        if (isMobile) return;
+
                                         if (slot.name) {
                                             setSelectedReservation({ ...slot, time });
                                             if (slot.name.includes("三浦")) {

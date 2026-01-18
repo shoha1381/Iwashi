@@ -1,4 +1,4 @@
-export const BottomNavigationSection = ({ selectedDate, formatDate }) => {
+export const BottomNavigationSection = ({ selectedDate, formatDate, isMobile }) => {
     const dateInfo = formatDate(selectedDate);
 
     const staffMembers = [
@@ -13,13 +13,21 @@ export const BottomNavigationSection = ({ selectedDate, formatDate }) => {
         { surname: "中林", givenName: "香奈", room: "", absent: true },
     ];
 
+    const gridTemplate = isMobile
+        ? "24px repeat(7, 1fr) repeat(2, 0.5fr)"
+        : "56px repeat(7, 1fr) repeat(2, 0.5fr)";
+
     return (
         <div className="bg-white border-b border-neutral-100 sticky top-0 z-40">
-            <div className="grid" style={{ gridTemplateColumns: "56px repeat(7, 1fr) repeat(2, 0.5fr)" }}>
+            <div className="grid" style={{ gridTemplateColumns: gridTemplate }}>
                 {/* Date Column */}
                 <div className="flex-shrink-0 flex flex-col items-center justify-center pt-6 pb-4 border-r border-neutral-100 bg-neutral-50/50">
-                    <span className="text-xs font-normal text-neutral-500 tracking-wide">{dateInfo.dayOfWeek}</span>
-                    <span className="text-xl font-light text-neutral-600">{dateInfo.day}</span>
+                    <span className={`font-normal text-neutral-500 tracking-wide ${isMobile ? "text-[8px] md:text-xs" : "text-[10px] md:text-xs"}`}>
+                        {dateInfo.dayOfWeek}
+                    </span>
+                    <span className={`font-light text-neutral-600 ${isMobile ? "text-sm md:text-xl" : "text-base md:text-xl"}`}>
+                        {dateInfo.day}
+                    </span>
                 </div>
 
                 {/* Staff Columns */}
@@ -36,18 +44,18 @@ export const BottomNavigationSection = ({ selectedDate, formatDate }) => {
                         <div className="text-center">
                             {staff.absent ? (
                                 // Absent staff - split surname and given name
-                                <div className="text-[12px] font-medium text-neutral-800 leading-snug">
+                                <div className={`font-medium text-neutral-800 leading-snug ${isMobile ? "text-[8px] tracking-tighter" : "text-[9px] md:text-[12px]"}`}>
                                     <div>{staff.surname}</div>
                                     <div>{staff.givenName}</div>
                                 </div>
                             ) : (
                                 // Normal staff
-                                <div className="text-[12px] font-medium text-neutral-800 leading-snug">
+                                <div className={`font-medium text-neutral-800 leading-snug ${isMobile ? "text-[8px] tracking-tighter" : "text-[9px] md:text-[12px]"}`}>
                                     {staff.name}
                                 </div>
                             )}
                             {staff.room && (
-                                <div className="mt-1 inline-flex items-center justify-center w-4 h-4 rounded-full border border-neutral-500 text-neutral-600 text-[9px] font-normal">
+                                <div className={`mt-1 inline-flex items-center justify-center rounded-full border border-neutral-500 text-neutral-600 font-normal ${isMobile ? "w-3 h-3 text-[7px]" : "w-3 h-3 md:w-4 md:h-4 text-[8px] md:text-[9px]"}`}>
                                     {staff.room}
                                 </div>
                             )}
