@@ -8,6 +8,7 @@ import { Summary } from "./screens/Summary";
 import { Settings } from "./screens/Settings";
 import { Sales } from "./screens/Sales";
 import { DesktopSidebar } from "./components/DesktopSidebar";
+import { CustomerAchievementList } from "./screens/CustomerAchievementList";
 
 // Layout component that includes the global desktop sidebar
 const Layout = ({ children }) => {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
     {
         path: "/analytics",
         element: <Layout><Analytics /></Layout>,
+    },
+    {
+        path: "/customer-achievements",
+        element: <Layout><CustomerAchievementList /></Layout>,
     },
     {
         path: "/summary",
