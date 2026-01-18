@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { NavigationSection } from "../../components/NavigationSection";
 import { HeaderSection } from "../../components/HeaderSection";
+import { CustomerOverviewModal } from "../../components/CustomerOverviewModal";
 
 // Mock sales data - 合計 (Total summary)
 const totalSales = {
@@ -22,6 +22,8 @@ const salesBreakdown = [
 
 export const Sales = () => {
     const [selectedDate] = useState(new Date());
+    const [showCustomerOverview, setShowCustomerOverview] = useState(false);
+    const [selectedCustomerData, setSelectedCustomerData] = useState(null);
 
     const formatDate = () => {
         const year = selectedDate.getFullYear();
@@ -33,6 +35,26 @@ export const Sales = () => {
 
     const formatCurrency = (amount) => {
         return amount === 0 ? "¥0" : `¥${amount.toLocaleString()}`;
+    };
+
+    const handleDetailClick = (sale) => {
+        // Create customer data for the modal
+        const customerData = {
+            name: sale.customer,
+            reading: "",
+            photo: "/img/image-2.png", // Default photo
+            courseInfo: "SP・初回",
+            media: "ネSP",
+            goal: "",
+            cautions: [],
+            labels: [],
+            customerNumber: String(sale.id).padStart(8, '0'),
+            firstVisit: "2024/01/15",
+            lastVisit: "2024/10/05",
+            rank: "シルバー"
+        };
+        setSelectedCustomerData(customerData);
+        setShowCustomerOverview(true);
     };
 
     return (
@@ -121,12 +143,12 @@ export const Sales = () => {
                                                     <td className="py-3 px-4 text-sm text-neutral-600">{formatCurrency(sale.luxa)}</td>
                                                     <td className="py-3 px-4 text-sm font-medium text-neutral-700">{formatCurrency(sale.total)}</td>
                                                     <td className="py-3 px-4 text-right">
-                                                        <Link
-                                                            to={`/customers/${sale.id}`}
+                                                        <button
+                                                            onClick={() => handleDetailClick(sale)}
                                                             className="inline-flex items-center justify-center px-4 py-1.5 text-xs font-medium text-white bg-[#55a5e8] rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_6px_rgba(85,165,232,0.25)] whitespace-nowrap"
                                                         >
                                                             詳細
-                                                        </Link>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             ))}
@@ -138,6 +160,14 @@ export const Sales = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Customer Overview Modal */}
+            <CustomerOverviewModal
+                isOpen={showCustomerOverview}
+                onClose={() => setShowCustomerOverview(false)}
+                customerData={selectedCustomerData}
+            />
         </div>
     );
 };
+

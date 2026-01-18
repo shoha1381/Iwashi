@@ -93,162 +93,163 @@ export const Summary = () => {
 
                 {/* Content Area */}
                 <div className="flex-1 overflow-y-auto pt-16 w-full relative">
+                    <div className="bg-white min-h-full">
+                        <div className="relative z-10 flex flex-col items-center py-8 px-6">
 
-                    <div className="relative z-10 flex flex-col items-center py-8 px-6">
 
+                            {/* Filter Section - Glassmorphism with refined controls */}
+                            <div className="w-full max-w-[1000px] bg-white/70 rounded-[20px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] backdrop-blur-xl mb-8 p-6 flex flex-col gap-6">
 
-                        {/* Filter Section - Glassmorphism with refined controls */}
-                        <div className="w-full max-w-[1000px] bg-white/70 rounded-[20px] border border-white/50 shadow-[0_8px_32px_rgba(0,0,0,0.06)] backdrop-blur-xl mb-8 p-6 flex flex-col gap-6">
-
-                            {/* Top Row: Type and Period */}
-                            <div className="flex flex-wrap gap-8 items-center justify-between border-b border-neutral-200/50 pb-6">
-                                {/* Type Selector - Glassmorphism Style */}
-                                <div className="flex items-center gap-4">
-                                    <label className="font-medium text-neutral-600 text-sm">種別</label>
-                                    <div className="bg-white/80 rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.04),inset_0_1px_2px_rgba(255,255,255,0.8)] border border-white/60 p-1.5 flex backdrop-blur-sm">
-                                        {typeOptions.map((option) => (
-                                            <button
-                                                key={option.value}
-                                                onClick={() => setSelectedType(option.value)}
-                                                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedType === option.value
-                                                    ? "bg-[#4aa9fc] text-white shadow-[0_4px_12px_rgba(74,169,252,0.4)]"
-                                                    : "text-neutral-500 hover:text-neutral-700 hover:bg-white/60"
-                                                    }`}
-                                            >
-                                                {option.label}
-                                            </button>
-                                        ))}
+                                {/* Top Row: Type and Period */}
+                                <div className="flex flex-wrap gap-8 items-center justify-between border-b border-neutral-200/50 pb-6">
+                                    {/* Type Selector - Glassmorphism Style */}
+                                    <div className="flex items-center gap-4">
+                                        <label className="font-medium text-neutral-600 text-sm">種別</label>
+                                        <div className="bg-white/80 rounded-full shadow-[0_4px_16px_rgba(0,0,0,0.04),inset_0_1px_2px_rgba(255,255,255,0.8)] border border-white/60 p-1.5 flex backdrop-blur-sm">
+                                            {typeOptions.map((option) => (
+                                                <button
+                                                    key={option.value}
+                                                    onClick={() => setSelectedType(option.value)}
+                                                    className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedType === option.value
+                                                        ? "bg-[#4aa9fc] text-white shadow-[0_4px_12px_rgba(74,169,252,0.4)]"
+                                                        : "text-neutral-500 hover:text-neutral-700 hover:bg-white/60"
+                                                        }`}
+                                                >
+                                                    {option.label}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Date Range Picker - Clean Display with 〜 */}
-                                <div className="flex items-center gap-4 relative" ref={datePickerRef}>
-                                    <label className="font-medium text-neutral-600 text-sm">期間</label>
-                                    <button
-                                        onClick={() => setShowDatePicker(!showDatePicker)}
-                                        className="bg-white/80 hover:bg-white border border-white/60 rounded-xl px-4 py-2.5 flex items-center gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all min-w-[260px] justify-center group"
-                                    >
-                                        <CalendarIcon className="w-4 h-4 text-neutral-400 group-hover:text-[#4aa9fc] transition-colors" />
-                                        <span className="text-sm font-medium text-neutral-700">{formatDate(startDate)}</span>
-                                        <span className="text-neutral-400 font-light">〜</span>
-                                        <span className="text-sm font-medium text-neutral-700">{formatDate(endDate)}</span>
-                                        <ChevronDownIcon className="text-neutral-400 ml-1" />
-                                    </button>
+                                    {/* Date Range Picker - Clean Display with 〜 */}
+                                    <div className="flex items-center gap-4 relative" ref={datePickerRef}>
+                                        <label className="font-medium text-neutral-600 text-sm">期間</label>
+                                        <button
+                                            onClick={() => setShowDatePicker(!showDatePicker)}
+                                            className="bg-white/80 hover:bg-white border border-white/60 rounded-xl px-4 py-2.5 flex items-center gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all min-w-[260px] justify-center group"
+                                        >
+                                            <CalendarIcon className="w-4 h-4 text-neutral-400 group-hover:text-[#4aa9fc] transition-colors" />
+                                            <span className="text-sm font-medium text-neutral-700">{formatDate(startDate)}</span>
+                                            <span className="text-neutral-400 font-light">〜</span>
+                                            <span className="text-sm font-medium text-neutral-700">{formatDate(endDate)}</span>
+                                            <ChevronDownIcon className="text-neutral-400 ml-1" />
+                                        </button>
 
-                                    {/* Mini Calendar Popover with Connected Date Range */}
-                                    {showDatePicker && (() => {
-                                        const daysInMonth = getDaysInMonth(displayedMonth.year, displayedMonth.month);
-                                        const firstDayOffset = getFirstDayOfMonth(displayedMonth.year, displayedMonth.month);
-                                        const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
+                                        {/* Mini Calendar Popover with Connected Date Range */}
+                                        {showDatePicker && (() => {
+                                            const daysInMonth = getDaysInMonth(displayedMonth.year, displayedMonth.month);
+                                            const firstDayOffset = getFirstDayOfMonth(displayedMonth.year, displayedMonth.month);
+                                            const monthNames = ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"];
 
-                                        return (
-                                            <div className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.12)] border border-neutral-100 p-5 z-50 w-[340px] animate-fadeIn">
-                                                {/* Month Navigation - Schedule Style */}
-                                                <div className="flex justify-between items-center mb-5">
-                                                    <button onClick={goToPrevMonth} className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors">
-                                                        <svg className="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                                        </svg>
-                                                    </button>
-                                                    <h3 className="font-bold text-neutral-800 text-lg">{displayedMonth.year}年 {monthNames[displayedMonth.month]}</h3>
-                                                    <button onClick={goToNextMonth} className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors">
-                                                        <svg className="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                                        </svg>
-                                                    </button>
-                                                </div>
-
-                                                {/* Quick Month Pills */}
-                                                <div className="flex gap-2 mb-5 pb-4 border-b border-neutral-100 justify-center">
-                                                    {[10, 11, 12].map(m => (
-                                                        <button
-                                                            key={m}
-                                                            onClick={() => selectMonth(displayedMonth.year, m - 1)}
-                                                            className={`text-xs px-3 py-1.5 rounded-full transition-all ${displayedMonth.month === m - 1 ? 'bg-[#4aa9fc] text-white shadow-md' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'}`}
-                                                        >
-                                                            {m}月
+                                            return (
+                                                <div className="absolute top-full right-0 mt-2 bg-white rounded-2xl shadow-[0_16px_48px_rgba(0,0,0,0.12)] border border-neutral-100 p-5 z-50 w-[340px] animate-fadeIn">
+                                                    {/* Month Navigation - Schedule Style */}
+                                                    <div className="flex justify-between items-center mb-5">
+                                                        <button onClick={goToPrevMonth} className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors">
+                                                            <svg className="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                            </svg>
                                                         </button>
-                                                    ))}
-                                                </div>
-
-                                                {/* Calendar Grid with Connected Range */}
-                                                <div className="grid grid-cols-7 gap-0 text-center text-xs mb-2 text-neutral-400 font-medium">
-                                                    <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
-                                                </div>
-                                                <div className="grid grid-cols-7 gap-0 text-center text-sm relative">
-                                                    {/* Connecting Bar extended to edges */}
-                                                    <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center z-0 pointer-events-none">
-                                                        <div className="w-full h-7 bg-[#4aa9fc]/15 rounded-lg"></div>
+                                                        <h3 className="font-bold text-neutral-800 text-lg">{displayedMonth.year}年 {monthNames[displayedMonth.month]}</h3>
+                                                        <button onClick={goToNextMonth} className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors">
+                                                            <svg className="w-4 h-4 text-neutral-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                            </svg>
+                                                        </button>
                                                     </div>
 
-                                                    {/* Empty cells for offset */}
-                                                    {[...Array(firstDayOffset)].map((_, i) => (
-                                                        <div key={`empty-${i}`} className="w-9 h-9"></div>
-                                                    ))}
-
-                                                    {[...Array(daysInMonth)].map((_, i) => {
-                                                        const day = i + 1;
-                                                        const currentDate = new Date(displayedMonth.year, displayedMonth.month, day);
-                                                        const isStart = currentDate.getTime() === startDate.getTime();
-                                                        const isEnd = currentDate.getTime() === endDate.getTime();
-                                                        const isInRange = currentDate >= startDate && currentDate <= endDate;
-
-                                                        return (
+                                                    {/* Quick Month Pills */}
+                                                    <div className="flex gap-2 mb-5 pb-4 border-b border-neutral-100 justify-center">
+                                                        {[10, 11, 12].map(m => (
                                                             <button
-                                                                key={i}
-                                                                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all relative z-10 ${isStart || isEnd
-                                                                    ? 'bg-[#4aa9fc] text-white font-bold shadow-md'
-                                                                    : isInRange
-                                                                        ? 'text-[#0088ff] font-medium hover:bg-[#4aa9fc]/20'
-                                                                        : 'text-neutral-700 hover:bg-neutral-100'
-                                                                    }`}
+                                                                key={m}
+                                                                onClick={() => selectMonth(displayedMonth.year, m - 1)}
+                                                                className={`text-xs px-3 py-1.5 rounded-full transition-all ${displayedMonth.month === m - 1 ? 'bg-[#4aa9fc] text-white shadow-md' : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'}`}
                                                             >
-                                                                {day}
+                                                                {m}月
                                                             </button>
-                                                        );
-                                                    })}
+                                                        ))}
+                                                    </div>
+
+                                                    {/* Calendar Grid with Connected Range */}
+                                                    <div className="grid grid-cols-7 gap-0 text-center text-xs mb-2 text-neutral-400 font-medium">
+                                                        <div>日</div><div>月</div><div>火</div><div>水</div><div>木</div><div>金</div><div>土</div>
+                                                    </div>
+                                                    <div className="grid grid-cols-7 gap-0 text-center text-sm relative">
+                                                        {/* Connecting Bar extended to edges */}
+                                                        <div className="absolute top-0 bottom-0 left-0 right-0 flex items-center z-0 pointer-events-none">
+                                                            <div className="w-full h-7 bg-[#4aa9fc]/15 rounded-lg"></div>
+                                                        </div>
+
+                                                        {/* Empty cells for offset */}
+                                                        {[...Array(firstDayOffset)].map((_, i) => (
+                                                            <div key={`empty-${i}`} className="w-9 h-9"></div>
+                                                        ))}
+
+                                                        {[...Array(daysInMonth)].map((_, i) => {
+                                                            const day = i + 1;
+                                                            const currentDate = new Date(displayedMonth.year, displayedMonth.month, day);
+                                                            const isStart = currentDate.getTime() === startDate.getTime();
+                                                            const isEnd = currentDate.getTime() === endDate.getTime();
+                                                            const isInRange = currentDate >= startDate && currentDate <= endDate;
+
+                                                            return (
+                                                                <button
+                                                                    key={i}
+                                                                    className={`w-9 h-9 rounded-full flex items-center justify-center transition-all relative z-10 ${isStart || isEnd
+                                                                        ? 'bg-[#4aa9fc] text-white font-bold shadow-md'
+                                                                        : isInRange
+                                                                            ? 'text-[#0088ff] font-medium hover:bg-[#4aa9fc]/20'
+                                                                            : 'text-neutral-700 hover:bg-neutral-100'
+                                                                        }`}
+                                                                >
+                                                                    {day}
+                                                                </button>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        );
-                                    })()}
-                                </div>
-                            </div>
-
-                            {/* Bottom Row: Store/Staff and Gather Button */}
-                            <div className="flex flex-wrap gap-8 items-center justify-between">
-                                <div className="flex flex-wrap gap-8 items-center">
-                                    {/* Store Selector - Matching Type/Period styling */}
-                                    <div className="flex items-center gap-4">
-                                        <label className="font-medium text-neutral-600 text-sm">店舗</label>
-                                        <button className="bg-white/80 hover:bg-white border border-white/60 rounded-xl px-4 py-2.5 flex items-center gap-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all min-w-[140px] justify-between group">
-                                            <span className="text-sm font-medium text-neutral-700">{selectedStore}</span>
-                                            <ChevronDownIcon className="text-neutral-400 group-hover:text-neutral-600 transition-colors" />
-                                        </button>
-                                    </div>
-
-                                    {/* Staff Selector - Matching Type/Period styling */}
-                                    <div className="flex items-center gap-4">
-                                        <label className="font-medium text-neutral-600 text-sm">スタッフ</label>
-                                        <button className="bg-white/80 hover:bg-white border border-white/60 rounded-xl px-4 py-2.5 flex items-center gap-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all min-w-[140px] justify-between group">
-                                            <span className="text-sm font-medium text-neutral-700">{selectedStaff}</span>
-                                            <ChevronDownIcon className="text-neutral-400 group-hover:text-neutral-600 transition-colors" />
-                                        </button>
+                                            );
+                                        })()}
                                     </div>
                                 </div>
 
-                                {/* Gather Button */}
-                                <button className="h-12 px-8 bg-[#4a9fef] text-white font-bold rounded-full shadow-[0_4px_16px_rgba(74,159,239,0.3)] hover:bg-[#3b8de0] hover:shadow-[0_6px_24px_rgba(74,159,239,0.4)] hover:-translate-y-0.5 transition-all text-sm tracking-widest">
-                                    集計
-                                </button>
-                            </div>
-                        </div>
+                                {/* Bottom Row: Store/Staff and Gather Button */}
+                                <div className="flex flex-wrap gap-8 items-center justify-between">
+                                    <div className="flex flex-wrap gap-8 items-center">
+                                        {/* Store Selector - Matching Type/Period styling */}
+                                        <div className="flex items-center gap-4">
+                                            <label className="font-medium text-neutral-600 text-sm">店舗</label>
+                                            <button className="bg-white/80 hover:bg-white border border-white/60 rounded-xl px-4 py-2.5 flex items-center gap-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all min-w-[140px] justify-between group">
+                                                <span className="text-sm font-medium text-neutral-700">{selectedStore}</span>
+                                                <ChevronDownIcon className="text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+                                            </button>
+                                        </div>
 
-                        {/* Content Switching */}
-                        <div className="w-full max-w-[1000px] animate-fadeIn">
-                            {selectedType === "店舗" && <StoreReportTable />}
-                            {selectedType === "媒体" && <MediaReportTable />}
-                            {selectedType === "施術" && <TreatmentReportTable />}
-                            {selectedType === "売上" && <SalesReportTable />}
+                                        {/* Staff Selector - Matching Type/Period styling */}
+                                        <div className="flex items-center gap-4">
+                                            <label className="font-medium text-neutral-600 text-sm">スタッフ</label>
+                                            <button className="bg-white/80 hover:bg-white border border-white/60 rounded-xl px-4 py-2.5 flex items-center gap-6 shadow-[0_4px_16px_rgba(0,0,0,0.04)] backdrop-blur-sm transition-all min-w-[140px] justify-between group">
+                                                <span className="text-sm font-medium text-neutral-700">{selectedStaff}</span>
+                                                <ChevronDownIcon className="text-neutral-400 group-hover:text-neutral-600 transition-colors" />
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    {/* Gather Button */}
+                                    <button className="h-12 px-8 bg-[#4a9fef] text-white font-bold rounded-full shadow-[0_4px_16px_rgba(74,159,239,0.3)] hover:bg-[#3b8de0] hover:shadow-[0_6px_24px_rgba(74,159,239,0.4)] hover:-translate-y-0.5 transition-all text-sm tracking-widest">
+                                        集計
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Content Switching */}
+                            <div className="w-full max-w-[1000px] animate-fadeIn">
+                                {selectedType === "店舗" && <StoreReportTable />}
+                                {selectedType === "媒体" && <MediaReportTable />}
+                                {selectedType === "施術" && <TreatmentReportTable />}
+                                {selectedType === "売上" && <SalesReportTable />}
+                            </div>
                         </div>
                     </div>
                 </div>

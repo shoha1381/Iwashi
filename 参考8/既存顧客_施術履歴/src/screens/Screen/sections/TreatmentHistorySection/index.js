@@ -1,0 +1,1 @@
+export { TreatmentHistorySection } from "./TreatmentHistorySection";

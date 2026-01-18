@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { QuestionnaireModal } from "../QuestionnaireModal";
 import { LineRegistrationModal } from "../LineRegistrationModal";
 import { TreatmentModal } from "../TreatmentModal";
@@ -29,7 +30,8 @@ const RIKA_DATA = {
 };
 
 export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DATA }) => {
-    if (!isOpen) return null;
+    const navigate = useNavigate();
+    // if (!isOpen) return null; -> Moved below hooks
 
     // Use provided customerData or fall back to Rika's data (though logic should ensure data is passed)
     const data = customerData || RIKA_DATA;
@@ -42,6 +44,8 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
     const [customerInfoTab, setCustomerInfoTab] = useState("overview");
     // FrequencyGraphModal state removed - now in TreatmentModal
     // MoreOptionsMenu state removed - was only for Frequency Graph test
+
+    if (!isOpen) return null;
 
     // Labels/Badges rendering helper
     const renderLabels = () => {
@@ -243,13 +247,13 @@ export const CustomerOverviewModal = ({ isOpen, onClose, customerData = RIKA_DAT
                                     <div className="p-2 border-b border-dashed border-neutral-200">
                                         <span className="text-[10px] text-neutral-400 block mb-0.5">注意事項</span>
                                         <span className="text-[11px] font-medium text-neutral-800 leading-snug block">
-                                            {data.cautions[0].text}
+                                            {data.cautions?.[0]?.text || ""}
                                         </span>
                                     </div>
                                     <div className="p-2">
                                         <span className="text-[10px] text-neutral-400 block mb-0.5">注意ワード</span>
                                         <span className="text-[11px] font-medium text-neutral-800 leading-snug block">
-                                            {data.cautions[1].text}
+                                            {data.cautions?.[1]?.text || ""}
                                         </span>
                                     </div>
                                 </div>

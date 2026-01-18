@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { NavigationSection } from "../../components/NavigationSection";
 import { HeaderSection } from "../../components/HeaderSection";
+import { CustomerOverviewModal } from "../../components/CustomerOverviewModal";
 
 // Icons
 const SearchIcon = () => (
@@ -36,12 +36,34 @@ export const CustomerList = () => {
     const [searchName, setSearchName] = useState("");
     const [searchPhone, setSearchPhone] = useState("");
     const [filterOption, setFilterOption] = useState("すべての顧客");
+    const [showCustomerOverview, setShowCustomerOverview] = useState(false);
+    const [selectedCustomerData, setSelectedCustomerData] = useState(null);
 
     const filteredCustomers = mockCustomers.filter(customer => {
         const matchesName = customer.name.includes(searchName) || customer.nameKana.includes(searchName);
         const matchesPhone = searchPhone === "" || customer.phone.includes(searchPhone);
         return matchesName && matchesPhone;
     });
+
+    const handleDetailClick = (customer) => {
+        // Create customer data for the modal
+        const customerData = {
+            name: customer.name,
+            reading: `${customer.nameKana}`,
+            photo: "/img/image-2.png", // Default photo
+            courseInfo: "SP・初回",
+            media: "ネSP",
+            goal: "",
+            cautions: [],
+            labels: [],
+            customerNumber: String(customer.id).padStart(8, '0'),
+            firstVisit: "2024/01/15",
+            lastVisit: "2024/10/05",
+            rank: "シルバー"
+        };
+        setSelectedCustomerData(customerData);
+        setShowCustomerOverview(true);
+    };
 
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
@@ -120,12 +142,12 @@ export const CustomerList = () => {
                                                 <td className="py-3 px-5 text-sm text-neutral-500">{customer.phone}</td>
                                                 <td className="py-3 px-5 text-sm text-neutral-500">{customer.store}</td>
                                                 <td className="py-3 px-5 text-right">
-                                                    <Link
-                                                        to={`/customers/${customer.id}`}
+                                                    <button
+                                                        onClick={() => handleDetailClick(customer)}
                                                         className="inline-flex items-center justify-center px-5 py-1.5 text-xs font-medium text-white bg-[#55a5e8] rounded-lg hover:bg-[#4a96d8] transition-colors shadow-[0_2px_6px_rgba(85,165,232,0.25)] whitespace-nowrap"
                                                     >
                                                         詳細
-                                                    </Link>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}
@@ -136,6 +158,14 @@ export const CustomerList = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Customer Overview Modal */}
+            <CustomerOverviewModal
+                isOpen={showCustomerOverview}
+                onClose={() => setShowCustomerOverview(false)}
+                customerData={selectedCustomerData}
+            />
         </div>
     );
 };
+

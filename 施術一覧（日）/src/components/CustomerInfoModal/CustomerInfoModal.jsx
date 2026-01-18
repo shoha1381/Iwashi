@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 export const CustomerInfoModal = ({ isOpen, onClose, customerData, initialTab = "overview" }) => {
     const [activeTab, setActiveTab] = useState(initialTab);
+
+    useEffect(() => {
+        if (isOpen) {
+            setActiveTab(initialTab);
+        }
+    }, [isOpen, initialTab]);
 
     if (!isOpen) return null;
 
