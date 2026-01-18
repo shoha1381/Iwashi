@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavigationSection } from "../../components/NavigationSection";
 import { HeaderSection } from "../../components/HeaderSection";
 
@@ -22,13 +22,26 @@ export const Settings = () => {
         { date: "現在日の合計", values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
     ];
 
+    const [isDesktop, setIsDesktop] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+            setIsDesktop(window.innerWidth >= 1280);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
         <div className="min-h-screen bg-neutral-50 flex font-sans overflow-x-hidden">
-            {/* Side Navigation */}
-            <NavigationSection />
+            {/* Side Navigation - Hidden on mobile and desktop */}
+            {!isMobile && !isDesktop && <NavigationSection />}
 
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col lg:mr-16 pb-20 lg:pb-0 w-full h-screen">
+            {/* Main Content - Add left margin on desktop for sidebar */}
+            <div className={`flex-1 flex flex-col pb-20 xl:pb-0 w-full h-screen ${isDesktop ? 'ml-[72px]' : 'lg:mr-16'}`}>
                 {/* Unified Header */}
                 <HeaderSection selectedStore="銀座店" />
 

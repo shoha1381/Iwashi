@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 // Icons
 const CalendarIcon = () => (
@@ -83,8 +84,19 @@ export const HeaderSection = ({
         { id: "week", label: "週" },
     ];
 
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsDesktop(window.innerWidth >= 1280);
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     return (
-        <header className="header-nav">
+        <header className={`header-nav transition-all duration-200 ${isDesktop ? 'left-[72px]' : 'left-0'}`}>
             <div className="px-4 md:px-6 h-14 md:h-16 flex items-center">
                 <div className={`flex items-center w-full ${config.hideControls ? 'justify-start' : 'justify-between gap-2 md:gap-4 flex-wrap'}`}>
                     {/* Left: Title or Date Navigation - Only show for schedule or non-hideControls pages */}

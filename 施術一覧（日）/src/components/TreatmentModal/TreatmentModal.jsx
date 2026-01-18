@@ -7,6 +7,7 @@ import { SimilarCasesModal } from "../SimilarCasesModal";
 import { PhotoComparisonModal } from "../PhotoComparisonModal";
 import { PhotoAIGenerationModal } from "../PhotoAIGenerationModal";
 import { PhotoCaptureModal } from "../PhotoCaptureModal";
+import { TreatmentHistoryTab } from "../CustomerInfoModal/TreatmentHistoryTab";
 
 // CSS filters for colors (Matched with NavigationSection)
 const BLUE_DARK = 'brightness(0) saturate(100%) invert(44%) sepia(83%) saturate(1352%) hue-rotate(187deg) brightness(102%) contrast(101%)';
@@ -48,6 +49,9 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
         birthdate: "2000/9/23",
         photo: "/img/image-2.png",
     };
+
+    // Determine if returning customer (Sato Shoha or has visit count > 1)
+    const isReturning = data.name?.includes("佐藤 祥羽") || data.name?.includes("佐藤祥羽");
 
     // Style from CustomerOverviewModal
     const softShadow = "shadow-[0px_4px_12px_rgba(0,0,0,0.03)] border border-neutral-100";
@@ -138,21 +142,38 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                 </div>
             ),
         },
-        {
-            id: "questionnaire",
-            label: "問診票",
-            icon: (isActive) => (
-                <div className="w-6 h-6 relative flex items-center justify-center">
-                    <img
-                        className="w-5 h-5"
-                        alt=""
-                        src="/img/questionnaire-icon.png"
-                        style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
-                    />
-                </div>
-            ),
-        },
+        // Dynamic 3rd Tab: History for returning, Questionnaire for new
+        isReturning
+            ? {
+                id: "history",
+                label: "施術履歴",
+                icon: (isActive) => (
+                    <div className="w-6 h-6 relative flex items-center justify-center">
+                        <img
+                            className="w-5 h-5"
+                            alt=""
+                            src="/img/tab-treatment.svg"
+                            style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
+                        />
+                    </div>
+                ),
+            }
+            : {
+                id: "questionnaire",
+                label: "問診票",
+                icon: (isActive) => (
+                    <div className="w-6 h-6 relative flex items-center justify-center">
+                        <img
+                            className="w-5 h-5"
+                            alt=""
+                            src="/img/questionnaire-icon.png"
+                            style={{ filter: isActive ? WHITE : GRAY_LIGHT }}
+                        />
+                    </div>
+                ),
+            },
     ];
+
 
     const Card = ({ children, className = "" }) => (
         <article className={`bg-white rounded-xl overflow-hidden ${softShadow} ${className}`}>
@@ -422,6 +443,12 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                 {activeTab === "concerns" && (
                     <ConcernsTabContent softShadow={softShadow} />
                 )}
+
+                {activeTab === "history" && (
+                    <div className="flex-1 overflow-y-auto -mx-2 px-2">
+                        <TreatmentHistoryTab />
+                    </div>
+                )}
             </div>
 
             {/* Footer */}
@@ -465,70 +492,74 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div >
 
             {/* Dark Overlay - shown when function menu is open */}
-            {isFunctionMenuOpen && (
-                <div
-                    className="fixed inset-0 bg-black/50 z-[119] pointer-events-auto"
-                    onClick={() => setIsFunctionMenuOpen(false)}
-                />
-            )}
+            {
+                isFunctionMenuOpen && (
+                    <div
+                        className="fixed inset-0 bg-black/50 z-[119] pointer-events-auto"
+                        onClick={() => setIsFunctionMenuOpen(false)}
+                    />
+                )
+            }
 
             {/* Function Menu Panel */}
-            {isFunctionMenuOpen && (
-                <div className="fixed bottom-[120px] right-12 z-[125] pointer-events-auto animate-in fade-in slide-in-from-bottom-4 duration-200">
-                    <nav className="w-[250px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden border border-white/50">
-                        <ul className="flex flex-col py-2">
-                            {functionMenuItems.map((item) => (
-                                <li key={item.id}>
-                                    <button
-                                        className="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-neutral-50 transition-colors"
-                                        onClick={() => {
-                                            setIsFunctionMenuOpen(false);
-                                            // Handle menu item click based on id
-                                            if (item.id === 7) {
-                                                // お会計
-                                                setActiveFunctionScreen('checkout');
-                                            } else if (item.id === 1) {
-                                                // 類似症例
-                                                setActiveFunctionScreen('similar_cases');
-                                            } else if (item.id === 2) {
-                                                // 頻度のグラフ
-                                                setActiveFunctionScreen('frequency_graph');
-                                            } else if (item.id === 3) {
-                                                // 効果のイメージ
-                                                setActiveFunctionScreen('effect_image');
-                                            } else if (item.id === 6) {
-                                                // 写真比較
-                                                setActiveFunctionScreen('photo_compare');
-                                            } else if (item.id === 5) {
-                                                // 写真 AI 生成
-                                                setActiveFunctionScreen('photo_ai_gen');
-                                            } else if (item.id === 4) {
-                                                // 写真撮影
-                                                setActiveFunctionScreen('photo_capture');
-                                            } else {
-                                                console.log(`Clicked: ${item.label}`);
-                                            }
-                                        }}
-                                    >
-                                        <div className="w-6 h-6 flex items-center justify-center">
-                                            <img
-                                                src={item.icon}
-                                                alt=""
-                                                className="w-5 h-5 object-contain"
-                                                style={{ filter: GRAY_DARK }}
-                                            />
-                                        </div>
-                                        <span className="text-[14px] font-medium text-neutral-800">{item.label}</span>
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
-                </div>
-            )}
+            {
+                isFunctionMenuOpen && (
+                    <div className="fixed bottom-[120px] right-12 z-[125] pointer-events-auto animate-in fade-in slide-in-from-bottom-4 duration-200">
+                        <nav className="w-[250px] bg-white/95 backdrop-blur-xl rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.15)] overflow-hidden border border-white/50">
+                            <ul className="flex flex-col py-2">
+                                {functionMenuItems.map((item) => (
+                                    <li key={item.id}>
+                                        <button
+                                            className="w-full px-6 py-3.5 flex items-center gap-4 hover:bg-neutral-50 transition-colors"
+                                            onClick={() => {
+                                                setIsFunctionMenuOpen(false);
+                                                // Handle menu item click based on id
+                                                if (item.id === 7) {
+                                                    // お会計
+                                                    setActiveFunctionScreen('checkout');
+                                                } else if (item.id === 1) {
+                                                    // 類似症例
+                                                    setActiveFunctionScreen('similar_cases');
+                                                } else if (item.id === 2) {
+                                                    // 頻度のグラフ
+                                                    setActiveFunctionScreen('frequency_graph');
+                                                } else if (item.id === 3) {
+                                                    // 効果のイメージ
+                                                    setActiveFunctionScreen('effect_image');
+                                                } else if (item.id === 6) {
+                                                    // 写真比較
+                                                    setActiveFunctionScreen('photo_compare');
+                                                } else if (item.id === 5) {
+                                                    // 写真 AI 生成
+                                                    setActiveFunctionScreen('photo_ai_gen');
+                                                } else if (item.id === 4) {
+                                                    // 写真撮影
+                                                    setActiveFunctionScreen('photo_capture');
+                                                } else {
+                                                    console.log(`Clicked: ${item.label}`);
+                                                }
+                                            }}
+                                        >
+                                            <div className="w-6 h-6 flex items-center justify-center">
+                                                <img
+                                                    src={item.icon}
+                                                    alt=""
+                                                    className="w-5 h-5 object-contain"
+                                                    style={{ filter: GRAY_DARK }}
+                                                />
+                                            </div>
+                                            <span className="text-[14px] font-medium text-neutral-800">{item.label}</span>
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    </div>
+                )
+            }
 
             {/* Checkout Screen */}
             <CheckoutScreen
@@ -572,7 +603,7 @@ export const TreatmentModal = ({ isOpen, onClose, customerData }) => {
                 isOpen={activeFunctionScreen === 'photo_capture'}
                 onClose={() => setActiveFunctionScreen(null)}
             />
-        </div>,
+        </div >,
         document.body
     );
 };

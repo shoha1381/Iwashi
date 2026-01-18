@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
 import { Screen } from "./screens/Screen";
 import { CustomerList } from "./screens/CustomerList";
 import { CustomerDetail } from "./screens/CustomerDetail";
@@ -7,43 +7,54 @@ import { Analytics } from "./screens/Analytics";
 import { Summary } from "./screens/Summary";
 import { Settings } from "./screens/Settings";
 import { Sales } from "./screens/Sales";
+import { DesktopSidebar } from "./components/DesktopSidebar";
+
+// Layout component that includes the global desktop sidebar
+const Layout = ({ children }) => {
+    return (
+        <>
+            <DesktopSidebar />
+            {children}
+        </>
+    );
+};
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Screen />,
+        element: <Layout><Screen /></Layout>,
     },
     {
         path: "/schedule",
-        element: <Screen />,
+        element: <Layout><Screen /></Layout>,
     },
     {
         path: "/customers",
-        element: <CustomerList />,
+        element: <Layout><CustomerList /></Layout>,
     },
     {
         path: "/customers/:id",
-        element: <CustomerDetail />,
+        element: <Layout><CustomerDetail /></Layout>,
     },
     {
         path: "/checkout",
-        element: <Checkout />,
+        element: <Layout><Checkout /></Layout>,
     },
     {
         path: "/sales",
-        element: <Sales />,
+        element: <Layout><Sales /></Layout>,
     },
     {
         path: "/analytics",
-        element: <Analytics />,
+        element: <Layout><Analytics /></Layout>,
     },
     {
         path: "/summary",
-        element: <Summary />,
+        element: <Layout><Summary /></Layout>,
     },
     {
         path: "/settings",
-        element: <Settings />,
+        element: <Layout><Settings /></Layout>,
     },
 ]);
 
